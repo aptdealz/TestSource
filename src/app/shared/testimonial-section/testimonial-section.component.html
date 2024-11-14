@@ -1,0 +1,38 @@
+<div class="bg-primary mb-3">
+  <div class="container py-4">
+    <h3 class="text-white text-center">Testimonials</h3>
+    <div class="row">
+      <div class="col-md-10 mx-auto mt-3">
+        <swiper [config]="configTest">
+          <ng-template swiperSlide
+                       *ngFor="let item of testimonials">
+            <div class=" display-4 position-relative rounded-3 bg-white p-2">
+              <div class="d-flex test-tab">
+                <img src="assets/images/Icons/left-a.svg"
+                     style="align-self: baseline;width: 25px;">
+                <p class="mt-3">
+                  {{item.comments}}
+
+                </p>
+                <img src="assets/images/Icons/right-a.svg"
+                     style="position: fixed; right:5px; align-self: end;width: 25px;">
+              </div>
+              <i class="fa-sharp fa-solid fa-caret-down"></i>
+            </div>
+            <div class="d-flex my-4">
+              <div>
+                <img class="profileimage" *ngIf="item.imageUrl === null || item.imageUrl.length === 0" src="assets/images/test-1.png">
+                <img class="profileimage" *ngIf="!(item.imageUrl === null || item.imageUrl.length === 0)" [src]="item.imageUrl">
+              </div>
+              <div class="testimonial-title mx-2 mt-2">
+                <h5 class="text-white m-0 p-0">{{item.name}}</h5>
+                <span class="display-5 text-white">{{item.place}}</span>
+              </div>
+            </div>
+          </ng-template>
+        </swiper>
+      </div>
+
+    </div>
+  </div>
+</div>

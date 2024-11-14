@@ -1,0 +1,202 @@
+<div class="footer text-secondary">
+  <div class="container pt-3">
+    <div class="row py-4">
+      <!-- <div class="col-md-1">
+
+      </div> -->
+      <div class="col-md-2">
+        <h6 class="m-0 mb-1 text-white ps-4r">Quick Link</h6>
+        <ul>
+          <li>
+            <a (click)="open()" *ngIf="!user.seller"
+               class="text-white pointer">
+              My Orders</a>
+          </li>
+          <li>
+            <a *ngIf="!user.seller"
+               [routerLink]="['/become-vendor']"
+               class="text-white">Become a Seller</a>
+          </li>
+          <li>
+            <a *ngIf="user.buyer"
+               [routerLink]="['/buyer-profile/personal']"
+               class="text-white">My Account</a>
+          </li>
+          <li>
+            <a *ngIf="user.seller"
+               [routerLink]="['/seller-profile/personal']"
+               class="text-white">My Account</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3">
+        <h6 class="m-0 mb-1 text-white ps-4r">Customer Support</h6>
+        <ul>
+
+          <li>
+            <a href="#"
+               [routerLink]="['/privacy-policy']"
+               class="text-white">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/terms-condition']"
+               class="text-white">Terms & Conditions</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/return-policy']"
+               class="text-white">Return Policy</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="m-0 mb-1 text-white ps-4r">About Us</h6>
+        <ul>
+          <li>
+            <a href="#"
+               [routerLink]="['/about-us']"
+               class="text-white">About our Company</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/need-help']"
+               class="text-white">FAQ</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/our-partners']"
+               class="text-white">Partner with Us</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/blog']"
+               class="text-white">Blog</a>
+          </li>
+          <li>
+            <a href="#"
+               [routerLink]="['/contact-us']"
+               class="text-white">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 px-0">
+        <!-- <h6 class="m-0 p-0 text-white ps-4r text-md-center">Download App</h6>
+        <div class="d-flex mt-2 mb-4 justify-content-center justify-content-lg-start">
+          <a target="_blank"
+             href="https://play.google.com/store/apps/details?id=com.aptdealz.quotesouk">
+            <img src="assets/images/google.png"
+                 role="button"
+                 class="os-logo" />
+          </a>
+          <a class="d-none"
+             href="#">
+            <img src="assets/images/apple.png"
+                 role="button"
+                 class="os-logo ms-2" />
+          </a>
+        </div>
+        <div class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+          <p class="p-0 mx-1 text-white display-4 ps-4r">
+            We employ secure payment methods for razorpay/visa
+          </p>
+        </div>
+        <div class="d-flex">
+          <img src="assets/images/razorpay.jpg"
+               class="visa-img mx-2" />
+          <img src="assets/images/visa.jpg"
+               class="visa-img mx-2" />
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-tag bg-primary text-white display-5">
+  <div class="container py-2 d-none d-md-block">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <span class="fw-500">
+          Copyright <span>&copy;</span> 2022-2023 Aptdealz Buyer Hub & E-Trading Private Limited. All rights
+          reserved.
+        </span>
+      </div>
+      <div>
+        <div class="d-flex align-items-center">
+          <span class="fw-500">Follow Us:</span>
+
+          <a href="https://www.facebook.com/Quotesouk/"
+             target="_blank">
+            <img src="assets/images/social/fb.png"
+                 class="ms-1" />
+          </a>
+          <a href="https://www.instagram.com/quotesouk/"
+             target="_blank">
+            <img src="assets/images/social/insta.png"
+                 class="ms-1" />
+          </a>
+          <a href="https://www.twitter.com/quotesouk/"
+             target="_blank">
+            <img src="assets/images/social/twitter.png"
+                 class="ms-1" />
+          </a>
+          <a href="https://www.youtube.com/@quotesouk"
+             target="_blank">
+            <img src="assets/images/social/youtube.png"
+                 class="ms-1" />
+          </a>
+          <a href="https://in.linkedin.com/company/quotesouk"
+             target="_blank">
+            <img src="assets/images/social/linkedin.png"
+                 class="ms-1" />
+          </a>
+          <a href="https://vimeo.com/832137697"
+             target="_blank">
+            <img src="assets/images/social/vimeo.png"
+                 class="ms-1" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-2 d-block d-md-none">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex align-items-center justify-content-center">
+          <span class="fw-500">Follow Us:</span>
+
+          <div>
+            <a href="https://www.facebook.com/Quotesouk/"
+               target="_blank">
+              <img src="assets/images/social/fb.png"
+                   class="ms-1" />
+            </a>
+            <a href="https://www.instagram.com/quotesouk/"
+               target="_blank">
+              <img src="assets/images/social/insta.png"
+                   class="ms-1" />
+            </a>
+            <a href="https://www.twitter.com/quotesouk/"
+               target="_blank">
+              <img src="assets/images/social/twitter.png"
+                   class="ms-1" />
+            </a>
+            <a href="https://www.youtube.com/@quotesouk"
+               target="_blank">
+              <img src="assets/images/social/youtube.png"
+                   class="ms-1" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <span class="fw-500">
+          Copyright <span>&copy;</span> 2022-2023 Aptdealz Buyer Hub & E-Trading Private Limited. All rights
+          reserved.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

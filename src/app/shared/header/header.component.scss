@@ -1,0 +1,124 @@
+@use "../../../assets/scss/z-index" as zIndex;
+.toggle:focus {
+  box-shadow: none;
+  offset: none;
+}
+
+a:hover {
+  color: inherit;
+}
+.header-t {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: map-get(zIndex.$zType, sidebarM);
+}
+.header-mobile {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: map-get(zIndex.$zType, sidebarM);
+}
+sup {
+  top: -1em !important;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 12px;
+}
+.navbar {
+  background-color: white;
+  height: 90px;
+}
+.w-md-75 {
+  width: 200px;
+}
+.searchbox {
+  position: absolute;
+  top: 40px;
+  background: white;
+  max-height: 13rem;
+  overflow-y: auto;
+  z-index: map-get(zIndex.$zType, suggestionBox);
+}
+.search-field {
+  background-color: #ebebeb;
+}
+input::placeholder {
+  color: #6c757d !important;
+}
+.suggestion-box {
+  position: absolute;
+  top: 45px;
+  left: 0%;
+  background: white;
+  border-color: var(--border-color);
+  max-height: 13rem;
+  overflow-y: auto;
+  padding: 0.75rem;
+  width: 100%;
+  z-index: map-get(zIndex.$zType, suggestionBox);
+}
+.site-menu {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0;
+  * {
+    transition: all 0.35s ease;
+  }
+  li {
+    display: inline-block;
+    list-style: outside none none;
+    overflow: hidden;
+    a {
+      color: #fff;
+      display: inline-block;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin: 0;
+      padding: 0.3em 0;
+      position: relative;
+      text-decoration: none;
+      text-transform: uppercase;
+      &:before,
+      &:after {
+        position: absolute;
+        transition: all 0.35s ease;
+      }
+      &:before {
+        bottom: 100%;
+        display: block;
+        height: 3px;
+        width: 100%;
+        content: "";
+        background-color: #fff;
+      }
+      &:after {
+        padding: 0.3em 0;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        content: attr(data-hover);
+        color: white;
+        white-space: nowrap;
+      }
+    }
+    & .active-link {
+      border-bottom: 2px solid white;
+      font-weight: 700;
+    }
+  }
+  li:hover a:not(.active-link) {
+    transform: translateY(100%);
+  }
+}
+@media screen and (max-width: 780px) {
+}
+@media screen and (max-width: 480px) {
+  .w-md-75 {
+    width: 200px;
+  }
+  .form-group .form-control {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,95 @@
+<form [formGroup]="enquiryForm">
+  <div class="modal-content">
+    <div class="modal-header p-3 justify-content-center position-relative">
+      <h3 class="modal-title text-primary text-center"
+          style="font-weight: 600;">SEND ENQUIRY</h3>
+      <button type="button"
+              class="btn-close-4"
+              mat-dialog-close
+              aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <mat-dialog-content>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row mx-5">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name*</label><br>
+              <input readonly
+                     formControlName="name"
+                     type="text"
+                     placeholder="Type your name"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.name"
+                                     [label]="'Name'"></app-print-input-error>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Quantity*</label><br>
+              <div class="d-flex shadow align-items-center rounded-3 my-1"
+                   style="width: 100px;">
+                <button type="button"
+                        (click)="onQuantityDecrement()"
+                        class="btn btn-light-r ">-</button>
+                <input type="number"
+                       formControlName="quantity"
+                       class="form-control rounded-0 px-1 text-center">
+                <button type="button"
+                        (click)="onQuantityIncrement()"
+                        class="btn btn-light-l ">+</button>
+              </div>
+              <app-print-input-error [control]="f.quantity"
+                                     [label]="'Quantity'"></app-print-input-error>
+            </div>
+
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Phone No.*</label><br>
+              <input readonly
+                     formControlName="phoneNumber" maxlength="13"
+                     type="number" (keydown)="allowPhoneNumberOnlyNumbers($event)"
+                     placeholder="Type Phone no"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.phoneNumber"
+                                     [label]="'Phone Number'"></app-print-input-error>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Description*</label><br>
+              <textarea formControlName="description"
+                        class="form-control mt-2"
+                        rows="3"
+                        placeholder="Type description"></textarea>
+              <app-print-input-error [control]="f.description"
+                                     [label]="'description'"></app-print-input-error>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Shipping Address (Optional)</label><br>
+              <textarea formControlName="shippingAddress"
+                        class="form-control mt-2"
+                        rows="3"
+                        placeholder="Type shipping address"></textarea>
+              <app-print-input-error [control]="f.shippingAddress"
+                                     [label]="'Shipping Address'"></app-print-input-error>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div></mat-dialog-content>
+    <mat-dialog-actions align="center">
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button"
+      [disabled]="enquiryForm.invalid"
+              (click)="submit()"
+              class="btn btn-info px-4">Send Enquiry</button>
+
+    </div></mat-dialog-actions>
+  </div>
+</form>

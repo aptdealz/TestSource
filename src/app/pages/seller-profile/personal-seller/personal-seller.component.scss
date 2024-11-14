@@ -1,0 +1,9 @@
+@use "../../../../assets/scss/z-index.scss" as zIndex;
+
+.bg-secondary {
+  background-color: #efefef !important;
+}
+.custom-dropdown{
+  z-index: map-get(zIndex.$zType, customZero);
+
+}

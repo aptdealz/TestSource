@@ -1,0 +1,38 @@
+@use "../../../assets/scss/z-index.scss" as zIndex;
+
+.form-select {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.img-label {
+  width: 360px;
+  height: 60px;
+  /* UI Properties */
+  background: transparent linear-gradient(103deg, #ff15cc 0%, #0019bf 100%) 0%
+    0% no-repeat padding-box;
+  border-radius: 0px 43px 0px 100px;
+  opacity: 1;
+  position: absolute;
+  right: 0px;
+}
+.w-20 {
+  width: 150px;
+}
+
+.z-100 {
+  z-index: map-get(zIndex.$zType, requirement)
+}
+@media screen and (max-width: 780px) {
+  .img-label {
+    width: 212px;
+    height: 40px;
+    top: 0px;
+  }
+}
+@media screen and (max-width: 990px) {
+  .img-label {
+    width: 212px;
+    height: 40px;
+    top: 0px;
+  }
+}

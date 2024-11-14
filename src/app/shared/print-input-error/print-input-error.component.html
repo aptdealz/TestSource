@@ -1,0 +1,13 @@
+<div class="display-6 ms-1 text-danger"
+     style="visibility: hidden;"
+     [ngClass]="{'visible': control && control.errors && (control.dirty || control.touched)}">
+    <div *ngIf="!control.errors"><small>no error</small></div>
+    <div *ngIf="control.errors && control.errors.required"><small>
+        {{label == 'Sub Category' || label == 'Category' || label == 'Country' || label == 'State' || label == 'Grievance Type'|| label == 'Comment Type' || label == 'Order' || label == 'Unit'? 'Select' : 'Enter'}} {{label??'Field'}}</small></div>
+    <div *ngIf="control.errors && control.errors.email"><small>Enter a valid email</small></div>
+    <div *ngIf="control.errors && control.errors.phoneNumber"><small>Enter a valid phone number</small></div>
+    <div *ngIf="control.errors && control.errors.confirmedValidator"><small>Password does not match</small></div>
+    <div *ngIf="control.errors && control.errors.pattern"><small>Invalid {{label??'value'}}</small></div>
+    <div *ngIf="control.errors && control.errors.invalidPassword"><small>Password should have minimum 6 characters, at least one uppercase letter, one number, and one special character and shouldn't contain space.</small></div>
+    <div *ngIf="control.errors && control.errors.mustMatchGST"><small>PAN used in GST should match</small></div>
+</div>

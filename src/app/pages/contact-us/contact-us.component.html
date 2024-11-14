@@ -1,0 +1,160 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs">
+      </app-breadcrumb-section>
+    </section>
+  </div>
+
+  <div class="d-lg-flex d-sm-block sec">
+    <div class="left-s">
+      <div class="panel">
+        <h1>Get prompt Answers to all your questions</h1>
+        <hr class="prompt-hr" />
+      </div>
+    </div>
+    <div class="right-s">
+      <div class="custom-img-about bg-white p-4 my-2">
+        <img src="assets/images/about/quotesouk-office.webp" 
+        alt="B2B E-Commerce Facilitator"/>
+        <div class="strip-a"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-panel p-5">
+    <div class="row">
+      <div class="col-md-4 mt-3">
+        <div class="text-center">
+          <h4>Corporate Office</h4>
+          <span class="text-white"
+                [innerHTML]="data?.address"></span>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="text-center">
+          <h4>HELP</h4>
+          <i class="fa-solid fa-envelope me-2"></i> <span>helpdesk&#64;quotesouk.com</span><br>
+          <i class="fa-solid fa-phone  me-2"></i> <span>+91 8714600320</span>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="text-center">
+          <h4>SEND US AN EMAIL AT</h4>
+          <span>customercare&#64;quotesouk.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-md-6">
+        <h2 style="font-weight: 700">Write To Us</h2>
+        <hr class="write-hr" />
+        <p>
+          Do you need to contact us? Question about Business leads or placing
+          bulk orders? Would you like to comment? We Will Contact you as soon as
+          possible after you complete the form below.
+        </p>
+
+        <div>
+          <form [formGroup]="contactForm">
+            <div class="contact mt-3">
+              <div class="row my-3">
+                <div class="col-md-12 form-group">
+                  <select formControlName="commentType"
+                          class="form-control form-select">
+                    <option [value]="null"
+                            disabled>Comment Type</option>
+                    <option [value]="type"
+                            *ngFor="let type of commentTypes">
+                      {{ type }}
+                    </option>
+                  </select>
+                  <app-print-input-error [label]="'Comment Type'"
+                                         [control]="f.commentType"></app-print-input-error>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-12 form-group">
+                  <input type="text"
+                         class="form-control"
+                         formControlName="name"
+                         placeholder="Name" />
+                  <app-print-input-error [label]="'Name'"
+                                         [control]="f.name"></app-print-input-error>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-12 form-group">
+                  <input type="text"
+                         class="form-control"
+                         formControlName="email"
+                         placeholder="Email" />
+                  <app-print-input-error [label]="'Email'"
+                                         [control]="f.email"></app-print-input-error>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-12 form-group">
+                  <input type="number"
+                         class="form-control"  maxlength="13"
+                         formControlName="phoneNumber" (keydown)="allowPhoneNumberOnlyNumbers($event)"
+                         placeholder="Phone Number" />
+                  <app-print-input-error [label]="'Phone Number'"
+                                         [control]="f.phoneNumber"></app-print-input-error>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-12 form-group">
+                  <input type="text"
+                         class="form-control"
+                         formControlName="companyName"
+                         placeholder="Company Name" />
+                  <app-print-input-error [label]="'Company Name'"
+                                         [control]="f.companyName"></app-print-input-error>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <textarea rows="3"
+                            class="form-control"
+                            formControlName="message"
+                            placeholder="Message"></textarea>
+                </div>
+                <div class="col-md-12 py-2 d-flex align-items-center">
+                  <input (change)="oncallBackScheduledChange($event)"
+                         formControlName="callBackScheduled"
+                         type="checkbox" /><span class="ps-2"> Schedule Callback</span>
+                </div>
+                <div *ngIf="f.callBackScheduled.value"
+                     class="col-md-10 py-2">
+                  <input formControlName="preferredDateAndTime"
+                         type="datetime-local"
+                         [min]="today | date : 'yyyy-MM-ddThh:mm'"
+                         class="form-control border-sm" />
+                </div>
+
+                <div class="col-md-12 mt-3">
+                  <button
+                  [disabled]="contactForm.invalid"
+                          type="button"
+                          (click)="submit()"
+                          class="btn btn-primary px-4 rounded-pill">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="assets/images/about/web.png"
+        alt="Best B2B MarketPlace"
+             class="w-100" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="p-0">
+   <a  role="button"
+   [routerLink]="['/product-details/', item.sellerProductId]">
+      <div class="sub-card-bg rounded-3"
+     >
+    <div class="d-flex justify-content-end align-items-center ">
+       <div class="star mt-1 mx-1 display-5">
+          <i class=" fa-star text-secondary"
+             [ngClass]="item.rating >= 1 ? 'fa-solid' : 'fa-regular'"></i>
+          <i class=" fa-star text-secondary ms-1"
+             [ngClass]="item.rating >= 2 ? 'fa-solid' : 'fa-regular'"></i>
+          <i class=" fa-star text-secondary ms-1"
+             [ngClass]="item.rating >= 3 ? 'fa-solid' : 'fa-regular'"></i>
+          <i class="fa-star text-secondary ms-1"
+             [ngClass]="item.rating >= 4 ? 'fa-solid' : 'fa-regular'"></i>
+          <i class=" fa-star text-secondary ms-1"
+             [ngClass]="item.rating >= 5 ? 'fa-solid' : 'fa-regular'"></i>
+       </div>
+    </div>
+    <div class="card-image-div">
+       <img [src]="item.image"
+       alt="item.title"
+       class="bg-loading"
+       appImage404>
+    </div>
+
+ </div>
+   </a>
+
+   <div class="text-center p-1">
+      <div class="title-div">
+         <a role="button"
+         [routerLink]="['/product-details/', item.sellerProductId]">
+            <span >{{item.title}}</span>
+         </a>
+      </div>
+
+      <button class="btn btn-info rounded-pill display-4 mt-2"
+              (click)="sendEnquiry()">Send Enquiry</button>
+   </div>
+</div>

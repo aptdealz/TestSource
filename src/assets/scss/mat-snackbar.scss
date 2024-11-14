@@ -1,0 +1,16 @@
+.snackbar {
+  color: var(--site-white);
+  cursor: pointer;
+}
+.error-snackbar > div{
+  background-color: var(--site-danger) !important;
+}
+.info-snackbar > div{
+  background-color: var(--site-info) !important;
+}
+.success-snackbar > div {
+  background-color: var(--site-success) !important;
+}
+.warning-snackbar > div{
+  background-color: var(--site-warning) !important;
+}

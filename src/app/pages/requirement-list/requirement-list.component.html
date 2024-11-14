@@ -1,0 +1,170 @@
+<div class="wrapper-panel">
+  <form [formGroup]="filterForm"
+        (ngSubmit)="submit()">
+    <div class="container">
+      <section class="py-4">
+        <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+      </section>
+
+      <div class="row">
+        <div class="col-lg-4 mt-2 col-12">
+          <h3 class="text-primary fw-bold">Requirement</h3>
+        </div>
+        <div class="col-6 mt-2 col-lg-2">
+          <div class="d-flex justify-content-end form-control ms-2 p-0 m-0 rounded-pill border-0"
+               style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+          rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; width: 93%; ">
+            <i class="fa-solid fa-location-crosshairs text-primary my-auto ms-2"></i>
+            <select style="box-shadow: none;"
+                    formControlName="City"
+                    class="form-control form-select fw-500 rounded-pill display-4 text-primary border-0 py-1 px-2">
+              <option value="null"
+                      disabled>Search by city</option>
+              <option *ngFor="let item of cities"
+                      [value]="item">{{item}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-6 mt-2 col-lg-3 text-center">
+          <select class="form-control form-select fw-500 rounded-pill display-4 text-primary border-0 py-1 mx-2"
+                  formControlName="Category">
+            <option value="null"
+                    disabled>Search by category</option>
+            <option *ngFor="let item of categoryList"
+                    [value]="item.name">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-6 mt-2 col-lg-3 text-end">
+          <button type="button"
+                  (click)="reset()"
+                  class="btn-primary rounded-pill mx-2 px-3 py-1">Reset</button>
+          <button type="button"
+                  (click)="submit()"
+                  class="btn-primary rounded-pill mx-1 px-3 py-1">Go</button>
+        </div>
+      </div>
+
+      <ng-container *ngIf="filterData?.length > 0">
+        <div class="row">
+          <div class="col-md-12 my-3"
+               *ngFor="let item of filterData">
+            <div class="card-wrapper p-0 d-lg-block d-none">
+              <div class="d-flex position-relative">
+                <div class="m-3 w-20">
+                  <img width="120px"
+                       height="120px"
+                       [src]="item.productImage"
+                       class="bg-loading"
+                     appImage404>
+
+                </div>
+                <div class="my-3 me-5 pe-5">
+                  <h5 class="text-primary fw-bold">{{item.title}}</h5>
+                  <span class="my-2 text-muted fw-500 display-4 d-flex"
+                        *ngIf="item?.category">Category :
+                    {{item?.category}}</span>
+                  <p class="text-muted display-4 my-2 mb-2 w-75 fw-500">
+                    {{item.productDescription | characterLimit: 100}}
+                  </p>
+                </div>
+                <div>
+                  <div class="img-label d-flex justify-content-center align-items-center">
+                    <span class="text-white display-4">Date Posted: &nbsp; <b>{{item.createdDate |
+                        date:'mediumDate'}}</b></span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center"
+                   style="padding: 10px; margin-top: -10px;">
+              <!--   <a *ngIf="isBuyer"
+                   [routerLink]="['/buyer-requirement-details/',item.requirementId]">
+                  <button type="button"
+                          class="btn-info rounded-pill px-4 py-2 display-4 z-100">
+                    View More
+                  </button>
+                </a> -->
+                <a 
+                (click)="viewMore(item.requirementId)"
+                  >
+                  <button type="button"
+                          class="btn-info rounded-pill px-4 py-2 display-4 z-100">
+                    View More
+                  </button>
+                </a>
+                <a (click)="openConfirmQuote(item)">
+                  <button type="button"
+                          class="btn-primary rounded-pill mx-2 py-2 px-4 display-4 z-100">
+                    Send Quote
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="card-wrapper p-0 d-lg-none d-block">
+              <div class="position-relative">
+                <div class="m-3 w-20"
+                     style=" padding-top: 3rem;">
+                  <img width="150px"
+                       height="150px"
+                       [src]="item.productImage"
+                       class="bg-loading"
+                     appImage404>
+
+                </div>
+                <div class="my-3 mx-3">
+                  <h5 class="text-primary fw-bold">{{item.title}}</h5>
+                  <span class="my-2 text-muted fw-500 display-4 d-flex"
+                        *ngIf="item?.category">Category :
+                    {{item?.category}}</span>
+                  <p class="text-muted display-4 my-2 mb-2 w-75 fw-500">
+                    {{item.productDescription | characterLimit: 100}}
+                  </p>
+                </div>
+                <div>
+                  <div class="img-label d-flex justify-content-center align-items-center">
+                    <span class="text-white display-4">Date Posted: &nbsp; <b>{{item.createdDate |
+                        date:'mediumDate'}}</b></span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center pb-2">
+                <a *ngIf="isBuyer"
+                   [routerLink]="['/buyer-requirement-details/',item.requirementId]">
+                  <button type="button"
+                          class="btn-info rounded-pill px-4 py-2 display-4 z-100">
+                    View More
+                  </button>
+                </a>
+                <a *ngIf="isSeller"
+                   [routerLink]="['/seller-requirement-details/',item.requirementId]">
+                  <button type="button"
+                          class="btn-info rounded-pill px-4 py-2 display-4 ">
+                    View More
+                  </button>
+                </a>
+                <button type="button"
+                        class="btn-primary rounded-pill mx-2 py-2 px-4 display-4 "
+                        (click)="openQuote(item)">
+                  Send Quote
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="row py-4"
+           *ngIf="(filterData?.length == 0 || filterData == null) && loading == false ">
+        <h3 class="text-primary text-center my-5">
+          No Requirement Found
+        </h3>
+      </div>
+      <div class="row py-4"
+           *ngIf="loading == true">
+        <h3 class="text-primary text-center my-5">
+          Loading ...
+        </h3>
+      </div>
+    </div>
+  </form>
+</div>

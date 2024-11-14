@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74.372" height="21" viewBox="0 0 74.372 21">
+  <g id="Group_1522" data-name="Group 1522" transform="translate(-457 -617.045)">
+    <path id="Icon_material-verified-user" data-name="Icon material-verified-user" d="M10.466,1.5,4.5,4.151V8.129a8.249,8.249,0,0,0,5.966,7.954,8.249,8.249,0,0,0,5.966-7.954V4.151ZM9.14,12.106,6.489,9.454l.935-.935L9.14,10.23l4.368-4.368.935.941Z" transform="translate(452.5 618.917)" fill="#07913a"/>
+    <text id="Verified" transform="translate(502.372 633.045)" fill="#07913a" font-size="15" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="-28" y="0">Verified</tspan></text>
+  </g>
+</svg>

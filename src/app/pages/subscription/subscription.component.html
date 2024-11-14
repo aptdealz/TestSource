@@ -1,0 +1,91 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row my-4">
+      <div class="col-md-12 text-center">
+        <h1 class="text-primary fw-bold ">Subscription Plans</h1>
+        <p class="text-muted fw-bold display-4 my-2">
+          Welcome Offer
+        </p>
+      </div>
+    </div>
+    
+
+    <div class="row my-3">
+      <div class="col-md-2"> </div>
+      <div class="col-md-4 col-lg-4 mt-2"
+           *ngFor="let item of list;let i = index;">
+
+           <div class="pricing-table">
+            
+            
+            <div class="pricing-plan basic">
+              
+              
+              <div class="pricing-content">
+              
+               <div class="name-space ">
+                <h3>{{item.planName}}</h3>
+              </div>
+                
+                <h6 class="text-white m-0" *ngIf="getPrice(i)?.discountPrice !== 0">
+                  Discount Price: {{getPrice(i)?.discountPrice | currency: 'INR'}}/-
+                </h6>
+          
+                <h6 *ngIf="getPrice(i)?.discountPrice !== 0" style="text-decoration: line-through;">
+                  {{getPrice(i)?.price | currency: 'INR'}}/-
+                </h6>
+          
+                <h6 *ngIf="getPrice(i)?.discountPrice == 0">
+                  {{getPrice(i)?.price | currency: 'INR'}}/-
+                </h6>
+                <div class="line-under-price"></div>
+          
+                <ul>
+                  <li *ngFor="let list of item.planFeatures">
+                    {{list.featureName}}
+                  </li>
+                </ul>
+                 
+                
+              </div>
+          
+              <!-- Button at the bottom -->
+              <div class="pricing-table-footer">
+                <button type="button" (click)="buyNow(i)" class="btn btn-primary fw-bold px-4">
+                  BUY NOW
+                </button>
+              </div>
+            </div>
+          </div>
+
+    
+           
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+  
+
+
+       
+
+       
+
+    
+
+
+
+
+  
+ 

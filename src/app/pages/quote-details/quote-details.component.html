@@ -1,0 +1,250 @@
+<div class="wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-lg-9 col-12 mx-auto">
+        <div class="card-wrapper p-3 mb-3">
+          <div class="d-md-flex d-block  justify-content-between my-2 ">
+            <button class="btn-info back-btn rounded-pill py-0 px-3 display-5"
+                    (click)="back()">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary  text-center-m fw-bold mb-0">
+              QUOTES DETAILS
+            </h3>
+            <div style="width: 100px;"></div>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-3 mt-2">
+              <h6>Quotes ID</h6>
+              <h6 class="fw-500 text-primary">{{list.quoteNo}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Requirement ID</h6>
+              <h6 class="fw-500 text-primary">{{list.requirementNo
+                }}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Requirement Title</h6>
+              <h6 class="fw-500 text-primary">{{list.requirementTitle}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Buyer ID</h6>
+              <h6 class="fw-500 text-primary">{{list.buyerId
+                }}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Seller ID</h6>
+              <h6 class="fw-500 text-primary">{{list.sellerId}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Category</h6>
+              <h6 class="fw-500 text-primary">{{list.category}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Sub Category</h6>
+              <h6 class="fw-500 text-primary"
+                  *ngFor="let item of list?.subCategories">{{item}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Total Quote Amount</h6>
+              <h6 class="fw-500 text-primary">{{list.totalPriceEstimation | currency: 'INR'
+                }} </h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Quantity</h6>
+              <h6 class="fw-500 text-primary">{{list.requestedQuantity}} </h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Unit</h6>
+              <h6 class="fw-500 text-primary">{{list.unit}} </h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Preferred Source</h6>
+              <h6 class="fw-500 text-primary">{{list.preferredSource}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Product Made in</h6>
+              <h6 class="fw-500 text-primary">{{list.country}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Expected Delivery Date</h6>
+              <h6 class="fw-500 text-primary">{{list.expectedDeliveryDate | date:'mediumDate'
+                }}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Shipping Pin code</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingPinCode}}</h6>
+            </div>
+            <hr>
+            <div class="col-md-12 my-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">
+                    Pickup Product Directly From Seller : </span>
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">Yes</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="pickupProductDirectly"
+                         [checked]="list.pickupProductDirectly == true">
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">No</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="pickupProductDirectly"
+                         [checked]="list.pickupProductDirectly == false">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 my-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">Prefer Make In India Produts :</span>
+
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">Yes</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="preferInIndiaProducts"
+                         [checked]="list.preferInIndiaProducts == true">
+
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">No</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="preferInIndiaProducts"
+                         [checked]="list.preferInIndiaProducts == false">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 my-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">Is Reseller? :</span>
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">Yes</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="isReseller"
+                         [checked]="list.isReseller == true">
+                  <span class="my-2 mx-2 text-primary display-4 fw-500">No</span>
+                  <input type="radio"
+                         [disabled]="true"
+                         name="isReseller"
+                         [checked]="list.isReseller == false">
+                </div>
+
+              </div>
+            </div>
+
+            <hr>
+            <!--   <div class="col-md-3 mt-2">
+            <h6>Billing Address</h6>
+            <h6 class="fw-500 text-primary">Arun. Thomas Christ Jn, Irinjalakuda Thrissur, 680125</h6>
+          </div>
+          <div class="col-md-3 mt-2">
+            <h6>Shipping Address</h6>
+            <h6 class="fw-500 text-primary">Arun. Thomas Christ Jn, Irinjalakuda Thrissur, 680125</h6>
+          </div> -->
+            <ng-container *ngIf="list?.isBuyerContactRevealed && list?.buyerContact">
+              <div class="col-md-4 mt-2">
+                <h6>Buyer Contact Name</h6>
+                <h6 class="fw-500 text-primary">{{list.buyerContact.name}}</h6>
+              </div>
+              <div class="col-md-4 mt-2">
+                <h6>Buyer Contact Email</h6>
+                <h6 class="fw-500 text-primary">{{list.buyerContact.email}}</h6>
+              </div>
+              <div class="col-md-4 mt-2">
+                <h6>Buyer Contact Details</h6>
+                <h6 class="fw-500 text-primary">{{list.buyerContact.phoneNumber}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="list?.isSellerContactRevealed && list?.sellerContact">
+              <div class="col-md-4 mt-2">
+                <h6>Seller Contact Name</h6>
+                <h6 class="fw-500 text-primary">{{list.sellerContact.name}}</h6>
+              </div>
+              <div class="col-md-4 mt-2">
+                <h6>Seller Contact Details</h6>
+                <h6 class="fw-500 text-primary">{{list.sellerContact.email}}</h6>
+              </div>
+              <div class="col-md-4 mt-2">
+                <h6>Seller Contact Email</h6>
+                <h6 class="fw-500 text-primary">{{list.sellerContact.phoneNumber}}</h6>
+              </div>
+              <hr>
+            </ng-container>
+          </div>
+          <div class="d-block d-md-flex justify-content-between">
+            <div class="w-md-30">
+              <h6 class="fw-500 text-primary mt-3">Unit Price: {{list.unitPrice || 0 | currency: 'INR'}} </h6>
+              <h6 class="fw-500 text-primary mt-3">Quantity: {{list.requestedQuantity || 0 }}</h6>
+              <h6 class="fw-500 text-primary mt-3">Net Amount: {{list.netAmount || 0 | currency: 'INR'}} </h6>
+              <h5 class="fw-500 text-primary my-3">Total Quote Amount: {{list.totalQuoteAmount || 0 | currency: 'INR'}}
+              </h5>
+              <h6 class="fw-500 text-primary mt-3">Quote Validity Date: {{list.validityDate | date:'mediumDate'}}</h6>
+
+            </div>
+            <div class="w-md-30">
+              <h6 class="fw-500 text-primary mt-3">Handling Charges: {{list.handlingCharges || 0 | currency: 'INR'}}
+              </h6>
+              <h6 class="fw-500 text-primary mt-3">Shipping Charges: {{list.shippingCharges || 0 | currency: 'INR'}}
+              </h6>
+              <h6 class="fw-500 text-primary mt-3">Insurance Charges: {{list.insuranceCharges || 0 | currency: 'INR'}}
+              </h6>
+              <br>
+              <h6 class="fw-500 text-primary mt-4"
+                  *ngIf="list.shippingPinCode">Shipping PIN Code:
+                {{list.shippingPinCode}} </h6>
+            </div>
+          </div>
+          <hr>
+          <div class="d-block d-md-flex justify-content-between align-items-center">
+            <div>
+              <ng-container *ngIf="list?.status=='Submitted' && list?.buyerId==profileData?.buyerNo">
+                <div class="d-flex">
+                  <button (click)="confirmPayment()"
+                          type="button"
+                          class="btn-info rounded-pill px-4 py-2 display-4 ">Accept Quote</button>
+                  <button (click)="rejectPayment()"
+                          type="button"
+                          class="btn-primary rounded-pill mx-2 py-2 px-4 display-4 ">Reject Quote</button>
+                </div>
+
+              </ng-container>
+            </div>
+            <div class="w-md-30">
+              <h6 class="fw-500 text-primary mt-2"
+                  *ngIf="list?.status">Quote Status: {{list.status}} </h6>
+              <ng-container *ngIf="list?.isBuyerContactRevealed && list?.buyerContact">
+                <h6>Buyer Contact Details</h6>
+                <h6 class="fw-500 text-primary mt-3">Name: {{list.buyerContact.name}}</h6>
+                <h6 class="fw-500 text-primary mt-3">Phone Number: {{list.buyerContact.phoneNumber}}</h6>
+              </ng-container>
+
+              <ng-container *ngIf="isSeller && !list?.isBuyerContactRevealed && list?.buyerContact == null">
+                <button class="btn-primary rounded-pill mx-2 py-2 px-4 display-4"
+                        (click)="createOrderForRevealBuyerContact()">Reveal Buyer Contact</button>
+              </ng-container>
+
+
+              <ng-container *ngIf="list?.isSellerContactRevealed && list?.sellerContact">
+                <h6>Seller Contact Details</h6>
+                <h6 class="fw-500 text-primary mt-3">Name: {{list.sellerContact.name}}</h6>
+                <h6 class="fw-500 text-primary mt-3">Phone Number: {{list.sellerContact.phoneNumber}}</h6>
+              </ng-container>
+
+              <ng-container *ngIf="isBuyer && !list?.isSellerContactRevealed && list?.sellerContact == null">
+                <button class="btn-primary rounded-pill mx-2 py-2 px-4 display-4"
+                        (click)="createOrderForRevealSellerContact()">Reveal Seller Contact</button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="bg-secondary wrapper-panel">
+  <div class="container py-4">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row my-4">
+      <div class="col-md-12 d-none d-lg-block d-md-block">
+        <img *ngFor="let banner of banners" [src]="banner.image"
+        class="w-100">
+      </div>
+      <div class="mt-3">
+        <h6 class="text-primary fw-bold">All Categories</h6>
+        <hr>
+      </div>
+      <div class="col-md-3 mt-3 d-none d-lg-block d-md-block">
+        <app-category-filter [categoryTree]="categoryTree"></app-category-filter>
+      </div>
+      <div class="col-md-9">
+        <section class="mt-3">
+          <div class="d-flex justify-content-between">
+            <div class=" d-none d-lg-block d-md-block"></div>
+            <button type="button"
+                    class="btn d-block d-lg-none d-md-none text-primary py-1 filter-btn"
+                    (click)="showFilter()">
+              Filter
+              <i class="fa-solid fa-filter text-primary mx-1"
+                 *ngIf="filter == false"></i>
+              <i class="fa-solid fa-xmark text-primary mx-1"
+                 *ngIf="filter == true"></i>
+            </button>
+          </div>
+        </section>
+        <ng-container *ngIf="filter == true">
+          <app-category-filter (clicked)="onFilterChange()"
+                               [categoryTree]="categoryTree"></app-category-filter>
+        </ng-container>
+        <section>
+          <app-enquiry-section (fetchMore)="getMoreProducts()" [list]="list"
+                               [loading]="loading"></app-enquiry-section>
+
+
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.accordion {
+  border: none;
+  box-shadow: none;
+  background-color: var(--site-white);
+  .accordion-head {
+    background-color: var(--site-white);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8c8c8;
+  }
+  .active {
+    color: #0c63e4;
+    background-color: #e7f1ff;
+  }
+  .accordion-item {
+    border: none;
+  }
+  .accordion-body {
+    background-color: var(--site-white);
+  }
+}

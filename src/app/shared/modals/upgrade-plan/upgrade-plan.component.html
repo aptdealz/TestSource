@@ -1,0 +1,57 @@
+<div class="modal-content">
+  <div class="modal-header p-3 justify-content-center position-relative">
+    <h3 class="modal-title text-primary text-center"
+        style="font-weight: 600;">Upgrade Plan</h3>
+    <button type="button"
+            class="btn-close-4"
+            mat-dialog-close
+            aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <mat-dialog-content>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Plan Type</label><br>
+            <select (change)="onPlanSelected($event)"
+                    class="form-control form-select mt-2">
+              <option value=""
+                      disabled
+                      selected>Select Plan</option>
+              <ng-container *ngFor="let item of subscriptionPlans">
+                <option [value]="item.basePlanId"
+                        *ngIf="item.rankIndex<data.currentPlan.rankIndex">{{item.planName}}</option>
+              </ng-container>
+
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Duration Type</label><br>
+            <select [(ngModel)]="selectedNewPlanId"
+                    class="form-control form-select mt-2">
+              <option value=""
+                      disabled
+                      selected>
+                Select Duration</option>
+              <option [value]="plan.subscriptionPlanId"
+                      *ngFor="let plan of selectedNewPlanType?.pricingInfo">
+                {{plan.durationInMonths}} Months - {{plan.priceIncludingTax | currency: 'INR'}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+  <mat-dialog-actions align="center">
+  <div class="modal-footer d-flex justify-content-center">
+    <button [disabled]="!selectedNewPlanId"
+            type="button"
+            (click)="upgrade()"
+            class="btn btn-info px-4">Upgrade</button>
+  </div></mat-dialog-actions>
+</div>

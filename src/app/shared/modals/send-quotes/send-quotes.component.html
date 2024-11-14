@@ -1,0 +1,170 @@
+<form [formGroup]="quoteForm">
+  <div class="modal-content">
+    <div class="modal-header p-3 justify-content-center position-relative">
+      <h3 class="modal-title text-primary text-center"
+          style="font-weight: 600;">SEND QUOTE</h3>
+      <button type="button"
+              class="btn-close-4"
+              mat-dialog-close
+              aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <mat-dialog-content>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row mx-lg-5">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Unit Price*</label><br>
+              <input type="number"
+                     formControlName="unitPrice"
+                     placeholder="Type Unit Price"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.unitPrice"
+                                     [label]="'Unit Price'"></app-print-input-error>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Quantity</label><br>
+              <input type="number"
+                     [value]="data.quantity"
+                     readonly
+                     placeholder="Type Unit Price"
+                     class="form-control mt-2">
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Quantity*</label><br>
+              <div class="d-flex shadow align-items-center rounded-3 my-1" style="width: 20%;">
+                <button type="button" class="btn btn-light-r " style="width: 50%;">-</button>
+                <input type="number" style="width: 50%;" class="form-control rounded-0  px-1">
+                <button type="button" class="btn btn-light-l " style="width: 50%;">+</button>
+              </div>
+            </div>
+
+          </div> -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Handling Charges</label><br>
+              <input type="number"
+                     formControlName="handlingCharges"
+                     placeholder="Type Handling Charge"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.handlingCharges"
+                                     [label]="'Handling Charge'"></app-print-input-error>
+              <!-- <span class="display-6 ms-1 text-danger">Invalid</span> -->
+            </div>
+          </div>
+          <div class="col-md-6"
+               *ngIf="!data.pickupProductDirectly">
+            <div class="form-group">
+              <label>Shipping Charges</label><br>
+              <input type="number"
+                     formControlName="shippingCharges"
+                     placeholder="Type Shipping Charges"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.shippingCharges"
+                                     [label]="'Shipping Charges'"></app-print-input-error>
+            </div>
+          </div>
+          <div class="col-md-6"
+               *ngIf="data.needInsuranceCoverage">
+            <div class="form-group">
+              <label>Insurance Charges</label><br>
+              <input type="number"
+                     formControlName="insuranceCharges"
+                     placeholder="Type Insurance Charges"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.insuranceCharges"
+                                     [label]="'Insurance Charges'"></app-print-input-error>
+            </div>
+          </div>
+          <div class="col-md-6"
+               *ngIf="!data.pickupProductDirectly">
+            <div class="form-group">
+              <label>Shipping Pin Code</label><br>
+              <input type="number" (keydown)="allowOnlyNumbers($event)" maxlength="6"
+                     formControlName="shippingPinCode"
+                     placeholder="Type Shipping Pin Code"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.shippingPinCode"
+                                     [label]="'Shipping Pin Code'"></app-print-input-error>
+              <!-- <span class="display-6 ms-1 text-danger">Invalid</span> -->
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Quote Validity Date*</label><br>
+              <input type="date"
+                     [min]="today"
+                     formControlName="validityDate"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.validityDate"
+                                     [label]="'Quote Validity Date'"></app-print-input-error>
+              <!-- <span class="display-6 ms-1 text-danger">Invalid</span> -->
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Product Made In*</label><br>
+              <select class="form-control form-select mt-2"
+                      formControlName="countryId">
+                <option value="">Select Country</option>
+                <option *ngFor="let c of countries"
+                        [ngValue]="c.countryId">{{ c.name }}</option>
+              </select>
+              <app-print-input-error [control]="f.countryId"
+                                     [label]="'Country'"></app-print-input-error>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>State*</label><br>
+              <select class="form-control form-select mt-2"
+                      formControlName="billingAddressState">
+                <option value="">Select State</option>
+                <option *ngFor="let c of states"
+                        [ngValue]="c.stateId">{{ c.name }}</option>
+              </select>
+              <app-print-input-error [control]="f.billingAddressState" [label]="'State'"></app-print-input-error>
+            </div>
+          </div> -->
+
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Total Quote Amount</h5>
+            </div>
+            <div class="col-md-6 text-end">
+              <h5>{{totalQuoteAmount | currency: 'INR'}}</h5>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Comment</label><br>
+              <textarea class="form-control"
+                        formControlName="comments"
+                        cols="30"
+                        rows="10"></textarea>
+              <app-print-input-error [control]="f.comments"
+                                     [label]="'Comments'"></app-print-input-error>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </mat-dialog-content>
+    <mat-dialog-actions align="center">
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button"
+      [disabled]="quoteForm.invalid"
+              (click)="submit()"
+              class="btn btn-info px-4">Submit Quote</button>
+    </div></mat-dialog-actions>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+<h1 class="section-title">Top Categories</h1>
+<div class="row">
+  <div class="col-md-12 text-end">
+    <a role="button"
+       [routerLink]="['/all-categories']">
+      <span class="text-primary display-4 fw-bold">View All <i class="fa-solid fa-arrow-right"></i></span></a>
+
+  </div>
+</div>
+<ng-container *ngIf="list.length > 0 ">
+  <div class="row mt-2 mb-3">
+    <div class="col-md col-6 mt-2"
+         *ngFor="let item of list">
+      <a [routerLink]="['/category',item.urlName]">
+        <app-category-card [item]="item"></app-category-card>
+      </a>
+
+    </div>
+  </div>
+</ng-container>
+<ng-container>
+  <div class="row py-4"
+       *ngIf="list?.length == 0 && loading == false">
+    <h3 class="text-primary text-center my-5">
+      No Categories Found
+    </h3>
+  </div>
+</ng-container>
+<ng-container>
+  <div class="row py-4"
+       *ngIf="loading == true">
+    <h3 class="text-primary text-center my-5">
+      Loading ...
+    </h3>
+  </div>
+</ng-container>

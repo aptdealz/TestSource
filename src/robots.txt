@@ -1,0 +1,19 @@
+﻿User-agent: *
+Disallow: /?v=*
+Disallow: /products/subcategories
+Disallow: /seller-products?
+Disallow: /seller-products?Title=
+Disallow: /product-category/
+Disallow: /feed/
+Disallow: /comments/
+Disallow: /*/*/feed
+Disallow: /product-tag/
+Disallow: /buyer-profile/
+Disallow: /cart
+Disallow: /partner-details/*?subCategoryId=
+
+
+
+
+# Sitemap
+Sitemap: https://quotesouk.com/sitemap.xml

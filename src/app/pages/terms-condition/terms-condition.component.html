@@ -1,0 +1,17 @@
+<div class="wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <h1 class="text-center mb-4 fw-bold text-primary">Terms & Conditions</h1>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12"
+           [innerHTML]="data.tandC">
+      </div>
+    </div>
+  </div>
+</div>

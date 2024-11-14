@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let item of breadcrumbs; let i = index;">
+      <li *ngIf="item.path !== '' && item.title"
+          class="breadcrumb-item">
+        <a role="button"
+           (click)="routeToPage(item)">{{item.title}}</a>
+      </li>
+      <li *ngIf="item.path === '' && item.title"
+          class="breadcrumb-item active"
+          aria-current="page">{{item.title}}</li>
+    </ng-container>
+  </ol>
+</nav>

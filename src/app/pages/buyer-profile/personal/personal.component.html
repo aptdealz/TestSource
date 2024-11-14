@@ -1,0 +1,188 @@
+<div class="col-lg-8 col-11 mt-3 mx-auto">
+  <form [formGroup]="formGroup"
+        (ngSubmit)="update()">
+    <div class="row">
+      <!-- <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Buyer Id</label><br>
+          <input type="text" readonly formControlName="buyerNo" placeholder="Type User Id" class="form-control mt-2">
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Full Name*</label><br>
+          <input type="text"
+                 formControlName="fullName"
+                 placeholder="Type Full Name"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'Name'"
+                                 [control]="f.fullName"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Email Address*</label><br>
+          <input type="text"
+                 formControlName="email"
+                 placeholder="Type Email Address"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'Email'"
+                                 [control]="f.email"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Phone*</label><br>
+          <input type="text"
+                 formControlName="phoneNumber" (keydown)="allowPhoneNumberOnlyNumbers($event)"
+                 placeholder="Type Phone"  maxlength="13"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'Phone'"
+                                 [control]="f.phoneNumber"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>GST</label><br>
+          <input type="text"
+                 formControlName="gstin"
+                 placeholder="Type GST"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'GST'"
+                                 [control]="f.gstin"></app-print-input-error>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Password</label><br>
+          <input type="text" placeholder="Type Password" class="form-control mt-2">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Confirm Password</label><br>
+          <input type="text" placeholder="Type Confirm Password" class="form-control mt-2">
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Building Number*</label><br>
+          <input type="text"
+                 formControlName="building"
+                 placeholder="Type Building Number"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'Building No'"
+                                 [control]="f.building"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Street*</label><br>
+          <input type="text"
+                 formControlName="street"
+                 placeholder="Type Street"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'Street'"
+                                 [control]="f.street"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Pin Code*</label><br>
+          <input type="number"
+                 formControlName="pinCode" (keydown)="allowOnlyNumbers($event)" maxlength="6" (blur)="pincodeChange()"
+                 placeholder="Type Pincode"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'PinCode'"
+                                 [control]="f.pinCode"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Country*</label><br>
+          <select class="form-control form-select mt-2"
+                  formControlName="countryId">
+            <option value="">Select Country</option>
+            <option *ngFor="let c of countries"
+                    [ngValue]="c.countryId">{{ c.name }}</option>
+          </select>
+          <app-print-input-error [label]="'Country'"
+                                 [control]="f.countryId"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>State*</label><br>
+          <select class="form-control form-select mt-2"
+                  formControlName="state">
+            <option value="">Select State</option>
+            <option *ngFor="let c of states"
+                    [ngValue]="c.name">{{ c.name }}</option>
+          </select>
+          <app-print-input-error [label]="'State'"
+                                 [control]="f.state"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>City*</label><br>
+          <input type="text"
+                 formControlName="city"
+                 placeholder="Type City"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'City'"
+                                 [control]="f.city"></app-print-input-error>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>District*</label><br>
+          <input type="text"
+                 formControlName="district"
+                 placeholder="Type District"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'District'"
+                                 [control]="f.district"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group my-2">
+          <label>Landmark</label><br>
+          <input type="text"
+                 formControlName="landmark"
+                 placeholder="Type Landmark"
+                 class="form-control mt-2">
+          <app-print-input-error [label]="'landmark'"
+                                 [control]="f.landmark"></app-print-input-error>
+        </div>
+      </div>
+      <div class="col-md-4 my-auto">
+        <div class="form-group">
+          <label class="upload-w"
+                 for="file">Update Profile Image</label>
+          <i class="fa-solid fa-arrow-up-from-bracket mx-2"
+             for="file"></i>
+          <input type="file"
+                 (change)="onFileChange($event)"
+                 id="file"
+                 class="d-none">
+          <!-- <app-print-input-error [label]="'Full Name'" [control]="f."></app-print-input-error> -->
+        </div>
+        <img [src]="previewProfileImage"
+        class="bg-loading"
+        appImage404
+             style="width: 40px; height: 40px;"
+             *ngIf="previewProfileImage">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="submit"
+        [disabled]="formGroup.invalid"
+                class="btn btn-info px-4">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

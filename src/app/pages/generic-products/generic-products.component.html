@@ -1,0 +1,69 @@
+<div class="bg-secondary wrapper-panel">
+  <div class="container py-4">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row my-4">
+      <div class="col-md-12 d-none d-lg-block d-md-block">
+        <img *ngFor="let banner of banners"
+             [src]="banner.image"
+             class="w-100">
+      </div>
+      <div class="mt-3 col-md-3">
+        <h6 class="text-primary fw-bold">All Categories</h6>
+        <hr>
+      </div>
+      <div class="col-md-9">
+       <h1 class="title" *ngIf="breadcrumbs[3]"> {{breadcrumbs[3].title}}</h1> 
+      </div>
+      <div class="col-md-3 mt-3 d-none d-lg-block d-md-block">
+        <app-generic-filter [categoryTree]="categoryTree"></app-generic-filter>
+      </div>
+      <div class="col-md-9">
+        <section class="mt-3">
+          <div class="d-flex justify-content-between">
+            <div class=" d-none d-lg-block d-md-block"></div>
+            <button type="button"
+                    class="btn d-block d-lg-none d-md-none text-primary py-1 filter-btn"
+                    (click)="showFilter()">
+              <i class="fa-solid fa-filter text-primary mx-1"
+                 *ngIf="filter == false"></i>
+              <i class="fa-solid fa-xmark text-primary mx-1"
+                 *ngIf="filter == true"></i>
+            </button>
+          </div>
+        </section>
+        <ng-container *ngIf="filter == true">
+          <app-generic-filter (clicked)="onFilterChange()"
+                              [categoryTree]="categoryTree"></app-generic-filter>
+        </ng-container>
+        <section>
+          <div class="col col-md-6 mx-auto">
+            <div class="d-flex search-box-bg form-group rounded-pill mt-2 w-100">
+              <input class="form-control border-0 rounded-pill me-2 bg-white"
+                     type="search"
+                     placeholder="Search"
+                     [(ngModel)]="searchkeyword"
+                     (search)="search()"
+                     aria-label="Search">
+              <button (click)="search()"
+                      class="btn btn-primary"
+                      type="submit"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
+            </div>
+          </div>
+
+          <app-product-section (fetchMore)="getMoreProducts()"  
+          *ngIf="!showLoading"
+                               [list]="list"></app-product-section>
+                               <div class="row py-4"
+                               *ngIf="showLoading">
+                            <h3 class="text-primary text-center my-5">
+                              Loading...
+                            </h3>
+                          </div>          
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

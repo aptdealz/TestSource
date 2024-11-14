@@ -1,0 +1,12 @@
+.cat-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+}
+@media screen and (max-width: 680px) {
+  .cat-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+  }
+}

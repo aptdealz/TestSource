@@ -1,0 +1,45 @@
+table tr td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: 400;
+}
+.form-select {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid #eaedf0;
+  border-top: 1px solid #eaedf0;
+}
+table {
+  background: transparent;
+  box-shadow: none;
+}
+.min-w-120 {
+  min-width: 120px;
+}
+.min-w-172 {
+  min-width: 172px;
+}
+.min-w-308 {
+  min-width: 308px;
+}
+@media screen and (max-width: 780px) {
+  mat-button-toggle {
+    font-size: 12px;
+    width: 50%;
+  }
+  mat-button-toggle-group {
+    width: 100%;
+  }
+}
+.mat-button-toggle-checked {
+  background: transparent linear-gradient(115deg, #ff15cc 0%, #0019bf 100%) 0%
+    0% no-repeat padding-box;
+  text-align: center;
+
+  color: #fff !important;
+}
+.mat-button-toggle-group {
+  border-radius: 30px;
+}

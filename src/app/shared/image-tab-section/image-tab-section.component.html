@@ -1,0 +1,12 @@
+<div class="row my-3">
+  <swiper [config]="configTest">
+    <ng-template swiperSlide *ngFor="let banner of banners">
+      <div class=" mt-2 mx-1">
+        <img [src]="banner.image" 
+        appImage404
+             class="w-100 bg-loading">
+      </div>
+    </ng-template>
+  
+  </swiper>
+</div>

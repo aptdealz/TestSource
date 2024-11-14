@@ -1,0 +1,88 @@
+<div class="bg-secondary wrapper-panel">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-primary text-center fw-bold">Frequently Asked Questions</h3>
+      </div>
+      <div class="col-lg-6 col-10 mx-auto my-3">
+        <div class="card-wrapper rounded-3 p-2">
+          <div class="d-flex search-box-bg form-group rounded-pill w-100">
+            <input class="form-control border-0 rounded-pill  me-2"
+                   type="search"
+                   placeholder="Search"
+                   [(ngModel)]="keyword"
+                   aria-label="Search">
+            <button class="btn btn-primary"
+                    type="submit"><i class="fa-solid fa-magnifying-glass px-2 text-white"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-10 mx-auto">
+             <cdk-accordion class="accordion">
+           <cdk-accordion-item
+           *ngFor="let item of getFaqs(); let index = index;"
+              #accordionItem="cdkAccordionItem"
+              class="accordion-item"
+              role="button"
+              tabindex="0"
+              [attr.id]="'accordion-header-' + index"
+              [attr.aria-expanded]="accordionItem.expanded"
+              [attr.aria-controls]="'accordion-body-' + index">
+              <div class="accordion-head" (click)="accordionItem.toggle()"
+              [ngClass]="accordionItem.expanded? 'active' : ''"
+              >
+                {{ item?.question }}
+              <!--   <span class="example-accordion-item-description">
+                  Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                </span> -->
+                <span class="example-accordion-item-description" 
+                *ngIf="accordionItem.expanded">
+                 <img src="assets/images/accordion-up.png">
+                </span>
+                <span class="example-accordion-item-description" 
+                *ngIf="!accordionItem.expanded">
+                 <img src="assets/images/accordion-down.png">
+                </span>
+              </div>
+              <div
+                class="accordion-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                {{item?.answer}}
+              </div>
+            </cdk-accordion-item>
+          
+        </cdk-accordion>
+
+        <p *ngIf="getFaqs().length==0"
+           class="text-center">No Faq Found</p>
+      </div>
+      <div class="col-lg-8 col-10 mx-auto my-3">
+        <div class="card-wrapper py-2">
+          <div class="d-flex align-items-center my-3">
+            <div class="text-center p-2 w-50">
+              <h2 class="text-primary">Still have an issue?</h2>
+              <a [routerLink]="['/contact-us']">
+                <button type="button"
+                        class="mt-2 rounded-pill py-1 btn-info px-3">
+                  Contact us
+                </button>
+              </a>
+            </div>
+            <div class="w-50">
+              <img src="assets/images/contact.png"
+                   class="w-100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

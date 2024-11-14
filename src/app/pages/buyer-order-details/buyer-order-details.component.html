@@ -1,0 +1,255 @@
+<div class="bg-secondary  wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div *ngIf="orderDetail"
+         class="row">
+      <div class="col-lg-10 col-12 mx-auto">
+        <div class="card-wrapper p-3 mb-3">
+          <div class="d-md-flex d-block justify-content-between my-2">
+            <button class="btn-info back-btn rounded-pill py-0 px-3 display-5"
+                    (click)="back()">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary text-center-m fw-bold mb-0 ">
+              ORDER DETAILS
+            </h3>
+            <div style="width: 100px;"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3 my-auto">
+              <div class="rounded-3">
+                <img width="150px"
+                     height="150px"
+                     [src]="orderDetail.image"
+                     class="bg-loading"
+                     appImage404>
+              </div>
+
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Order ID</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.orderNo}}</h6>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Quotes ID</h6>
+                  <h6 class="fw-500 text-primary">
+                    <a class="fw-500 text-primary break-l"
+                       [routerLink]="['/quote-details/',orderDetail.quoteId]">
+                      {{orderDetail.quoteNo}}
+                    </a>
+                  </h6>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Requirement ID</h6>
+                  <h6 class="fw-500 text-primary">
+                    <a class="fw-500 text-primary break-l"
+                       [routerLink]="['/buyer-requirement-details/',orderDetail.requirementId]">
+                      {{orderDetail.requirementNo}}</a>
+                  </h6>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Requirement Title</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.title}}</h6>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Buyer ID</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.buyerContact.buyerId}}</h6>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-2">
+                  <h6>Seller ID</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.sellerContact.sellerId}}</h6>
+                </div>
+                <div class="col-md-3 mt-2">
+                  <h6>Total Amount</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.totalAmount | currency: 'INR'}}</h6>
+                </div>
+                <div class="col-md-3 mt-2">
+                  <h6>Quantity</h6>
+                  <h6 class="fw-500 text-primary">{{orderDetail.quantity}} Number</h6>
+                </div>
+                <div class="col-md-3 mt-2">
+                  <ng-container>
+                    <h6 *ngIf="orderDetail.pickupProductDirectly == true">Expected Delivery Date</h6>
+                  </ng-container>
+                  <ng-container>
+                    <h6 *ngIf="orderDetail.pickupProductDirectly == false">Expected Pickup Date</h6>
+                  </ng-container>
+
+                  <h6 class="fw-500 text-primary">{{orderDetail.expectedDelivery | date : 'mediumDate'}}</h6>
+                </div>
+                <div class="col-md-12 mt-2">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <input type="checkbox"
+                             [disabled]="true"
+                             name="pickupProductDirectly"
+                             [checked]="orderDetail.pickupProductDirectly"
+                             [(ngModel)]="orderDetail.pickupProductDirectly">
+                      <span class="my-2 mx-2 text-primary display-4 fw-500">Pickup Product Directly From Seller </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <hr>
+            <div class="col-md-3 mt-2">
+              <h6>Billing Address</h6>
+              <h6 class="fw-500 text-primary"
+                  *ngIf="orderDetail.buyerAddressDetails.pinCode">
+                {{orderDetail.buyerAddressDetails.building}}
+                {{orderDetail.buyerAddressDetails.street}}
+                {{orderDetail.buyerAddressDetails.landmark}},
+                {{orderDetail.buyerAddressDetails.city}},
+                {{orderDetail.buyerAddressDetails.pinCode}}
+              </h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Shipping Address</h6>
+              <h6 class="fw-500 text-primary"
+                  *ngIf="orderDetail.sellerAddressDetails.pinCode">{{orderDetail.sellerAddressDetails.building}}
+                {{orderDetail.sellerAddressDetails.street}}
+                {{orderDetail.sellerAddressDetails.landmark}},
+                {{orderDetail.sellerAddressDetails.city}},
+                {{orderDetail.sellerAddressDetails.pinCode}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Buyer Contact Name</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.buyerContact.name}}</h6>
+              <h6>Buyer Contact Email</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.buyerContact.email}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Buyer Contact Details</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.buyerContact.phoneNumber}}</h6>
+            </div>
+            <hr>
+            <div class="col-md-3 mt-2">
+              <h6>Seller Contact Name</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.sellerContact.name}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Seller Contact Details</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.sellerContact.phoneNumber}}</h6>
+            </div>
+            <div class="col-md-3 mt-2">
+              <h6>Seller Contact Email</h6>
+              <h6 class="fw-500 text-primary">{{orderDetail.sellerContact.email}}</h6>
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+            <div class="d-block d-md-flex justify-content-between">
+
+              <div class="w-md-30">
+                <h6 class="fw-500 text-primary mt-3">Unit Price: {{orderDetail.unitPrice | currency: 'INR'}} </h6>
+                <h6 class="fw-500 text-primary mt-3">Quantity: {{orderDetail.quantity}}</h6>
+                <h6 class="fw-500 text-primary mt-3">Net Amount: {{orderDetail.netAmount | currency: 'INR'}}</h6>
+                <h3 class="fw-500 text-primary my-3">Net Amount: {{orderDetail.paidAmount | currency: 'INR'}}</h3>
+
+              </div>
+              <div class="w-md-30">
+                <h6 class="fw-500 text-primary mt-3">Handling Charges: {{orderDetail.handlingCharges | currency: 'INR'}}
+                </h6>
+                <h6 class="fw-500 text-primary mt-3">Shipping Charges: {{orderDetail.shippingCharges | currency: 'INR'}}
+                </h6>
+                <h6 class="fw-500 text-primary mt-3">Insurance Charges: {{orderDetail.insuranceCharges | currency:
+                  'INR'}} </h6>
+              </div>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between">
+              <h6 class="fw-500 text-primary mt-3">Order Status:</h6>
+              <h6 class="fw-500 text-primary mt-3">{{orderDetail.orderStatusDescr}}</h6>
+              </div>
+              <div class="d-flex justify-content-between">
+                <h6 class="fw-500 text-primary mt-3">Payment Status:</h6>
+                <h6 class="fw-500 text-primary mt-3">{{orderDetail.paymentStatusDescr}}</h6>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h6 *ngIf="orderDetail.shipperNumber && orderDetail.shipperNumber.length > 0"
+                    class="fw-500 text-primary mt-3">Shipping Number:</h6>
+                    <h6 *ngIf="orderDetail.shipperNumber && orderDetail.shipperNumber.length > 0"
+                      class="fw-500 text-primary mt-3">{{orderDetail.shipperNumber}}</h6>
+                  </div>
+                  <div *ngIf="orderDetail.trackingLink && orderDetail.trackingLink.length > 0" class="d-lg-flex d-block justify-content-between align-items-center ">
+                    <h6 class="fw-500 text-primary mt-3 me-3" 
+                     style="    text-wrap: nowrap;">Tracking URL:</h6>
+                    <input type="text" [readonly]="true" class="form-control me-3" 
+                    [(ngModel)]="orderDetail.trackingLink"
+                    >
+                      <h6 class="fw-500 text-primary mt-3">
+                     <button (click)="openUrl()" 
+                     type="button" class="btn btn-info" 
+                     style="font-size: 12px;padding: 3px 10px;text-wrap: nowrap;">Copy url</button>
+                    </h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <h6 *ngIf="orderDetail.lrNumber && orderDetail.lrNumber.length > 0"
+                        class="fw-500 text-primary mt-3">LR Number:</h6>
+                        <h6 *ngIf="orderDetail.lrNumber && orderDetail.lrNumber.length > 0"
+                          class="fw-500 text-primary mt-3">{{orderDetail.lrNumber}}</h6>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <h6 *ngIf="orderDetail.billNumber && orderDetail.billNumber.length > 0"
+                          class="fw-500 text-primary mt-3">EWay Bill Number:</h6>
+                          <h6 *ngIf="orderDetail.billNumber && orderDetail.billNumber.length > 0"
+                            class="fw-500 text-primary mt-3">{{orderDetail.billNumber}}</h6>
+                        </div>
+               
+                        <div class="d-flex justify-content-between">
+                          <h6 class="fw-500 text-primary mt-3">Total Amount Paid:</h6>
+                          <h6 class="fw-500 text-primary mt-3">{{orderDetail.paidAmount | currency: 'INR'}}</h6>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <h6 class="fw-500 text-primary mt-3">Buyer Contact:</h6>
+                            <h6 class="fw-500 text-primary mt-3">{{orderDetail.buyerContact.name}}</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                              <h6 class="fw-500 text-primary mt-3">Phone Number:</h6>
+                              <h6 class="fw-500 text-primary mt-3">{{orderDetail.buyerContact.phoneNumber}}</h6>
+                              </div>
+                              <div class="d-flex justify-content-between">
+                                <h6 class="fw-500 text-primary mt-3">Seller Contact:</h6>
+                                <h6 class="fw-500 text-primary mt-3">{{orderDetail.sellerContact.name}}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                              <h6 class="fw-500 text-primary mt-3">Phone Number:</h6>
+                              <h6 class="fw-500 text-primary mt-3">{{orderDetail.sellerContact.phoneNumber}}</h6>
+                              </div>
+            
+               
+            <div class="d-flex justify-content-end">
+              <button type="button" *ngIf="!orderDetail.isGrievancePeriodOver"
+                      (click)="raiseGrievance()"
+                      class="btn btn-info mt-4 px-4"> Raise Grievance</button>
+           <div>
+            <button type="button" *ngIf="orderDetail.isOrderCancelAllowed"
+            (click)="cancelOrder()"
+            class="btn btn-info mt-4 ms-2 px-4"> Cancel</button>
+
+           </div>
+           </div>
+          <p class="text-center"  *ngIf="orderDetail.isOrderCancelAllowed"><span class="cancel-order-text">(Note: You can cancel this order within 1 hour of making payment.
+            T&C applicable)</span></p>
+            <div *ngIf="qrCodeImage && orderDetail.pickupProductDirectly && orderDetail.orderStatus === 3"
+                 class="display-qr">
+              <img [src]="qrCodeImage"
+                   class="border"
+                   width="200px">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

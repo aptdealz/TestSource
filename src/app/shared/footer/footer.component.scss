@@ -1,0 +1,39 @@
+ul li {
+  list-style-type: none;
+  font-size: 14px;
+}
+.ps-4r {
+  padding-left: 2rem;
+}
+.os-logo {
+  /*   width: 35%;
+  height: 35%; */
+  width: 100px;
+  height: 35px;
+}
+.visa-img {
+  width: 50px;
+}
+.footer {
+  background-color: var(--primary-color);
+}
+.text-md-center {
+  text-align: left !important;
+}
+@media screen and (max-width: 680px) {
+  ul li {
+    padding-left: 1rem;
+  }
+  ul {
+    padding-left: 10px;
+  }
+  .ps-4r {
+    padding-left: 1rem;
+  }
+  .text-md-center {
+    text-align: center !important;
+  }
+}
+h6 {
+  font-size: 1.2rem !important;
+}

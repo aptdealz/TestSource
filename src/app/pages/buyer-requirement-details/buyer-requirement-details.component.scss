@@ -1,0 +1,26 @@
+.w-20 {
+  width: 150px;
+}
+.custom-img {
+  width: 150px;
+  height: 150px;
+}
+button {
+  min-width: 100px;
+}
+.w-68 {
+  width: 68%;
+}
+@media screen and (max-width: 780px) {
+  .w-68 {
+    width: auto;
+  }
+  button {
+    min-width: 75px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .w-68 {
+    width: auto;
+  }
+}

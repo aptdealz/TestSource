@@ -1,0 +1,223 @@
+<div class="header-t">
+  <nav class="navbar navbar-expand-lg d-none d-lg-block">
+    <div class="container-fluid">
+      <a class="navbar-brand"
+         [routerLink]="['/']">
+        <img src="assets/images/Icons/logo.png"
+             alt="Quotesouk Logo"
+             style="width: 85px"
+             class="w-30 mx-3" /></a>
+
+      <div class="collapse navbar-collapse justify-content-end align-items-center"
+           id="navbarSupportedContent">
+        <div class="d-flex align-items-center w-100">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end w-100">
+            <li class="nav-item me-4 my-auto w-50">
+              <div style="position: relative"
+                   class="d-flex justify-content-end"
+                   role="search">
+                <div class="d-flex search-box-bg form-group rounded-pill"
+                     style="width: 100%; border: #8b17c6 solid 1px; height: 45px">
+                  <input class="form-control text-muted  border-0 rounded-pill search-field"
+                         style="margin: 2px;"
+                         type="search"
+                         [(ngModel)]="searchkeyword"
+                         (keyup.enter)="search(searchkeyword)"
+                         (keyup)="showSuggestions($event)"
+                         (focus)="onInputFocus()"
+                         (blur)="onInputBlur()"
+                         (search)="search()"
+                         placeholder="Looking For Something Else?"
+                         aria-label="Search" />
+                  <i class="fa-solid fa-location-crosshairs text-primary my-auto"></i>
+                  <select [(ngModel)]="district"
+                          class="form-control border-0 search-field text-primary fw-500 px-1 rounded-pill form-select me-0"
+                          style="width: 175px">
+                    <option value="">Select City</option>
+                    <option [value]="disctict"
+                            *ngFor="let disctict of districts">
+                      {{ disctict }}
+                    </option>
+                  </select>
+                  <button (click)="search(Item)"
+                          class="btn btn-primary py-1"
+                          type="submit">
+                    <i class="fa-solid fa-magnifying-glass px-2 text-white"></i>
+                  </button>
+                </div>
+              <div *ngIf="hasSuggestions"
+                     class="border w-75 p-3 suggestion-box">
+                  <div 
+                       role="button"
+                       *ngFor="let item of suggestions"  (click)="selectSuggestion(item.title)">
+                    <p class="mb-2">
+                      <i class="fa-solid fa-magnifying-glass text-primary my-auto"></i>
+                      {{item.title}}
+                    </p>
+                  </div>
+               </div>
+             </div>
+            </li>
+            <li class="nav-item mx-3 my-auto">
+              <a [routerLink]="['/need-help']"
+                 class="fw-500 display-4">Support</a>
+            </li>
+            <ng-container *ngIf="!user.loggedIn">
+              <li class="nav-item mx-2 my-auto">
+                <button type="button"
+                        (click)="loginModal()"
+                        class="btn btn-secondary fw-500 py-1 rounded-pill display-4">
+                  <i class="fa-regular fa-user me-1 text-primary"></i>Login
+                </button>
+              </li>
+              <li class="nav-item mx-2 my-auto">
+                <button type="button"
+                        (click)="signupModal()"
+                        class="btn px-3 py-1 btn-primary">
+                  Sign Up
+                </button>
+              </li>
+            </ng-container>
+            <li *ngIf="user.loggedIn"
+                class="nav-item mx-2 my-auto">
+              <a *ngIf="user.buyer"
+                 [routerLink]="['/buyer-profile/personal']">
+                <button type="button"
+                        class="btn btn-secondary fw-500 py-1 rounded-pill display-4">
+                  <i class="fa-regular fa-user me-1 text-primary"></i>My
+                  Account
+                </button>
+              </a>
+              <a *ngIf="user.seller"
+                 [routerLink]="['/seller-profile/personal']">
+                <button type="button"
+                        class="btn btn-secondary fw-500 py-1 rounded-pill display-4">
+                  <i class="fa-regular fa-user me-1 text-primary"></i>My
+                  Account
+                </button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="bg-primary pt-2 pb-1 d-none d-lg-block">
+    <div class="row">
+      <div class="col-md-3">
+        <a role="button"
+           class="text-white text-uppercase"
+           (click)="openSidebar()">
+          <i class="fa-sharp fa-solid fa-bars mx-2 text-white"
+             role="button"
+             aria-hidden="true"></i> Categories
+        </a>
+      </div>
+      <div class="col-md-9 my-auto">
+        <ul class="site-menu">
+          <li>
+            <a [routerLink]="['/']"
+               routerLinkActive="active-link"
+               [routerLinkActiveOptions]="rlActiveOptions"
+               data-hover="Home">Home</a>
+          </li>
+          <li>
+            <a [routerLink]="['/how-we-work']"
+               routerLinkActive="active-link"
+               data-hover="How we Work">How we Work</a>
+          </li>
+          <li *ngIf="!user.seller">
+            <a [routerLink]="['/become-vendor']"
+               routerLinkActive="active-link"
+               data-hover="Become a Seller">Become a Seller</a>
+          </li>
+          <li>
+            <a [routerLink]="['/blog']"
+               routerLinkActive="active-link"
+               data-hover="Blog">Blog</a>
+
+          </li>
+          <li>
+            <a [routerLink]="['/about-us']"
+               routerLinkActive="active-link"
+               data-hover="About Us">About Us</a>
+          </li>
+          <li *ngIf="!hideSubscriptionPlan">
+            <a
+               [routerLink]="['/subscription']"
+               routerLinkActive="active-link"
+               data-hover="Subscription">Subscription</a>
+
+          </li>
+          <li>
+            <a [routerLink]="['/contact-us']"
+               routerLinkActive="active-link"
+               data-hover="Contact Us">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-sidebar [checkSidebar]="checkSidebar"
+             (newItemEvent)="changeValue($event)"></app-sidebar>
+
+<!-- Mobile -->
+<div
+     class="w-100 p-2 shadow white position-relative d-sm-block d-lg-none header-mobile">
+  <app-sidebar-mobile></app-sidebar-mobile>
+  <div class="d-flex justify-content-around align-items-center">
+    <div class="w-25">
+      <i class="fa-solid fa-bars"
+         style="font-size: 25px"
+         (click)="toggleClass()"></i>
+
+    </div>
+    <div class="text-center">
+      <a [routerLink]="['/']">
+        <img src="assets/images/Icons/logo.png"
+             style="width: 100px" /></a>
+    </div>
+  </div>
+  <div style="position: relative">
+    <div class="d-flex search-box-bg form-group rounded-pill mt-2 w-100"
+         style="border: #8b17c6 solid 1px; height: 45px">
+      <input class="form-control text-muted border-0 rounded-pill search-field pe-0"
+      style="    margin: 2px;"
+      type="search"
+             placeholder="Looking For Something Else?"
+             [(ngModel)]="searchkeyword"
+             (keyup)="showSuggestions($event)"
+             (focus)="onInputFocus()"
+             (blur)="onInputBlur()"
+             (search)="search()"
+             aria-label="Search" />
+      <i class="fa-solid fa-location-crosshairs my-auto me-1"></i>
+      <select [(ngModel)]="district"
+              class="form-control border-0 rounded-pill py-1 search-field form-select w-75 m-0 p-0">
+        <option value="">Select City</option>
+        <option [value]="disctict"
+                *ngFor="let disctict of districts">
+          {{ disctict }}
+        </option>
+      </select>
+      <button (click)="search()"
+              class="btn btn-primary"
+              type="submit">
+        <i class="fa-solid fa-magnifying-glass text-white"></i>
+      </button>
+    </div>
+    <div 
+           class="border w-100 p-3 searchbox">
+      <div (click)="search(item)"
+           role="button"
+           *ngFor="let item of suggestions">
+        <p style="margin-bottom: 0.5rem">
+          <i class="fa-solid fa-magnifying-glass text-primary my-auto"></i>
+          {{ item.title }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+@use "../../../assets/scss/z-index.scss" as zIndex;
+
+.ask-section {
+  background-image: url("../../../assets/images/ask.png");
+  background-size: cover;
+  height: 55vh;
+  background-position: center;
+  position: relative;
+  border-radius: 10px;
+}
+.suggestion-box {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  border: 1px solid #dee2e6;
+  max-height: 13rem;
+  overflow-y: auto;
+  padding: 0.75rem;
+  width: 100%;
+  z-index: map-get(zIndex.$zType, suggestionBox)
+}
+.z9{
+  z-index: map-get(zIndex.$zType, customNine)
+}
+.cover {
+  position: absolute;
+  right: 0px;
+  background-color: #714263cc;
+  width: 45%;
+  height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.f-group {
+  margin-right: 5rem !important;
+  margin-left: 5rem !important;
+}
+
+.google-logo {
+  width: 20%;
+}
+
+.brand-card {
+  margin-top: -2rem;
+  bottom: -28px;
+  z-index: map-get(zIndex.$zType, customNine)
+}
+.send-link-btn {
+  width: 155px;
+}
+.brand-btn {
+  width: 210px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ps-md-5 {
+  padding-left: 3rem !important;
+}
+.br-p {
+  border-left: 3px solid purple;
+}
+@media screen and (max-width: 768px) {
+  .br-p {
+    border: none;
+  }
+  .ps-md-5 {
+    padding-left: 0rem !important;
+  }
+  .ask {
+    display: none !important;
+  }
+  .cover {
+    position: static;
+    padding: 10px;
+    background-color: #714263cc;
+    width: 100% !important;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    // border-bottom-right-radius: 8px;
+  }
+  .f-group {
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+}
+@media screen and (max-width: 990px) {
+  .cover {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .w-lg-25 {
+    width: 25% !important;
+  }
+  .w-lg-50 {
+    width: 50% !important;
+  }
+  .w-lg-60 {
+    width: 60% !important;
+  }
+  .w-lg-75 {
+    width: 75% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .brand-btn {
+    width: auto;
+  }
+  .pp-5 {
+    padding: 1rem !important;
+  }
+}
+.display-7 {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.pp-5 {
+  padding: 3rem;
+}

@@ -1,0 +1,16 @@
+<div class="wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <h1 class="text-center mb-4 fw-bold text-primary">Return Policy</h1>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-12" [innerHTML]="data.retrunPolicy">
+      </div>
+    </div>
+  </div>
+</div>

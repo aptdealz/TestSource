@@ -1,0 +1,12 @@
+.breadcrumb {
+  border-bottom: 1px solid var(--text-muted);
+  padding-bottom: 5px;
+  .breadcrumb-item {
+    a:hover {
+      text-decoration: underline;
+    }
+    label {
+      color: var(--text-muted);
+    }
+  }
+}

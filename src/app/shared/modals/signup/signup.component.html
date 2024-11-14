@@ -1,0 +1,113 @@
+<div class="modal-content">
+  <div class="position-relative">
+    <button type="button"
+            class="btn-close-4"
+            mat-dialog-close
+            aria-label="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <mat-dialog-content>
+  <div class="modal-body p-0">
+    <div class="container-fluid p-0">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="texture-image position-relative d-flex align-items-center">
+            <img src="assets/images/signup.png"
+                 class="ms-5 w-65" />
+          </div>
+        </div>
+        <div class="col-md-7 text-center d-flex justify-content-center align-items-center">
+          <form [formGroup]="registrationForm">
+            <div class="w-90 container mb-3">
+              <h3 class="text-primary mt-3 fw-bold mb-3">Sign Up as Buyer</h3>
+              <small class="text-danger"
+                     style="visibility: hidden"
+                     [ngClass]="{ visible: errorMessage }">{{ errorMessage }}</small>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group text-start">
+                    <input formControlName="fullName"
+                           type="text"
+                           placeholder="Full Name"
+                           class="form-control mt-2" />
+                    <app-print-input-error [control]="registrationForm.get('fullName')"
+                                           [label]="'Full Name'"></app-print-input-error>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group text-start">
+                    <input formControlName="email"
+                           type="text"
+                           placeholder="Email"
+                           class="form-control mt-2" />
+                    <app-print-input-error [control]="registrationForm.get('email')"
+                                           [label]="'Email'"></app-print-input-error>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group text-start">
+                    <input formControlName="phoneNumber"
+                           type="number" (keydown)="allowOnlyNumbers($event)"
+                           placeholder="Mobile No"
+                           class="form-control mt-2" />
+                    <app-print-input-error [control]="registrationForm.get('phoneNumber')"
+                                           [label]="'Mobile No'"></app-print-input-error>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group text-start">
+                    <div class="position-relative">
+                    <input formControlName="password"
+                    type="{{ hidePassword ? 'password' : 'text' }}"
+                           placeholder="Password"
+                           class="form-control mt-2" />
+                           <i class="fa-solid pointer eye-icon"
+                           [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                           (click)="togglePasswordVisibility()"></i></div>
+                    <app-print-input-error [control]="registrationForm.get('password')"
+                                           [label]="'Password'"></app-print-input-error>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group text-start">
+                    <input formControlName="confirmPassword"
+                           type="password"
+                           placeholder="Re-type Password"
+                           class="form-control mt-2" />
+                    <app-print-input-error [control]="registrationForm.get('confirmPassword')"
+                                           [label]="'Confirm Password'"></app-print-input-error>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <input type="checkbox"
+                       formControlName="termconditioncheck" />
+                <span class="my-2 mx-2 text-muted display-5 fw-500">I agree to all Terms & Conditions and Privacy
+                  Policy</span>
+              </div>
+              <button (click)="onSubmit()"
+                      [disabled]="!registrationForm.valid"
+                      type="button"
+                      class="my-3 rounded-pill btn-primary display-4 px-4 py-2">
+                {{ "Sign Up" }}
+              </button>
+              <br />
+              <a (click)="dismissModal('Cross click')"
+                 [routerLink]="['/become-vendor']"
+                 role="button">
+                <span class="my-2 text-muted change-v display-5 fw-500">Become a seller?</span>
+              </a>
+              <br />
+              <span (click)="signInModal()"
+                    class="my-2 text-muted change-v display-5 fw-500"
+                    role="button">
+                Already have an account? Log In</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+</div>

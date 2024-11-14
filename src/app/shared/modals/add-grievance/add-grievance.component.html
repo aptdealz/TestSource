@@ -1,0 +1,138 @@
+<form [formGroup]="form">
+  <div class="modal-content">
+    <div class="modal-header p-3 justify-content-center position-relative">
+      <h3 class="modal-title text-primary text-center" style="font-weight: 600">
+        ADD GRIEVANCE
+      </h3>
+      <button
+        type="button"
+        class="btn-close-4"
+        mat-dialog-close
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <mat-dialog-content>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <ng-container *ngIf="data.grievanceForId === ''">
+                  <label>Order selection*</label><br />
+                  <select formControlName="orderId" class="form-select mt-2">
+                    <option [value]="null" disabled selected>
+                      Select Order
+                    </option>
+                    <option [value]="item.orderId" *ngFor="let item of orders">
+                      {{ item.orderNo }} - {{ item.title }}
+                    </option>
+                  </select>
+                  <app-print-input-error
+                    [label]="'Order'"
+                    [control]="f.orderId"
+                  ></app-print-input-error>
+                </ng-container>
+
+                <ng-container *ngIf="data.grievanceForId !== ''">
+                  <label>Order</label><br />
+                  <input
+                    type="text"
+                    class="form-control mt-2"
+                    [value]="data.grievanceForName"
+                    disabled
+                  />
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Grievance Type*</label><br />
+                <select
+                  formControlName="grievanceType"
+                  class="form-control form-select mt-2"
+                >
+                  <option [value]="null" disabled selected>Select Type</option>
+                  <option
+                    [value]="item.value"
+                    *ngFor="let item of grievanceType"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <app-print-input-error
+                  [label]="'Grievance Type'"
+                  [control]="f.grievanceType"
+                ></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Preferred Solution*</label><br />
+                <textarea
+                  formControlName="preferredSolution"
+                  class="form-control mt-2"
+                  rows="3"
+                  placeholder="Type Preferred Solution"
+                ></textarea>
+                <app-print-input-error
+                  [label]="'Preferred Solution'"
+                  [control]="f.preferredSolution"
+                ></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Issue Description*</label><br />
+                <textarea
+                  formControlName="issueDescription"
+                  class="form-control mt-2"
+                  rows="3"
+                  placeholder="Issue Description"
+                ></textarea>
+                <app-print-input-error
+                  [label]="'Issue Description'"
+                  [control]="f.issueDescription"
+                ></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="file">Attach Docs</label>
+                <i
+                  class="fa-solid fa-arrow-up-from-bracket mx-2"
+                  for="file"
+                ></i>
+                <input
+                  (change)="onFilesUploaded($event)"
+                  type="file"
+                  id="file"
+                  class="d-none"
+                  accept="application/pdf,image/*,video/*"
+                />
+              </div>
+              <ul *ngIf="documents.length > 0">
+                <li *ngFor="let item of documents; let i = index">
+                  <a
+                    target="_blank"
+                    style="white-space: pre-line; line-break: anywhere"
+                    [href]="item"
+                    >{{ item | fileNameExtractor}}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" (click)="save()"
+        [disabled]="isValid" class="btn btn-info px-4">
+          Save
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</form>

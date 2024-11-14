@@ -1,0 +1,202 @@
+<div *ngIf="!loading"
+     class="bg-secondary">
+  <div class="container py-4">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-wrapper p-0">
+          <label class="w-100 texture-label">
+            <div id="banner"
+                 class="texture"
+                 [style.background-image]="bannerBackground | asUrl">
+              <div class="d-lg-flex justify-content-between mx-5 d-none "
+                   style="padding-top: 3rem;">
+                <div class="d-flex position-relative align-items-center ">
+                  <label class="position-relative profile-img"
+                         style="width: 130px;">
+                    <img [src]="profilePhoto"
+                         (error)="onProfilePhotoError($event.target)"
+                         style="width: 100%;">
+                  </label>
+                  <div>
+                    <h3 class="mx-2 text-white mt-3 m-0">{{partnerDetail.fullName}}
+                      <p style="font-size: 16px;"
+                         class="my-1">
+                        {{partnerDetail.sellerNo}}
+                      </p>
+                    </h3>
+                    <span class="ms-2 text-white display-5 fw-500"
+                          *ngIf="isVerified == true"> <i class="fa-solid fa-check-double mx-1 text-white"></i>
+                      Verified</span>
+                  </div>
+
+                </div>
+
+                <div>
+
+                  <div class="d-flex mt-2 justify-content-end"
+                       (click)="openConfirm('logout')"
+                       role="button">
+                    <button type="button"
+                            class="btn btn-info rounded-pill d-flex align-items-center py-1 px-4">
+                      <i class="fa-solid fa-right-from-bracket text-white"
+                         style="font-size: 20px;"></i>
+                      <h5 class="text-white fw-500 my-auto mx-2">Logout</h5>
+                    </button>
+
+                  </div>
+                  <div class="d-flex my-2">
+                    <button type="button"
+                            style="visibility: hidden;"></button>
+                    <button type="button"
+                            [routerLink]="['/partner-details', partnerDetail.sellerId]"
+                            class="btn btn-info bg-white rounded-pill mx-2 text-primary py-0 px-4">Preview Page</button>
+                    <button type="button"
+                            *ngIf="!isBuyer"
+                            (click)="openConfirm('switch')"
+                            class="btn btn-info rounded-pill py-0 px-4">Switch to Buyer</button>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class=" justify-content-between mx-2 d-md-block d-lg-none "
+                   style="padding-top: 0.5rem;">
+                <div class="d-flex my-2">
+                  <button type="button"
+                          [routerLink]="['/partner-details',partnerDetail.sellerId]"
+                          class="btn btn-info bg-white rounded-pill mx-2 text-primary py-0 px-3">Preview Page</button>
+                  <button type="button"
+                          *ngIf="!isBuyer"
+                          (click)="openConfirm('switch')"
+                          class="btn btn-info rounded-pill py-0 px-3">Switch to Buyer</button>
+                </div>
+                <div class="d-flex position-relative align-items-center ">
+                  <label class="position-relative profile-img"
+                         style="width: 130px;">
+                    <img [src]="profilePhoto || 'assets/images/profile.png'"
+                    [defaultImage]="'assets/images/profile.png'"
+                    appImage404
+                    class="bg-loading"
+                         style="width: 100%;">
+                  </label>
+                  <div>
+                    <h3 class="mx-2 text-white mt-3 m-0">{{partnerDetail.fullName}}
+                      <p style="font-size: 16px;"
+                         class="my-1">
+                        {{partnerDetail.sellerNo}}
+                      </p>
+                    </h3>
+                    <span class="ms-2 text-white display-5 fw-500"
+                          *ngIf="isVerified == true"> <i class="fa-solid fa-check-double mx-1 text-white"></i>
+                      Verified</span>
+                  </div>
+
+                </div>
+                <div>
+                </div>
+              </div>
+
+            </div>
+          </label>
+
+
+          <div class="row mx-md-5 mt-5">
+            <div class="col-lg-7 col-md-8 col-12 my-auto">
+              <div class="my-auto text-start "
+                   *ngIf="!hideSubscriptionPlan && partnerDetail.myActiveSubscription !== null">
+                <h5 class="m-0 text-primary">
+                  Your subscription is active. Your next due on {{partnerDetail.myActiveSubscription?.nextChargeDate |
+                  date :
+                  'mediumDate'}}
+                </h5>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-4 col-12 text-end">
+              <div class="d-lg-flex justify-content-end  ">
+                <button type="button"
+                        (click)="openConfirm('deactivate')"
+                        style="background-color: orangered;"
+                        class="btn px-3 mt-2 display-5 me-1 py-2 text-white rounded-pill">
+                  Deactivate Account</button>
+                  <button type="button"
+                  (click)="openConfirmDelete('delete')"
+                  style="background-color: orangered"
+                  class="btn px-3 mt-2 display-5 py-2 text-white rounded-pill">
+                  Delete Account
+                </button>
+                <button *ngIf="!hideSubscriptionPlan && !isBuyer"
+                        type="button"
+                        routerLink="/my-subscription"
+                        class="btn btn-info px-3 mt-2 ms-1 display-5 py-2 text-white rounded-pill">
+                  My Subscription
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="container mt-2 pb-4">
+            <div class="row">
+              <div class="col-lg-10 col-12 mx-auto my-3">
+                <div class="card-wrapper p-2">
+                  <div class="d-flex justify-content-between btn-bar rounded-3 bg-secondary">
+                    <div class="px-2 py-2 rounded-3 display-4 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/personal']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Personal
+                    </div>
+                    <div class="px-2 py-2 rounded-3 display-4 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/enquiries']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Enquiries
+                    </div>
+                    <div class="px-2 py-2  rounded-3 display-4 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/requirements']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Requirements
+                    </div>
+                    <div class="px-2 py-2  rounded-3 display-4 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/leads']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Leads
+                    </div>
+                    <div class="px-2 py-2 display-4  rounded-3 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/quotes']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Submitted Quotes
+                    </div>
+                    <div class="px-2 py-2 display-4 rounded-3 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/shipping']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Order History
+                    </div>
+                    <div class="px-2 py-2 display-4 rounded-3 text-muted profile-btn my-auto nowrap"
+                         [routerLink]="['/seller-profile/grievance']"
+                         routerLinkActive="text-gradient-custom"
+                         role="button">
+                      Grievance
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

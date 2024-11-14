@@ -1,0 +1,205 @@
+<div class="bg-secondary wrapper-panel">
+  <div class="container pb-4"
+       *ngIf="data">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <div class="card-wrapper p-3 mb-3">
+          <div class="d-md-flex d-block  justify-content-between my-2">
+            <button class="btn-info back-btn rounded-pill py-0 px-3 display-5"
+                    (click)="back()">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary text-center fw-bold mb-0">
+              GRIEVANCE FOR {{data.requirementTitle}}, RAISED FROM BUYER
+            </h3>
+            <div style="width: 100px;"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10 mx-auto">
+              <div class="row my-3">
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Requirement ID</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary break-l">{{data.requirementId}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Grievance ID</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary break-l">{{data.grievanceNo}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Order ID</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary break-l">{{data.orderNo}}</h6>
+                </div>
+
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Requirement Title</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.requirementTitle}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Grievance Raised By</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.grievanceFromUserName}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Buyers Name</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.buyerName}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Seller Name</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.sellerName}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Order Date</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.orderDate | date: 'mediumDate'}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Grievance Date</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.created | date: 'mediumDate'}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Grievance Type</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.grievanceTypeDescr}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Preffered Solution</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.preferredSolution}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Details</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary" [innerHTML]="data.issueDescription"></h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Attachment Document</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary break-l"
+                      *ngFor="let item of data.documents">{{item | fileNameExtractor}}</h6>
+                </div>
+                <div class="col-lg-5 col-md-4 col-12 text-md-end">
+                  <h6>Status</h6>
+                </div>
+                <div class="col-lg-2 col-1">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                  <h6 class="fw-500 text-primary">{{data.statusDescr}}</h6>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-md-12 text-end">
+              <button type="button"
+                      class="btn-primary px-3 py-2 display-4 rounded-pill">Close Grievance</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="buyerForm"
+          (ngSubmit)="submit()">
+      <div class="row mt-4">
+        <div class="col-md-10 mx-auto">
+          <div class="card-wrapper">
+            <div class="card-title p-2 text-gradient">
+              <h5 class="text-white mx-2 m-0 mb-0">
+                Responses
+              </h5>
+            </div>
+            <div class="bg-secondary chat-box message-container">
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-container *ngFor="let item of data.grievanceResponses">
+                    <div class="d-flex"
+                         [ngClass]="item.responseFromUserId == userId ? 'justify-content-end' : item.responseFromUserId !== userId ? 'justify-content-start' : ''">
+                      <div class="card-wrapper p-2 mx-2 my-2"
+                           [ngClass]="item.responseFromUserId == userId ? 'right-card bg-info text-white' : item.responseFromUserId !== userId ? 'left-card' : ''">
+                        <p class="m-0 display-4 ms-2">
+                          {{item.response}}
+                        </p>
+                        <span class="display-6"
+                              [ngClass]="item.responseFromUserId == userId ? 'text-white' : item.responseFromUserId !== userId ? 'text-muted': ''">
+                          <i class="fa-solid fa-check-double mx-1"></i>{{item.createdDate |
+                          date: 'shortTime'}}</span>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="data.grievanceResponses.length == 0">
+                    <h5 class="my-5 text-center text-primary+">No Message found</h5>
+                  </ng-container>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-footer p-2 ">
+              <div class="d-flex align-items-center ">
+                <div class="form-group w-100">
+                  <input type="text"
+                         formControlName="response"
+                         class="form-control w-100"
+                         placeholder="Type">
+                </div>
+                <button type="submit"
+                        [disabled]="buyerForm.invalid"
+                        class="btn send-btn"><i class="fa-solid fa-paper-plane text-primary mx-2"></i></button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

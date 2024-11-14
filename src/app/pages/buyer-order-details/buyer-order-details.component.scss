@@ -1,0 +1,28 @@
+.w-62 {
+  width: 62%;
+}
+.w-md-30 {
+  width: 30% !important;
+}
+@media screen and (max-width: 780px) {
+  .w-62 {
+    width: auto;
+  }
+  .w-md-30 {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .w-62 {
+    width: auto;
+  }
+}
+.cancel-order-text {
+  font-size: 10px;
+}
+.display-qr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}

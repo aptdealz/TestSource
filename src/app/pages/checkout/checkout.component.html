@@ -1,0 +1,278 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <section class="pt-5">
+      <nav class="d-flex justify-content-center"
+           aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"
+              *ngFor="let item of breadcrumbs; let i =index;">
+            <a href="#"
+               [routerLink]="[item.path]"
+               *ngIf="item.path !== ''"
+               [ngClass]="item.path != '' ? 'text-primary' : 'text-muted'">{{item.title}}</a>
+            <a *ngIf="item.path == ''"
+               class="text-muted">{{item.title}}</a>
+            <!--  <a href="#"
+             [ngClass]="i == 1  ? 'text-primary' : 'text-muted'">{{item.title}}</a> -->
+          </li>
+          <!--  <li class="breadcrumb-item active"
+             aria-current="page">Library</li> -->
+        </ol>
+      </nav>
+      <hr>
+    </section>
+
+    <form [formGroup]="checkoutForm">
+      <div class="container my-2">
+        <div class="row mx-lg-5">
+          <div class="col-md-12">
+            <h4 class="text-primary fw-bold">Billing Details</h4>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group my-2 w-50"
+                 *ngIf="isReseller == true">
+              <label>GST Number*</label><br>
+              <input type="text"
+                     formControlName="gstin"
+                     placeholder="GST Number"
+                     class="form-control mt-2">
+              <app-print-input-error [control]="f.gstin"
+                                     [label]="'GST Number'"></app-print-input-error>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <h6>Billing Address</h6>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Name*</label><br>
+                <input type="text"
+                       formControlName="billingAddressName"
+                       placeholder="Name"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressName"
+                                       [label]="'Name'"></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Building*</label><br>
+                <input type="text"
+                       formControlName="billingAddressBuilding"
+                       placeholder="Building"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressBuilding"
+                                       [label]="'Name'"></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Street*</label><br>
+                <input type="text"
+                       formControlName="billingAddressStreet"
+                       placeholder="Street"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressStreet"
+                                       [label]="'Name'"></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>PIN Code*</label><br>
+                <input type="number"
+                       placeholder="Pincode" (keydown)="allowOnlyNumbers($event)" maxlength="6" (blur)="pincodeChangeBilling()"
+                       formControlName="billingAddressPinCode"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressPinCode"
+                                       [label]="'Pincode'"></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>City*</label><br>
+                <input type="text"
+                       formControlName="billingAddressCity"
+                       placeholder="City"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressCity"
+                                       [label]="'Name'"></app-print-input-error>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group ">
+                <label>Country*</label><br>
+                <select class="form-control form-select mt-2"
+                        formControlName="billingAddressCountry">
+                  <option value="">Select Country</option>
+                  <option *ngFor="let c of countries"
+                          [ngValue]="c.countryId">{{ c.name }}</option>
+                </select>
+                <app-print-input-error [control]="f.billingAddressCountry"
+                                       [label]="'Country'"></app-print-input-error>
+                <!--   <app-print-input-error [control]="billingAddress.get('countryId')" [label]="'Country'"></app-print-input-error>
+           -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group my-2">
+                <label>State*</label><br>
+                <select class="form-control form-select mt-2"
+                        formControlName="billingAddressState">
+                  <option value="">Select State</option>
+                  <option *ngFor="let c of statesB"
+                          [ngValue]="c.name">{{ c.name }}</option>
+                </select>
+                <app-print-input-error [control]="f.billingAddressState"
+                                       [label]="'State'"></app-print-input-error>
+                <!--      <input type="text" placeholder="State" formControlName="billingAddressState" class="form-control mt-2">
+          -->
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group my-2">
+                <label>Landmark*</label><br>
+                <input type="text"
+                       formControlName="billingAddressLandmark"
+                       placeholder="Landmark"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="f.billingAddressLandmark"
+                                       [label]="'Landmark'"></app-print-input-error>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="d-lg-flex align-items-center d-md-flex d-sm-block">
+              <h6 class="me-2 mb-0">Shipping Address</h6>
+              <div class="d-flex align-items-center">
+                <input [(ngModel)]="shipping_address_same_as_billing"
+                       [ngModelOptions]="{standalone: true}"
+                       (change)="sameBilling()"
+                       type="checkbox"
+                       class="me-2">
+                <label>Same as billing address</label>
+              </div>
+
+            </div>
+
+            <ng-container *ngIf="!shipping_address_same_as_billing">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Name*</label><br>
+                  <input type="text"
+                         placeholder="Name"
+                         formControlName="shippingAddressName"
+                         class="form-control mt-2">
+                  <app-print-input-error [control]="f.shippingAddressName"
+                                         [label]="'Name'"></app-print-input-error>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Building*</label><br>
+                  <input type="text"
+                         formControlName="shippingAddressBuilding"
+                         placeholder="Building"
+                         class="form-control mt-2">
+                  <app-print-input-error [control]="f.shippingAddressBuilding"
+                                         [label]="'Building'"></app-print-input-error>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Street*</label><br>
+                  <input type="text"
+                         formControlName="shippingAddressStreet"
+                         placeholder="Street"
+                         class="form-control mt-2">
+                  <app-print-input-error [control]="f.shippingAddressStreet"
+                                         [label]="'Street'"></app-print-input-error>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>PIN Code*</label><br>
+                  <input type="number"  (keydown)="allowOnlyNumbers($event)" maxlength="6" (blur)="pincodeChangeShipping()"
+                         formControlName="shippingAddressPinCode"
+                         placeholder="Pincode"
+                         class="form-control mt-2">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>City*</label><br>
+                  <input type="text"
+                         formControlName="shippingAddressCity"
+                         placeholder="City"
+                         class="form-control mt-2">
+                  <app-print-input-error [control]="f.shippingAddressCity"
+                                         [label]="'City'"></app-print-input-error>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group ">
+                  <label>Country*</label><br>
+                  <select class="form-control form-select mt-2"
+                          formControlName="shippingAddressCountry">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let c of countries"
+                            [ngValue]="c.countryId">{{ c.name }}</option>
+                  </select>
+                  <app-print-input-error [control]="f.shippingAddressCountry"
+                                         [label]="'Country'"></app-print-input-error>
+                  <!--   <app-print-input-error [control]="billingAddress.get('countryId')" [label]="'Country'"></app-print-input-error>
+             -->
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>State*</label><br>
+                  <select class="form-control form-select mt-2"
+                          formControlName="shippingAddressState">
+                    <option value="">Select State</option>
+                    <option *ngFor="let c of statesC"
+                            [ngValue]="c.name">{{ c.name }}</option>
+                  </select>
+                  <app-print-input-error [control]="f.shippingAddressState"
+                                         [label]="'State'"></app-print-input-error>
+                  <!--    <input type="text" formControlName="shippingAddressState" placeholder="State" class="form-control mt-2">
+              -->
+                </div>
+              </div>
+
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Landmark*</label><br>
+                  <input type="text"
+                         formControlName="shippingAddressLandmark"
+                         placeholder="Landmark"
+                         class="form-control mt-2">
+                  <app-print-input-error [control]="f.shippingAddressLandmark"
+                                         [label]="'Landmark'"></app-print-input-error>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- <div class="col-md-12">
+            <div class="form-group">
+              <label>Order notes (optional)</label><br>
+              <textarea class="form-control mt-2" rows="3"></textarea>
+            </div>
+          </div> -->
+          <div class="col-md-12 text-center">
+            <button type="button" [disabled]="checkoutForm.invalid"
+                    (click)="placeOrder()"
+                    class="my-3 rounded-pill fw-500 btn-primary display-4 px-5 py-2">Place Order</button>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div>
+</div>

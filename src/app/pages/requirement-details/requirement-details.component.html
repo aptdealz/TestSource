@@ -1,0 +1,209 @@
+<div class="bg-secondary wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-lg-9 col-12 mx-auto">
+        <div class="card-wrapper p-3 mb-3">
+          <div class="d-md-flex d-block justify-content-between my-2">
+            <button class="btn-info back-btn rounded-pill py-0 px-3 display-5"
+                    (click)="back()">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary text-center-m fw-bold mb-0">
+              REQUIREMENT DETAILS
+            </h3>
+            <div style="width: 100px;"></div>
+          </div>
+          <div class="d-flex align-items-center my-4">
+            <div class="w-20">
+              <img width="150px"
+                   height="150px"
+                   [src]="list.productImage"
+                   class="bg-loading"
+                     appImage404>
+            </div>
+            <h4 class="text-muted mx-3 fw-bold">{{list.title}}</h4>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-4 mt-2">
+              <h6>Requirement ID</h6>
+              <h6 class="fw-500 text-primary">{{list.requirementNo}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Requirement Title</h6>
+              <h6 class="fw-500 text-primary">{{list.title}}</h6>
+            </div>
+
+            <div class="col-md-4 mt-2">
+              <h6>Category</h6>
+              <h6 class="fw-500 text-primary">{{list.category}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Sub Category</h6>
+              <ng-container *ngFor="let subCategory of list.subCategories;let i = index">
+                <h6 class="fw-500 text-primary">{{subCategory}}<span *ngIf="i+1 != list.subCategories.length">,</span>
+                </h6>
+              </ng-container>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Buyer ID</h6>
+              <h6 class="fw-500 text-primary">{{list.buyerNo}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Quantity</h6>
+              <h6 class="fw-500 text-primary">{{listd.quantity}} {{listd.unit}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Total Quote Amount</h6>
+              <h6 class="fw-500 text-primary">{{list.totalPriceEstimation | currency: 'INR'}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Preferred Source</h6>
+              <h6 class="fw-500 text-primary">{{list.preferredSourceOfSupply}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Shipping Pin Code</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressPinCode}}</h6>
+            </div>
+            <div class="col-md-12 mt-2">
+              <h6>Description</h6>
+              <h6 class="fw-500 text-primary" [innerHTML]="list.productDescription"></h6>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.preferInIndiaProducts"
+                         class="mx-2">
+                  <label>Prefer Make in india Products</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.pickupProductDirectly"
+                         class="mx-2">
+                  <label>Pickup Product directly from seller</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.needInsuranceCoverage"
+                         class="mx-2">
+                  <label>Do you need insurrance coverage?</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.isReseller"
+                         class="mx-2"> <label>Are you a
+                    Reseller?</label><br>
+                </div>
+              </div>
+              <!-- <div class="col-md-6 mt-3" *ngIf="list.isReseller == true">
+                <h6>GST Number</h6>
+                <h6 class="fw-500 text-primary">{{list.gstin || '-'}}</h6>
+              </div> -->
+              <!-- <div class="col-md-6 mt-3" *ngIf="list.pickupProductDirectly == false">
+                <h6>Expected Delivery Date</h6>
+                <h6 class="fw-500 text-primary">{{list.expectedDeliveryDateStr}}</h6>
+              </div> -->
+              <div class="col-md-6 mt-3"
+                   *ngIf="list.pickupProductDirectly == true">
+                <h6>Expected Pickup Date</h6>
+                <h6 class="fw-500 text-primary">{{list.expectedDeliveryDateStr}}</h6>
+              </div>
+            </div>
+
+            <ng-container>
+              <h6>Buyer Contact Details</h6>
+              <ng-container *ngIf="list.isBuyerContactRevealed && list.buyerContact">
+                <h6 class="fw-500 text-primary mt-3">Name: {{list.buyerContact.name}}</h6>
+                <h6 class="fw-500 text-primary mt-3">Phone Number: {{list.buyerContact.phoneNumber}}</h6>
+              </ng-container>
+              <!-- <ng-container *ngIf="!list.isBuyerContactRevealed">
+                <button class="btn-primary rounded-pill mx-2 py-2 px-4 display-4" (click)="completePayment()">Reveal Contact</button>
+              </ng-container> -->
+            </ng-container>
+
+            <div class="col-md-12 mt-3">
+              <h5>Billing Address</h5>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>Building</h6>
+              <h6 class="fw-500 text-primary">{{list.billingAddressBuilding}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>Street</h6>
+              <h6 class="fw-500 text-primary">{{list.billingAddressStreet}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>City</h6>
+              <h6 class="fw-500 text-primary">{{list.billingAddressCity}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>State</h6>
+              <h6 class="fw-500 text-primary">{{list.billingAddressState}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>PinCode</h6>
+              <h6 class="fw-500 text-primary">{{list.billingAddressPinCode}}</h6>
+            </div>
+
+            <div class="col-md-12 mt-3">
+              <h5>Shipping Address</h5>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>Building</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressBuilding}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>Street</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressStreet}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>City</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressCity}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>State</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressState}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>PinCode</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressPinCode}}</h6>
+            </div>
+            <div class="col-md-4 mt-3">
+              <h6>Landmark</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressLandmark}}</h6>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center my-3">
+            <button class="btn-info rounded-pill px-4 py-2 display-4"
+                    [routerLink]="['/view-quotes/',list.requirementId]">
+              View Quotes
+            </button>
+            <button class="btn-primary rounded-pill mx-2 py-2 px-4 display-4"
+                    (click)="openQuote()">
+              Send Quote
+            </button>
+            <ng-container *ngIf="isShowDeleteButton">
+              <button class="btn-info rounded-pill py-2 px-4 display-4"
+                      (click)="delete()">
+                Delete
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

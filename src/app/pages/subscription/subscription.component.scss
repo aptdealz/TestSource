@@ -1,0 +1,276 @@
+.card-wrapper {
+  height: 100%;
+  position: relative;
+  border-radius: 33px !important;
+}
+ul li {
+ //list-style-image: url("../../../assets/images/Icons/tick.png");
+  margin-top: 10px;
+}
+.custom-li li {
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+.btn-plan {
+  background-color: white;
+}
+.box {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+}
+.card-footer {
+  position: absolute;
+  bottom: 25px;
+  width: 50%;
+  background-color: white;
+}
+/*.btn-subs {
+  border-radius: 30px;
+  letter-spacing: 1px;
+  font-weight: 200;
+  font-size: 14px;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, #0019bf, #ff15cc) border-box;
+  border-radius: 50em;
+  border: 4px solid transparent;
+  border-width: 3px;
+
+.text-grade {
+  background: -webkit-linear-gradient(#0019bf, #ff15cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}}*/
+.sub-div {
+  margin-bottom: 7rem;
+  //height: 200px;
+  height: auto;
+  overflow-y: auto;
+}
+@media screen and (max-width: 780px) {
+  .card-wrapper {
+    height: auto;
+  }
+  .footer-card {
+    position: static;
+    width: 100%;
+  }
+  .subscription-img {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .subscription-img {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sub-div {
+    margin-bottom: 7rem;
+    height: auto;
+  }
+}
+
+
+
+.card-footer1 {
+  position: absolute; 
+ // bottom: 25px;
+  width: 50%;
+  background-color: white;
+  padding-top: 50px;
+}
+
+
+.divcls{
+  padding-top: 40px;
+}
+
+.btn-table {
+
+  position: absolute;
+  bottom: 10px; /* Distance from the bottom */
+  left: 10px; 
+}
+
+
+.pricing-table {
+  position: relative;
+  //display: flex;
+  justify-content: left;
+  gap: 20px; 
+  height: 100%;  
+  margin: 0 auto;
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
+
+.pricing-plan {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 400px;
+  height: 100%;
+  
+}
+
+.pricing-plan:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-plan h3 {
+  font-size: 26px;
+  color: #741763;
+  margin-bottom: 15px;
+}
+
+.pricing-plan p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.pricing-plan h2 {
+  font-size: 48px;
+  color: #741763;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.pricing-content {
+   
+  padding: 15px;
+  margin-bottom: 20px;
+ /* background-color: #f4f1f1;  Light background */
+  text-align: center; /* Center text inside the content box */
+  border-bottom: solid 0.5px;
+}
+
+
+
+.pricing-plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  flex-grow: 1; /* Ensures the ul takes up the space between the heading and button */
+}
+.pricing-plan ul li {
+  text-align: left; /* Aligns text to the left inside list items */
+  margin-bottom: 5px; /* Space between list items */
+ 
+}
+.pricing-plan ul li {
+  position: relative; /* Position relative for the pseudo-element */
+  padding-left: 50px; /* Space for the checkmark */
+  margin-bottom: 2px; /* Spacing between items */
+  font-family:  Impact sans-serif;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.2; /* Line height for readability */
+  
+}
+
+.pricing-plan ul li::before {
+  content: '\2714';  /*Unicode for checkmark */
+  position: absolute;
+  left: 10px; /* Adjust position as needed */
+  color: #46ae27; /* Green color for the checkmark */
+  font-size: 15px; /* Adjust size as needed */
+  top: 50%; /* Vertically center the checkmark */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+}
+.pricing-table-footer {
+  margin-top: auto; /* Pushes the button to the bottom */
+  text-align: center; /* Align the button to the center */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ensure all cards have the same height */
+.pricing-plan {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Full height for equal-sized cards */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.pricing-content {
+  flex-grow: 1; /* Allows the content to expand and push the footer down */
+  margin-bottom: 20px; /* Add some space below content */
+}
+
+ul {
+  flex-grow: 1; /* The list also grows to take available space */
+  margin-bottom: 10px; /* Ensure spacing between list and button */
+}
+
+/* Align the button at the bottom */
+.pricing-table-footer {
+  margin-top: auto; /* Ensures the button stays at the bottom */
+  text-align: center;
+}
+
+/* Optional: Make the button full-width */
+.btn-primary {
+  justify-content: center;
+  width: 150px;
+  height: 40px;
+  padding: 10px;
+}
+.line-under-price {
+  width: 100%; /* Full width of the price container */
+  height: 5px; /* Line thickness */
+  background-color: #db7f7f; /* Line color */
+  margin-top: 20px; /* Space above the line */
+  margin-bottom: 20px; /* Space below the line */
+}
+.name-space{
+  width: 100%;
+  height: 100px;
+}
+.name-space h3 {
+  text-align: center;
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; /* Adds space between letters */
+  background: linear-gradient(to right, #0019bf, #ff15cc); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Fills gradient inside text */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  transition: transform 0.3s ease; /* Adds smooth hover effect */
+}
+
+.name-space h3:hover {
+  transform: scale(1.1); /* Slight zoom-in effect on hover */
+}
+.pricing-content h6 {
+  font-weight: 900; 
+  font-size: 1.5rem;
+  margin-top: -10px;
+}
+
+
+
+

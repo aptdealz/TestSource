@@ -1,0 +1,8 @@
+.col-md {
+  flex: 0 0 20%;
+}
+@media screen and (max-width: 680px) {
+  .col-md {
+    flex: 0 0 50%;
+  }
+}

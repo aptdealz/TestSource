@@ -1,0 +1,66 @@
+<div class="card-wrapper mt-3 px-3">
+  <ng-container>
+    <div class="search-results"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollDown()">
+      <div class="row py-4"
+           *ngIf="list.length > 0">
+        <div class="col-md-4 col-lg-3 col-6 mt-3"
+             *ngFor="let item of list">
+          <div class="p-0">
+            <a [routerLink]="['/product/',item?.urlTitle]">
+              <div class="sub-card-bg rounded-3"
+                   role="button">
+                <div class="d-flex justify-content-end align-items-center ">
+                  <div class="star mx-1 display-5 mt-1 ">
+                    <i class="fa-star text-secondary"
+                       [ngClass]="item.rating >= 1 ? 'fa-solid' : 'fa-regular'">
+
+                    </i><i class="fa-star text-secondary ms-1"
+                       [ngClass]="item.rating >= 2 ? 'fa-solid' : 'fa-regular'"></i>
+                    <i class="fa-star text-secondary ms-1"
+                       [ngClass]="item.rating >= 3 ? 'fa-solid' : 'fa-regular'"></i>
+                    <i class="fa-star text-secondary ms-1"
+                       [ngClass]="item.rating >= 4 ? 'fa-solid' : 'fa-regular'"></i>
+                    <i class=" fa-star text-secondary ms-1"
+                       [ngClass]="item.rating >= 5 ? 'fa-solid' : 'fa-regular'"></i>
+                  </div>
+                </div>
+                <div class="card-image-div">
+                  <img [src]="item.image"
+                  class="bg-loading w-100"
+                  appImage404>
+                </div>
+
+              </div>
+            </a>
+            <div class="text-center p-1">
+              <div class="title-div">
+                <span role="button">{{item.title}}</span>
+              </div>
+              <!--  <button *ngIf="!isAlreadyInCart(item)"
+                      (click)="addToCart(item)"
+                      class="btn btn-info rounded-pill display-4 mt-2">Add to cart</button>
+              <button *ngIf="isAlreadyInCart(item)"
+                      [routerLink]="['/cart']"
+                      class="btn btn-info rounded-pill display-4 mt-2">Continue to Cart</button> -->
+              <button (click)="addToCartAndOpenCartModal(item)"
+                      class="btn btn-info rounded-pill display-4 mt-2">Get Multiple Quotes</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="row py-4"
+         *ngIf="list.length == 0">
+      <h3 class="text-primary text-center my-5">
+        No result found
+      </h3>
+    </div>
+  </ng-container>
+</div>

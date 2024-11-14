@@ -1,0 +1,42 @@
+<cdk-accordion class="accordion">
+  <cdk-accordion-item
+  *ngFor="let item of categoryTree; let index = index;"
+     #accordionItem="cdkAccordionItem"
+     class="accordion-item"
+     role="button"
+     tabindex="0"
+     [attr.id]="'accordion-header-' + index"
+     [attr.aria-expanded]="accordionItem.expanded"
+     [attr.aria-controls]="'accordion-body-' + index">
+     <div class="accordion-head" (click)="accordionItem.toggle()"
+     [ngClass]="accordionItem.expanded? 'active' : ''"
+     >
+       {{ item?.name }}
+       <span class="example-accordion-item-description" 
+       *ngIf="accordionItem.expanded">
+        <img src="assets/images/accordion-up.png">
+       </span>
+       <span class="example-accordion-item-description" 
+       *ngIf="!accordionItem.expanded">
+        <img src="assets/images/accordion-down.png">
+       </span>
+     </div>
+     <div
+       class="accordion-body"
+       role="region"
+       [style.display]="accordionItem.expanded ? '' : 'none'"
+       [attr.id]="'accordion-body-' + index"
+       [attr.aria-labelledby]="'accordion-header-' + index">
+       <ul>
+        <li [ngClass]="{'subactive': subcategory.subCategoryId==selectedSubCategory}"
+            (click)="selectSubCategory(subcategory)"
+            role="button"
+            class="break-l"
+            *ngFor="let subcategory of item.subCategories">
+          {{subcategory.name}}
+        </li>
+      </ul>
+     </div>
+   </cdk-accordion-item>
+ 
+</cdk-accordion>

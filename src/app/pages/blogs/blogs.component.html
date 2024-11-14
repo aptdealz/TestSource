@@ -1,0 +1,80 @@
+<div class="wrapper-panel">
+  <div class="container py-4">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-primary text-center fw-bold">Blog to grow your business</h3>
+        <p class="text-primary text-center fw-500">
+          Get the knowledge and inspiration
+        </p>
+      </div>
+      <div class="col-md-6 mx-auto">
+        <div class="card-wrapper rounded-3 p-2">
+          <div class="d-flex search-box-bg form-group rounded-pill w-100">
+            <input class="form-control border-0 rounded-pill  me-2"
+                   type="search"
+                   [(ngModel)]="searchKey"
+                   placeholder="Search"
+                   aria-label="Search">
+            <button class="btn btn-primary"
+                    (click)="getSearchData()"
+                    type="submit"><i class="fa-solid fa-magnifying-glass px-2 text-white"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="data.length > 0">
+      <div class="search-results"
+           infinite-scroll
+           [infiniteScrollDistance]="scrollDistance"
+           [infiniteScrollThrottle]="throttle"
+           (scrolled)="getMore()">
+        <div class="row my-3">
+          <div class="col-md-4 mt-3"
+               role="button"
+               *ngFor="let item of data; let i = index;">
+            <a [routerLink]="['/blog-details/', item.blogId]">
+
+              <div class="blog-img rounded-3">
+                <img [src]="item.image"
+                     class="w-100 rounded-3">
+              </div>
+              <div class="blog-title mt-2">
+                <h5 class="text-primary fw-bold">{{item.title | characterLimit: 100}}</h5>
+                <p class="text-muted display-4  lh-base"
+                   [innerHTML]="item.description | characterLimit: 200">
+
+                </p>
+                <div class="d-flex justify-content-between my-2">
+                  <span class="text-secondary fw-500 display-5 ">By <b>{{item.author}}</b>: {{item.date | date:
+                    'mediumDate'}}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+        <div class="row my-3">
+          <div class="col-md-12">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row py-4"
+         *ngIf="!data && !loading">
+      <h3 class="text-primary text-center my-5">
+        No Blog Found
+      </h3>
+    </div>
+    <div class="row py-4"
+         *ngIf="loading == true">
+      <h3 class="text-primary text-center my-5">
+        Loading ...
+      </h3>
+    </div>
+  </div>
+</div>

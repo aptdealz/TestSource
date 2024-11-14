@@ -1,0 +1,74 @@
+<div *ngIf="data"
+     class="wrapper-panel">
+  <div class="container py-4">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <h3 class="text-primary fw-bold ">{{data.title}}</h3>
+        <span class="text-secondary">By {{data.author}} · {{data.date | date:
+          'mediumDate'}}</span>
+      </div>
+      <div class="col-md-12 my-5 ">
+        <img [src]="data.image"
+             class="w-100 h-70 rounded-3 blog-img">
+      </div>
+      <div class="col-md-12">
+        <p class="fw-400 text-muted "
+           [innerHTML]="data.description">
+
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 my-3"
+           *ngIf="comments.length>0">
+        <h3 class="text-primary fw-bold">Comments</h3>
+        <ng-container *ngFor="let comment of comments">
+          <div class="d-flex mb-2 align-items-center mt-2">
+            <img [src]="comment.userProfile.profilePhoto"
+                 onerror="this.onerror=null;this.src='assets/images/test-1.png';"
+                 class="w-3"
+                 style="border-radius: 50%;width:40px;height:40px;">
+            <h5 class="text-primary fw-bold mx-2">{{comment?.userProfile?.fullName}}</h5>
+          </div>
+
+          <p class="fw-400 text-muted">{{comment?.comments}}</p>
+        </ng-container>
+      </div>
+    </div>
+    <hr>
+    <form [formGroup]="blogGroup"
+          (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-primary text-center fw-bold">Leave a Reply</h3>
+          <p class=" text-center fw-500 display-4">Your email address will not be published. Required fields
+            are marked</p>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="form-group mt-4">
+            <label>Comment*</label>
+            <textarea class="form-control"
+                      formControlName="comments"
+                      rows="4"
+                      placeholder="Write your comment here"></textarea>
+                      <app-print-input-error [control]="f.comments"
+                      [label]="'Comment'"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-12 text-center my-3">
+          <button type="submit" 
+          [disabled]="blogGroup.invalid"
+                  class="btn btn-info display-4 px-4 rounded-pill">
+            Post Comment
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

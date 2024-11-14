@@ -1,0 +1,127 @@
+<div class="wrapper-panel">
+  <div class="container py-4"
+       *ngIf="list">
+    <section>
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-lg-flex d-md-flex d-sm-block align-items-center">
+          <div class="ms-lg-5 d-lg-inline d-md-inline d-none justify-content-around">
+            <img [src]="list.image"
+            appImage404 class="zoom-img border-1 bg-loading my-2">
+            <img [src]="list.image"
+            appImage404
+                class="zoom-img border-1 bg-loading my-2">
+            <img [src]="list.image"
+            appImage404
+                 class="zoom-img border-1 bg-loading my-2">
+          </div>
+          <div class="w-100 text-center">
+            <img [src]="list.image"
+            appImage404
+                 class="w-200 p-2 bg-loading">
+          </div>
+          <div class="ms-lg-5 d-lg-none d-md-none d-flex justify-content-around">
+            <img [src]="list.image"
+            appImage404
+                class="zoom-img1 border-1 bg-loading my-2">
+            <img [src]="list.image"
+            appImage404
+                class="zoom-img1 bg-loading border-1 my-2">
+            <img [src]="list.image"
+                 appImage404
+                 class="zoom-img1 bg-loading border-1 my-2">
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="p-details mt-5">
+          <h1 class="section-title">{{list.title}}</h1>
+          <div class="star d-flex mx-1 my-4">
+            <i class="fa-star text-secondary"
+               [ngClass]="list.rating >= 1 ? 'fa-solid' : 'fa-regular'"></i>
+            <i class="fa-star text-secondary"
+               [ngClass]="list.rating >= 2 ? 'fa-solid' : 'fa-regular'"></i>
+            <i class="fa-star text-secondary"
+               [ngClass]="list.rating >= 3 ? 'fa-solid' : 'fa-regular'"></i>
+            <i class="fa-star text-secondary"
+               [ngClass]="list.rating >= 4 ? 'fa-solid' : 'fa-regular'"></i>
+            <i class="fa-star text-secondary"
+               [ngClass]="list.rating >= 5 ? 'fa-solid' : 'fa-regular'"></i>
+            <div class="text-muted mx-3 display-5">
+              ({{list.rating}} Reviews)
+            </div>
+          </div>
+          <ul class="product-desc-list my-3 text-muted">
+            <li>{{list.shortDescription}}</li>
+          </ul>
+
+          <div class="d-flex">
+            <!-- <div class="form-group">
+            <div class="d-flex shadow align-items-center rounded-3 my-1"
+                 style="width: 75%;">
+              <button type="button"
+                      class="btn btn-light-r w-20">-</button>
+              <input type="text"
+                     class="form-control rounded-0 w-20 px-0">
+              <button type="button"
+                      class="btn btn-light-l w-20">+</button>
+            </div>
+          </div> -->
+
+            <!-- <button type="button"
+                  class="btn-primary btn rounded-pill display-4"><i class="fa-solid fa-cart-shopping mx-2"></i>Add to
+            cart</button> -->
+            <button type="button"
+                    (click)="sendEnquiry()"
+                    class="btn-primary btn py-1 px-3 fw-normal rounded-pill display-4">Send Enquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-tab-group>
+      <mat-tab label="Description">   <div class="container-fluid mt-3">
+        <div class="row">
+          <div class="col-md-6 text-muted">
+            <div [innerHTML]="list.description">
+
+            </div>
+          </div>
+          <div class="col-md-6">
+            <video src="assets/images/vid.mp4"
+                   width="640"
+                   height="360"
+                   [poster]="list.image"
+                   class="w-100 rounded-3"></video>
+          </div>
+        </div>
+      </div> </mat-tab>
+      <mat-tab label="Specification">
+        <div class="text-muted"
+        [innerHTML]="list.specifications"></div>  
+      </mat-tab>
+    </mat-tab-group>
+
+    <section class="mt-5"
+             *ngIf="relatedProducts.length>0">
+      <h1 class="my-2 section-title">Related Products</h1>
+      <app-related-product-section [loading]="loading"
+                                   [listOfOtherVendors]="relatedProducts"></app-related-product-section>
+    </section>
+
+    <section class="my-4">
+      <app-image-tab-section [banners]="banners"></app-image-tab-section>
+    </section>
+
+    <section *ngIf="listOfOtherVendors.length>0">
+      <h1 class="my-2 section-title">Products from other sellers</h1>
+      <app-related-product-section [loading]="loading"
+                                   [listOfOtherVendors]="listOfOtherVendors"></app-related-product-section>
+    </section>
+
+
+  </div>
+</div>

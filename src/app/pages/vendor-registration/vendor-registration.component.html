@@ -1,0 +1,396 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-md-4 text-end">
+        <img src="assets/images/seller.png"
+        alt="Wholesale seller"
+             class="w-50">
+      </div>
+      <div class="col-md-6 my-auto">
+        <h1 class="text-primary fw-bold">
+          How to Become a Wholesale Seller
+        </h1>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="sellerDetailsForm">
+    <div class="bg-secondary my-3">
+      <h3 class="text-primary text-center py-3"> Personal Details</h3>
+    </div>
+    <div class="container my-2">
+      <div class="row mx-md-5">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Full Name*</label><br>
+            <input formControlName="fullName"
+                   type="text"
+                   placeholder="Full name"
+                   class="form-control mt-2">
+            <app-print-input-error [control]="f.fullName"
+                                   [label]="'Full Name'"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Email Id*</label><br>
+            <input formControlName="email"
+                   type="email"
+                   placeholder="Type Email Id"
+                   class="form-control mt-2">
+            <app-print-input-error [control]="f.email"
+                                   [label]="'Email Id'"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Phone No*</label><br>
+            <input formControlName="phoneNumber"
+                   type="number"  maxlength="13"
+                   placeholder="Phone no"  (keydown)="allowPhoneNumberOnlyNumbers($event)"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Phone No'"
+                                   [control]="f.phoneNumber"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Alternate Phone No</label><br>
+            <input formControlName="alternativePhoneNumber"
+                   type="number"
+                   placeholder="Enter Alternate Phone No"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Alternate Phone No'"
+                                   [control]="f.alternativePhoneNumber"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Password*</label><br>
+            <div class="position-relative">
+            <input formControlName="password"
+            type="{{ hidePassword ? 'password' : 'text' }}"
+                   placeholder="Password"
+                   class="form-control mt-2">
+                   <i class="fa-solid pointer eye-icon"
+                   [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                   (click)="togglePasswordVisibility()"></i></div>
+            <app-print-input-error [label]="'Password'"
+                                   [control]="f.password"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Confirm Password*</label><br>
+            <input formControlName="confirmPassword"
+                   type="password"
+                   placeholder="Confirm Password"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Confirm Password'"
+                                   [control]="f.confirmPassword"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Buliding no</label><br>
+            <input formControlName="building"
+                   type="text"
+                   placeholder="Building no"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Buliding no'"
+                                   [control]="f.building"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>street</label><br>
+            <input formControlName="street"
+                   type="text"
+                   placeholder="Street"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'street'"
+                                   [control]="f.street"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Pin Code</label><br>
+            <input formControlName="pinCode" (keydown)="allowOnlyNumbers($event)" maxlength="6" (blur)="pincodeChange()" type="number" placeholder="Pin code" class="form-control mt-2">
+            <app-print-input-error [label]="'Pin Code'"
+                                   [control]="f.pinCode"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>City</label><br>
+            <input formControlName="city"
+                   type="text"
+                   placeholder="City"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'City'"
+                                   [control]="f.city"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>District</label><br>
+            <input formControlName="district"
+                   type="text"
+                   placeholder="district"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'district'"
+                                   [control]="f.district"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Landmark</label><br>
+            <input formControlName="landmark"
+                   type="text"
+                   placeholder="Enter Landmark"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Landmark'"
+                                   [control]="f.landmark"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Country</label><br>
+            <select (change)="getStates(f.countryId.value)"
+                    class="form-control form-select mt-2"
+                    formControlName="countryId">
+              <option value="">Select Country</option>
+              <option *ngFor="let c of countries"
+                      [ngValue]="c.countryId">{{ c.name }}</option>
+            </select>
+            <app-print-input-error [label]="'Country'"
+                                   [control]="f.countryId"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>State</label><br>
+            <select class="form-control form-select mt-2"
+                    formControlName="state">
+              <option value="">Select State</option>
+              <option *ngFor="let c of states"
+                      [ngValue]="c.name">{{ c.name }}</option>
+            </select>
+            <app-print-input-error [label]="'State'"
+                                  [control]="f.state"></app-print-input-error>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-secondary my-3">
+      <h3 class="text-primary text-center py-3"> Company Details</h3>
+    </div>
+    <div class="container my-2">
+      <div class="row mx-md-5">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Description</label><br>
+            <textarea formControlName="description"
+                      class="form-control mt-2"
+                      rows="3"
+                      placeholder="Type Description"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Category*</label><br>
+            <!-- <select class="form-control form-select mt-2">
+                    <option>Select Category</option>
+                </select> -->
+            <select (change)="getSubCategoriesById(f.category.value)"
+                    class="form-control form-select mt-2"
+                    formControlName="category">
+              <option value="">Select Category</option>
+              <option *ngFor="let c of categories"
+                      [ngValue]="c.categoryId">{{ c.name }}</option>
+            </select>
+            <app-print-input-error [label]="'Category'"
+                                   [control]="f.category"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Sub Category*</label><br>
+            <!--  <ng-multiselect-dropdown (change)="clearsubcatother()"
+                                                 [placeholder]="'Select Sub Category'"
+                                                 [settings]="dropdownSettings"
+                                                 [ngClass]="{'border-danger-multi-select': f.subCategories.touched && f.subCategories.errors}"
+                                                 [data]="subCategories"
+                                                 (onSelect)="clearsubcatother()"
+                                                 formControlName="subCategories">
+                        </ng-multiselect-dropdown>-->
+
+             <ng-select [items]="subCategoriesNameObject"
+                       [multiple]="true"
+                       placeholder="Select SubCategories"
+
+                       (change)="clearsubcatother()"
+                       bindLabel="name"
+                       class="custom-dropdown mt-2"
+                       formControlName="subCategories">
+              <ng-template ng-header-tmp
+                           let-item="item"
+                           let-item$="item$"
+                           let-index="index">
+
+                <div class="d-flex align-items-center"> <button class="btn "
+                          (click)="onSelectAll()">Select All</button>
+                </div>
+
+              </ng-template>
+              <ng-template ng-option-tmp
+                           let-item="item"
+                           let-item$="item$"
+                           let-index="index">
+                <div class="d-flex align-items-center">
+                  <input id="item-{{index}}"
+                         class="me-3"
+                         type="checkbox"
+                         [checked]="item$.selected" /> {{item.name}}
+                </div>
+
+              </ng-template>
+            </ng-select>
+
+            <app-print-input-error [label]="'Sub Category'"
+                                   [control]="f.subCategories"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Experience*</label><br>
+            <input formControlName="experience"
+                   type="number"
+                   placeholder="Type the number of years of experience"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'number of years of experience'"
+                                   [control]="f.experience"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Area of supply*</label><br>
+            <textarea formControlName="areaOfSupply"
+                      class="form-control mt-2"
+                      rows="3"
+                      placeholder="Type area of supply"></textarea>
+            <app-print-input-error [control]="f.areaOfSupply"
+                                   [label]="'Area Of Supply'"></app-print-input-error>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-secondary my-3">
+      <h3 class="text-primary text-center py-3"> GST Details</h3>
+    </div>
+    <div class="container my-2">
+      <div class="row mx-md-5">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>GST Number</label><br>
+            <input formControlName="gstin"
+                   type="text"
+                   placeholder="Type Gst number"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'GST Number'"
+                                   [control]="f.gstin"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Pan</label><br>
+            <input formControlName="pan"
+                   type="text"
+                   placeholder="Type Pan"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Pan'"
+                                   [control]="f.pan"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Bank account no.</label><br>
+            <input formControlName="bankAccountNumber"
+                   type="text"
+                   placeholder="Type Bank Account no"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Bank account no'"
+                                   [control]="f.bankAccountNumber"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Bank Name</label><br>
+            <input formControlName="branch"
+                   type="text"
+                   placeholder="Type bank name"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'Bank Name'"
+                                   [control]="f.branch"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>IFSC</label><br>
+            <input formControlName="ifsc"
+                   type="text"
+                   placeholder="Type bank ifsc"
+                   class="form-control mt-2">
+            <app-print-input-error [label]="'IFSC'"
+                                   [control]="f.ifsc"></app-print-input-error>
+          </div>
+        </div>
+        <div class="col-md-6 my-auto">
+          <div class="form-group">
+            <label for="file">Attach Scanned Docs</label>
+            <i class="fa-solid fa-arrow-up-from-bracket mx-2"
+               for="file"></i>
+            <input type="file"
+                   (change)="onFileChange($event)"
+                   id="file"
+                   multiple
+                   class="d-none">
+            <!-- <app-print-input-error [label]="'Full Name'" [control]="f."></app-print-input-error> -->
+          </div>
+          <ul *ngIf="documentsFullPath.length > 0">
+            <li *ngFor="let item of documentsFullPath">
+              <a target="_blank"
+                 style="white-space: pre-line;
+                            line-break: anywhere;"
+                 [href]="item.url">{{item.fileName}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="d-flex justify-content-center align-items-center">
+            <input type="checkbox"
+                   formControlName="acceptTerms">
+            <span class="my-2 mx-2 text-muted display-5 fw-500">I agree to all Terms & Conditions and
+              Privacy
+              Policy</span>
+            <small *ngIf="!f.acceptTerms.valid && f.acceptTerms.touched"
+                   class="text-danger">Please Accept Terms & Conditions</small>
+            <!-- <app-print-input-error [control]="f.acceptTerms"></app-print-input-error> -->
+
+          </div>
+          <!-- [disabled]="sellerDetailsForm.invalid" -->
+          <button type="button"
+                  (click)="saveSeller()"
+                  [disabled]="sellerDetailsForm.invalid"
+                  class="my-3 rounded-pill btn-info display-4 px-4 py-2">Submit</button>
+              </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,169 @@
+<div *ngIf="!loading"
+     class="wrapper-panel">
+  <div>
+    <div class="container">
+      <section class="py-4">
+        <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+      </section>
+    </div>
+    <div class="container">
+      <div class="card-wrapper p-m-5">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="br-left ps-3">About Us</h1>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about1">
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about2">
+            </p>
+          </div>
+          <div class="col-md d-flex justify-content-center ">
+            <div class="custom-img-about p-4">
+              <img src="assets/images/about/quotesouk-office.webp">
+              <div class="strip-a"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about3">
+            </p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about4">
+            </p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about5">
+            </p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about6">
+            </p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.about7">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-5">
+        <div class="col-md-3 d-flex justify-content-lg-start justify-content-center">
+          <div class="custom-img-about p-4">
+            <img src="assets/images/about/vision.jpeg">
+            <div class="strip-a"></div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <h1 class="br-left ps-3 mt-3 d-lg-none d-block">Our Vision</h1>
+          <h1 class="br-right pe-3 text-end d-lg-block d-none">Our Vision</h1>
+          <p class=" text-muted text-start fw-400 lh-base"
+             [innerHTML]="data.vision">
+          </p>
+        </div>
+
+      <!--   <div class="col-md-12">
+          <p class=" text-muted mt-3 text-start fw-400 lh-base"
+             [innerHTML]="data.cors">
+        </div> -->
+      </div>
+
+      <div class="card-wrapper p-m-5">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="br-left ps-3">Our Mission</h1>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.mission"></p>
+          </div>
+          <div class="col-md d-flex justify-content-center">
+            <div class="custom-img-about p-4">
+              <img src="assets/images/about/mission.jpeg">
+              <div class="strip-a"></div>
+            </div>
+
+          </div>
+        </div>
+       <!--  <div class="row mt-3">
+          <div class="col-md-12">
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.mission2">
+            </p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.mission3"></p>
+            <p class=" text-muted fw-400 lh-base "
+               [innerHTML]="data.mission4">
+            </p>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="row my-5">
+        <div class="col-md-12 text-center">
+          <img src="assets/images/about/journey.jpeg"
+               class="w-75">
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="card-wrapper mt-3 mb-5">
+            <h2 class="ps-3 fw-bold py-3 text-center">Recognition</h2>
+            <div class="row mx-2 mt-2">
+              <div class="col-md-4 text-center my-auto mt-3">
+                <img src="../../../assets/images/about/rec (3).png"
+                     style="height: 50px !important;"
+                     class="partner-img">
+              </div>
+              <div class="col-md-4 text-center my-auto mt-3">
+
+                <img src="../../../assets/images/about/rec (1).png"
+                     class="partner-img">
+              </div>
+              <div class="col-md-4 text-center my-auto mt-3">
+                <img src="../../../assets/images/about/rec (2).png"
+                     class="partner-img">
+              </div>
+            </div>
+            <div class="row mx-2 py-2">
+              <div class="col-md-6 text-center my-auto mt-3">
+                <img src="../../../assets/images/about/rec (5).png"
+                     class="partner-img">
+              </div>
+              <div class="col-md-6 text-center my-auto mt-3">
+                <img src="../../../assets/images/about/rec (4).png"
+                     class="partner-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pb-3">
+        <div class="col-md-12">
+          <swiper [config]="configTest">
+            <ng-template swiperSlide
+                         *ngFor="let testimonial of data.testimonials">
+              <div class="card-wrapper p-3">
+                <div class="text-center">
+                  <div class="my-3">
+                    <img src="assets/images/test-1.png"
+                         class="profile">
+                  </div>
+                  <div class="text-center">
+                    <span class="text-muted"
+                          style="font-weight: 600;">{{testimonial.name}}</span><br>
+                    <span class="text-muted">{{testimonial.designation}}</span>
+                  </div>
+
+                  <div class="my-3 p-3">
+                    <p class="text-muted">
+                      {{testimonial.message}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

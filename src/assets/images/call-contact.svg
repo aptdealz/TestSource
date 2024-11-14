@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.614" height="94.614" viewBox="0 0 94.614 94.614">
+  <defs>
+    <filter id="Ellipse_69" x="0" y="0" width="94.614" height="94.614" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1010" data-name="Group 1010" transform="translate(-423 -1136.976)">
+    <g id="Group_1009" data-name="Group 1009" transform="translate(438 1151.976)">
+      <g transform="matrix(1, 0, 0, 1, -15, -15)" filter="url(#Ellipse_69)">
+        <circle id="Ellipse_69-2" data-name="Ellipse 69" cx="32.307" cy="32.307" r="32.307" transform="translate(15 15)" fill="#fff"/>
+      </g>
+    </g>
+    <path id="Icon_awesome-phone-alt" data-name="Icon awesome-phone-alt" d="M22.95,16.694l-5.168-2.215a1.107,1.107,0,0,0-1.292.318l-2.289,2.8A17.1,17.1,0,0,1,6.026,9.418l2.8-2.289A1.1,1.1,0,0,0,9.14,5.837L6.926.67A1.115,1.115,0,0,0,5.657.028L.858,1.136A1.107,1.107,0,0,0,0,2.215,21.407,21.407,0,0,0,21.409,23.624a1.107,1.107,0,0,0,1.08-.858l1.107-4.8a1.121,1.121,0,0,0-.646-1.273Z" transform="translate(458.495 1171.887)" fill="#6d4381"/>
+  </g>
+</svg>

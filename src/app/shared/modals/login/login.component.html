@@ -1,0 +1,82 @@
+<div class="modal-content">
+  <div class="position-relative">
+     <button type="button" mat-button
+            class="btn-close-4 pointer"
+            mat-dialog-close><i class="fa-solid fa-xmark"></i>
+          </button>
+  </div>
+  <mat-dialog-content>
+  <div class="modal-body p-0">
+    <div class="container-fluid p-0">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="texture-image position-relative d-flex  align-items-center ">
+            <img src="assets/images/login.png"
+                 class="ms-4 ww-75">
+          </div>
+        </div>
+        <div class="col-md-6 text-center d-flex justify-content-center align-items-center">
+          <form [formGroup]="loginForm"
+                class="w-100">
+            <div class="w-90 container mb-3">
+              <h3 class="text-primary fw-bold mb-3">Login</h3>
+              <small class="text-danger">{{errorMessage}}</small>
+              <div class="form-group my-2 text-start">
+                <input type="text"
+                       placeholder="Email"
+                       formControlName="email"
+                       class="form-control mt-2">
+                <app-print-input-error [control]="loginForm.get('email')"
+                                       [label]="'Email'"></app-print-input-error>
+              </div>
+              <div class="form-group my-2 text-start">
+                <div class="position-relative">
+                <input type="{{ hidePassword ? 'password' : 'text' }}"
+                       placeholder="Password"
+                       formControlName="password"
+                       class="form-control mt-2">
+                       <i class="fa-solid pointer eye-icon" 
+                       [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                       (click)="togglePasswordVisibility()"></i></div>
+                <app-print-input-error [control]="loginForm.get('password')"
+                                       [label]="'Password'"></app-print-input-error>
+              </div>
+              <div class="form-group my-2 d-flex mx-5 justify-content-between">
+                <div class="d-flex align-items-center"><input type="radio"
+                         name="roles"
+                         [checked]="role == 'buyer' ? true : false"
+                         (change)="selectRoles($event)"
+                         value="buyer"
+                         class=""><label class="mx-2">Buyer</label></div>
+                <div class="d-flex align-items-center"><input type="radio"
+                         name="roles"
+                         [checked]="role != 'buyer' ? true : false"
+                         (change)="selectRoles($event)"
+                         value="seller"
+                         class=""><label class="mx-2">Seller</label></div>
+
+              </div>
+              <button (click)="onSubmit()"
+                      [disabled]="!loginForm.valid"
+                      type="button"
+                      class="my-3 rounded-pill btn-primary display-4 px-5 py-2">{{'Login'}}</button>
+              <br>
+              <span class="my-2 text-muted change-v display-5 fw-500"
+                    role="button"
+                    (click)="signUpModal()">
+                Don't have an account? Sign Up</span>
+              <!--   <a role="button"
+                   (click)="signUpModal()">
+                  Sign Up
+                </a> -->
+              <br> <span class="my-2 text-muted change-v display-5 fw-500"
+                    role="button"
+                    (click)="forgetModal()">Forget Password?</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div></mat-dialog-content>
+ 
+</div>

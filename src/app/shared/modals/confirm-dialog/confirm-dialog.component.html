@@ -1,0 +1,27 @@
+<form>
+  <div class="modal-content">
+    <div class="modal-header justify-content-end position-relative" mat-dialog-actions>
+      <button mat-button
+              class="btn-close-4"  mat-dialog-close
+              ><i class="fa-solid fa-xmark"></i></button>
+    </div> 
+    <div class="modal-body">
+      <div class="container mb-5 mt-3">
+        <div class="d-flex align-items-center justify-content-center"  mat-dialog-content>
+          <h4 class="text-muted text-center mx-3">{{data.text}}</h4>
+        </div>
+        <div class="my-3 d-flex justify-content-center">
+         <button type="button"
+                  (click)="closeDialog('yes')"
+                  class="btn btn-info py-1 mx-1 px-4 w-25">Yes</button>
+          <button type="button"
+                  (click)="closeDialog('close')"
+                  class="btn btn-no mx-1 py-1 px-4 w-25"
+                 >No</button> 
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

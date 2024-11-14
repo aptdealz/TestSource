@@ -1,0 +1,215 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+  </div>
+
+  <div class="container">
+    <ng-container *ngIf="!hideSubscriptionPlan && (list == null || list?.length < 1) && isLoaded == true">
+      <div class="row mt-5">
+        <div class="col-md-12 text-center mx-auto">
+          <h4>You don't have any subscriptions, please subscribe to a plan.</h4>
+        </div>
+        <div class="col-md-12 text-center my-3">
+          <a [routerLink]="['/subscription']">
+            <button class="btn-primary rounded-pill py-2 px-3 display-4 min-w-120">
+              Purchase
+            </button>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container>
+      <div class="row py-4"
+           *ngIf="isLoaded == false">
+        <h3 class="text-primary text-center my-5">Loading ...</h3>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="list">
+      <div class="row">
+        <div class="col-md-12 mt-3 mx-auto">
+          <div class="row mb-3">
+            <div class="col-8">
+              <h3 class="text-primary fw-bold">My Subscription</h3>
+            </div>
+            <div class="col-md-4">
+              <div class="card-wrapper rounded-pill p-2">
+                <div class="d-flex search-box-bg form-group rounded-pill w-100">
+                  <input class="form-control border-0 rounded-pill me-2"
+                         (keyup)="doFilter($event)"
+                         (search)="reset($event)"
+                         type="search"
+                         placeholder="Search"
+                         aria-label="Search" />
+                  <button class="btn btn-primary"
+                          type="submit">
+                    <i class="fa-solid fa-magnifying-glass px-2 text-white"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 py-3 table-scroll">
+              <table mat-table
+                     matSort
+                     [dataSource]="list"
+                     (matSortChange)="announceSortChange($event)"
+                     class="mat-elevation-z8">
+                <ng-container matColumnDef="SrNo">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    Sr. No.
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element; let i = index">
+                    {{ i + 1 }}.
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="PlanInfo">
+                  <th class="text-primary min-w-172"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    Plan Info
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    <span class="nowrap">{{ element.planName }}</span> <br />
+                    {{ element.totalAmount | currency : "INR" }}<br />
+                    {{ element.durationInMonths }} Months<br />
+                    <span *ngIf="element.endedAt !== null">ended At:
+                      {{ element.endedAt | date : "mediumDate" }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BillingCycle">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    Billing Cycle
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    <span class="nowrap">
+                      {{ element.planStartDate | date : "mediumDate" }}-
+                      {{ element.planEndDate | date : "mediumDate" }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nextChargeDate">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    Due On
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    {{ element.nextChargeDate | date : "mediumDate" }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="razorPaySubscriptionId">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    RazorPay Id
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    <span class="nowrap">{{
+                      element.razorPaySubscriptionId
+                      }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header>
+                    Status
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    <span style="font-weight: 600"
+                          class="text-primary">
+                      Status: {{ element.status | uppercase }}
+                    </span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="button">
+                  <th class="text-primary"
+                      mat-header-cell
+                      *matHeaderCellDef>
+                    Action
+                  </th>
+                  <td mat-cell
+                      *matCellDef="let element">
+                    <div class="d-flex">
+                      <a [routerLink]="['/my-subscription-details', element.userSubscriptionPlanId]">
+                        <button class="btn-primary rounded-pill py-2 px-3 nowrap display-4 min-w-120">
+                          View
+                        </button>
+                      </a>
+                      <a (click)="payLink(element.paymentURL)">
+                        <button class="btn-primary rounded-pill py-2 px-3 nowrap mx-2 display-4 min-w-120"
+                                [disabled]="
+                            element.status == 'active' ||
+                            element.status == 'authenticated' ||
+                            element.status == 'created' ||
+                            element.status == 'completed' ||
+                            element.status == 'expired'
+                          ">Pay</button>
+                      </a>
+                      <a (click)="openUpgradePlanModal(element)"
+                         *ngIf="
+                          element.status == 'authenticated' ||
+                          element.status == 'active'
+                        ">
+                        <button class="btn-primary rounded-pill py-2 px-3 nowrap mx-2 display-4 min-w-120">
+                          Upgrade
+                        </button>
+                      </a>
+                      <a *ngIf="
+                          element.status != 'cancelled' &&
+                          element.status != 'completed' &&
+                          element.status != 'expired'
+                        "
+                         (click)="openConfirm(element)">
+                        <button class="btn-primary rounded-pill py-2 px-3 nowrap mx-2 display-4 min-w-120">
+                          Cancel
+                        </button>
+                      </a>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row
+                    *matHeaderRowDef="displayedColumns"></tr>
+
+                <tr mat-row
+                    *matRowDef="let row; columns: displayedColumns"></tr>
+                <tr class="mat-row"
+                    *matNoDataRow>
+                  <td class="mat-cell text-center"
+                      [attr.colspan]="displayedColumns.length">
+                    No data found.
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

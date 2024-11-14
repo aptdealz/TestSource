@@ -1,0 +1,467 @@
+<div class="wrapper-panel">
+  <div class="container">
+    <!--   <section class="pt-5">
+      <nav class="d-flex justify-content-center"
+           aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"
+              *ngFor="let item of breadcrumbs; let i =index;">
+            <a href="#"
+               [routerLink]="[item.path]"
+               *ngIf="item.path !== ''"
+               [ngClass]="item.path != '' ? 'text-primary' : 'text-muted'">{{item.title}}</a>
+            <a href="#"
+               [routerLink]="['/routePath']"
+               *ngIf="item.path == ''"
+               class="text-muted">{{item.title}}</a>
+          </li>
+        </ol>
+      </nav>
+      <hr>
+    </section> -->
+
+    <div class="d-lg-block d-none"
+         *ngIf="cartService.cart?.length > 0">
+      <div class="row">
+        <div class="col-md">
+          <h5 class="text-primary text-center">Product</h5>
+        </div>
+        <div class="col-md">
+          <h5 class="text-primary text-center">Estimated Price</h5>
+        </div>
+        <div class="col-md">
+          <h5 class="text-primary text-center">Total Quantity</h5>
+        </div>
+        <div class="col-md">
+          <h5 class="text-primary text-center">Units*</h5>
+        </div>
+        <div class="col-md">
+          <h5 class="text-primary text-center">Order Values</h5>
+        </div>
+      </div>
+      <hr>
+      <div class="row"
+           *ngFor="let item of cartService.cart; let i =index">
+        <div class="col-md-3 text-center">
+          <div class="position-relative">
+            <img [src]="item.genericProduct.image"
+                 [defaultImage]="'assets/images/step.png'"
+                 appImage404
+                 role="button"
+                 class="cart-img bg-loading">
+           <!--  <button type="button"
+                    (click)="remove(item.cartId)"
+                    class="btn close-b px-2 py-0 shadow"
+                    aria-label="Close"><i class="fa-solid fa-xmark text-primary "></i></button> -->
+          </div>
+
+          <div class="text-center mt-4 p-1">
+            <div class="form-group">
+              <label>Product Title</label>
+              <input type="text"
+                     [readOnly]="true"
+                     [(ngModel)]="item?.genericProduct.title"
+                     class="form-control text-primary w-100 fw-500">
+            </div>
+            <!-- <span>{{item?.genericProduct?.title }}</span> -->
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="row">
+            <div class="col-md-3 my-auto ">
+              <div class="form-group">
+                <input type="number"
+                       [(ngModel)]="item.totalPriceEstimation"
+                       class="form-control text-primary w-50 fw-500">
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="form-group">
+                <div class="d-flex shadow align-items-center rounded-3 my-1"
+                     style="width: 100px;">
+                  <button type="button"
+                          (click)="onQuantityDecrement(i)"
+                          class="btn btn-light-r">-</button>
+                  <input type="number"
+                         [(ngModel)]="item.quantity"
+                         class="form-control rounded-0 px-1 text-center">
+                  <button type="button"
+                          (click)="onQuantityIncrement(i)"
+                          class="btn btn-light-l">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="form-group">
+                <select class="form-control form-select mt-2"
+                        [(ngModel)]="item.unit">
+                  <option disabled
+                          value="">Select</option>
+                  <option [value]="unit.value"
+                          *ngFor="let unit of units">{{unit.title}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3 text-center my-auto">
+              <div class="form-group d-flex justify-content-center">
+                <input readonly
+                       type="number"
+                       [value]="item.totalPriceEstimation*item.quantity"
+                       class="form-control text-primary w-50 fw-500">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label>Delivery Location Pincode*</label><br>
+                <input type="number"
+                       [(ngModel)]="item.deliveryLocationPinCode" (keydown)="allowOnlyNumbers($event)" maxlength="6"
+                       placeholder="Delivery Location Pincode"
+                       class="form-control mt-2">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label>Preferred Source Of Supply*</label><br>
+                <input type="text"
+                       [(ngModel)]="item.preferredSourceOfSupply"
+                       placeholder="Preferred Source Of Supply"
+                       class="form-control mt-2">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label>Expected Delivery Date*</label><br>
+                <input type="date"
+                       [min]="today"
+                       [(ngModel)]="item.expectedDeliveryDate"
+                       class="form-control mt-2">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="checkbox"
+                        [(ngModel)]="item.preferInIndiaProducts"
+                       class="mx-2"> <label>Prefer Make in india
+                  Products</label><br>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group d-flex align-items-center">
+                <input type="checkbox"
+                       [(ngModel)]="item.pickupProductDirectly"
+                       class="mx-2"> <label>Pickup Product directly from seller</label><br>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group d-flex align-items-center">
+                <input type="checkbox"
+                      [(ngModel)]="item.expectedDeliveryDate"
+                       class="mx-2"> <label>Do you need insurrance
+                  coverage?</label><br>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group d-flex align-items-center">
+                <input type="checkbox"
+                      [(ngModel)]="agreeGSTc"
+                       class="mx-2"> <label>I Agree to GST Terms & Conditions.</label><br>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group d-flex align-items-center">
+                <input type="checkbox"
+                       (click)="checkReseller($event)"
+                       [(ngModel)]="isReseller"
+                       class="mx-2"> <label>Are you a Reseller?</label><br>
+              </div>
+              <ng-container>
+                <div class="form-group my-2 w-100"
+                     *ngIf="isReseller == true">
+                  <label>GST Number*</label><br>
+
+                      <input type="text"
+                             [(ngModel)]="gstin"
+                            placeholder="GST Number"
+                            class="form-control mt-2">
+
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Description*</label><br>
+              <textarea class="form-control mt-2"
+                        [(ngModel)]="item.description"
+                        rows="4"
+                        placeholder="Type Description"></textarea>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md">
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex justify-content-between">
+            <span class="text-primary fw-500">Total</span>
+            <span class="text-primary fw-500">{{totalCartValue}}</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+      <div class="row mb-3 mt-2">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <button type="button"
+                  (click)="dismissModal()"
+                  class="btn btn-primary rounded-pill"><i class="fa-solid fa-arrow-left"></i>
+            Continue Shopping</button>
+
+        </div>
+        <div class="col-md-5 text-end">
+          <button
+          [disabled]="checkRequired"
+                  type="button"
+                  (click)="billModal()"
+                  class="btn btn-primary rounded-pill  "> Proceed to checkout <i
+               class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="d-block d-lg-none"
+         *ngIf="cartService.cart?.length > 0">
+
+      <div class="row mt-5"
+           *ngFor="let item of cartService.cart; let i =index">
+        <div class="col-md-3 text-center">
+          <div class="position-relative">
+            <img [src]="item.genericProduct.image"
+                 [defaultImage]="'assets/images/step.png'"
+                 appImage404
+                 role="button"
+                 class="cart-img bg-loading">
+           <!--  <button type="button"
+                    (click)="remove(item.cartId)"
+                    class="btn close-b px-2 py-0 shadow"
+                    aria-label="Close"><i class="fa-solid fa-xmark text-primary "></i></button> -->
+          </div>
+
+          <div class="text-left mt-4 p-1">
+            <div class="form-group text-start">
+              <label>Product Title</label><br>
+              <input type="text"
+                     [readonly]="true"
+                     [(ngModel)]="item?.genericProduct.title"
+                     class="form-control text-primary w-100 fw-500">
+            </div>
+            <!-- <span>{{item?.genericProduct?.title }}</span> -->
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="row">
+            <div class="col-6 my-auto ">
+              <div class="form-group">
+                <label>Estimated Price</label><br>
+                <input type="number"
+                       [(ngModel)]="item.totalPriceEstimation"
+                       class="form-control text-primary w-100 fw-500">
+              </div>
+            </div>
+            <div class="col-6">
+
+              <div class="form-group">
+                <label>Total Quantity</label><br>
+                <div class="d-flex shadow align-items-center rounded-3 my-1"
+                     style="width: 100px;">
+                  <button type="button"
+                          (click)="onQuantityDecrement(i)"
+                          class="btn btn-light-r">-</button>
+                  <input type="number"
+                         [(ngModel)]="item.quantity"
+                         class="form-control rounded-0 px-1 text-center">
+                  <button type="button"
+                          (click)="onQuantityIncrement(i)"
+                          class="btn btn-light-l">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+
+              <div class="form-group">
+                <label>Units*</label><br>
+                <select class="form-control form-select mt-2"
+                        [(ngModel)]="item.unit">
+                  <option disabled
+                          value="">Select</option>
+                  <option [value]="unit.value"
+                          *ngFor="let unit of units">{{unit.title}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6 my-auto">
+
+              <div class="form-group">
+                <label>Order Values</label><br>
+                <input readonly
+                       type="number"
+                       [value]="item.totalPriceEstimation*item.quantity"
+                       class="form-control text-primary w-50 mt-2 fw-500">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Delivery Location Pincode*</label><br>
+                <input type="number" numbersOnly
+                       [(ngModel)]="item.deliveryLocationPinCode" (keydown)="allowOnlyNumbers($event)" maxlength="6"
+                       placeholder="Delivery Location Pincode"
+                       class="form-control mt-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Preferred Source Of Supply*</label><br>
+                <input type="text"
+                       [(ngModel)]="item.preferredSourceOfSupply"
+                       placeholder="Preferred Source Of Supply"
+                       class="form-control mt-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Expected Delivery Date*</label><br>
+                <input type="date"
+                       [min]="today"
+                       [(ngModel)]="item.expectedDeliveryDate"
+                       class="form-control mt-2">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="checkbox"
+                      [(ngModel)]="item.preferInIndiaProducts"
+                     class="mx-2"> <label>Prefer Make in india
+                Products</label><br>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group d-flex align-items-center">
+              <input type="checkbox"
+                     [(ngModel)]="item.pickupProductDirectly"
+                     class="mx-2"> <label>Pickup Product directly from seller</label><br>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group d-flex align-items-center">
+              <input type="checkbox"
+                    [(ngModel)]="item.expectedDeliveryDate"
+                     class="mx-2"> <label>Do you need insurrance
+                coverage?</label><br>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group d-flex align-items-center">
+              <input type="checkbox"
+                    [(ngModel)]="agreeGSTc"
+                     class="mx-2"> <label>I Agree to GST Terms & Conditions.</label><br>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group d-flex align-items-center">
+              <input type="checkbox"
+                     (click)="checkReseller($event)"
+                     [(ngModel)]="isReseller"
+                     class="mx-2"> <label>Are you a Reseller?</label><br>
+            </div>
+            <ng-container>
+              <div class="form-group my-2 w-100"
+                   *ngIf="isReseller == true">
+                <label>GST Number*</label><br>
+                  <input type="text"
+                        [(ngModel)]="gstin"
+                      placeholder="GST Number"
+                      class="form-control mt-2">
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Description*</label><br>
+              <textarea class="form-control mt-2"
+                        [(ngModel)]="item.description"
+                        rows="4"
+                        placeholder="Type Description"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md">
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex justify-content-between">
+            <span class="text-primary fw-500">Total</span>
+            <span class="text-primary fw-500">{{totalCartValue}}</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+      <div class="row mb-3 mt-2">
+        <div class="col-lg-5 col-12 text-center">
+          <button type="button"
+                  (click)="dismissModal()"
+                  style="width: 210px;"
+                  class="btn btn-primary rounded-pill">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping</button>
+        </div>
+        <div class="col-lg-5 col-12 mt-2 text-center">
+          <button
+          [disabled]="checkRequired"
+                  type="button"
+                  style="width: 210px;"
+                  (click)="billModal()"
+                  class="btn btn-primary rounded-pill"> Proceed to checkout <i
+               class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5"
+         *ngIf="cartService.cart?.length == 0">
+      <h3 class="text-primary my-5 text-center">No Products in cart</h3>
+      <p class="text-center">
+        <a [routerLink]="['/']"
+           (click)="close()"
+           routerLinkActive="router-link-active">
+          <button class="btn btn-primary text-center">Continue to Home</button></a>
+      </p>
+    </div>
+  </div>
+</div>

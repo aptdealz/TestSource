@@ -1,0 +1,33 @@
+.border-b {
+  border-bottom: 3px solid white !important;
+}
+.border-t {
+  border-top: 3px solid white !important;
+}
+.vendor-div {
+  height: 200px;
+}
+.fa-star {
+  color: #f4f4f4;
+}
+/* .sub-card-bg img {
+  height: 20px !important;
+  width: 20px !important;
+} */
+.w-70 {
+  width: 70px !important;
+}
+.w-md-75 {
+  width: 100%;
+}
+/* .p-m0{
+
+} */
+@media screen and (max-width: 780px) {
+  .w-md-75 {
+    width: 75%;
+  }
+  .p-m0 {
+    padding-left: 0px !important;
+  }
+}

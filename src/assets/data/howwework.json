@@ -1,0 +1,28 @@
+{
+  "steps": [
+    {
+      "title": "Login/Sign-up",
+      "description": "In order to get started with Quotesouk, you should first establish an account and log in with just a few clicks. Quotesouk is a user-friendly E-Commerce app."
+    },
+    {
+      "title": "Dashboard",
+      "description": "Utilise our intuitive interface to browse the many pages. You may see a preview of all our features in our dashboard, which is straightforward but nevertheless useful."
+    },
+    {
+      "title": "Post Requirement",
+      "description": "Start by posting your requirements on the e-commerce app's 'post requirement' page. Complete the form and send it with your requirements. Your requests will be distributed to the relevant sellers."
+    },
+    {
+      "title": "Quote Details",
+      "description": "For the same product, you'll get several bids. You can compare them, accept the one that best suits your needs, and pay for it. On the 'active requirements' page, you can view the quotes under your needs."
+    },
+    {
+      "title": "Order Details",
+      "description": "You can view the details of your order after making a payment on the 'order history' page."
+    },
+    {
+      "title": "Shipping Details",
+      "description": "The ‘shipping details' page will allow you to see the shipping information. Along with the shipping information, you can also examine additional facts like the order ID, delivery date, and total cost."
+    }
+  ]
+}

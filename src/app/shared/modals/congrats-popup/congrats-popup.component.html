@@ -1,0 +1,56 @@
+<div class="modal-content">
+  <div class="position-relative">
+    <button type="button"
+            class="btn-close-4"
+            mat-dialog-close
+            aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-body p-0">
+    <div class="container-fluid p-0">
+      <div class="texture-image position-relative d-flex justify-content-center align-items-center ">
+        <img src="assets/images/congrats.png"
+             class="ms-4"
+             style="width: 20%">
+        <h1 class="ms-3 text-white fw-bold">
+          {{data.title || 'Congratulations'}}
+        </h1>
+      </div>
+      <div class="row my-3 mx-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+          <h5 class="fw-bold mt-3 text-muted lh-base">
+            {{data.text}}
+          </h5>
+          <!--  <span class="display-4 text-muted fw-500 ">
+             Our team will reach out to you soon
+            </span> -->
+          <ng-container *ngIf="data.isBuyer;else isSeller">
+            <div class="d-flex my-5">
+              <button type="button"
+                      (click)="dismissModal('login_buyer')"
+                      class="px-3 py-2 btn-info display-4 rounded-pill">Login Buyer</button>
+              <button type="button"
+                      (click)="dismissModal('cross_click')"
+                      class="px-4 py-2 btn-info display-4 mx-2 rounded-pill">Create Buyer</button>
+            </div>
+          </ng-container>
+          <ng-template #isSeller>
+            <div class="d-flex my-5">
+              <button type="button"
+                      (click)="dismissModal('login_seller')"
+                      class="px-3 py-2 btn-info display-4 rounded-pill">Login Seller</button>
+              <button type="button"
+                      (click)="dismissModal('cross_click')"
+                      class="px-4 py-2 btn-info display-4 mx-2 rounded-pill">Create Seller</button>
+            </div>
+          </ng-template>
+        </div>
+        <div class="col-md-3">
+          <img src="assets/images/checkout-c.png"
+               class="check-img">
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

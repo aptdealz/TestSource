@@ -1,0 +1,28 @@
+.form-select {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+ul li {
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 12px;
+}
+ul {
+  padding-left: 0rem;
+}
+.partner-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.h-13 {
+  height: 14rem;
+}
+@media screen and (max-width: 580px) {
+  .h-13 {
+    height: auto;
+  }
+}
+.break-l {
+  line-break: auto !important;
+}

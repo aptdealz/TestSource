@@ -1,0 +1,89 @@
+<h1 class="my-2 section-title">Top Sellers</h1>
+<div class="row mb-2">
+  <div class="col-md-12 text-end">
+    <a [routerLink]="['/our-partners']"
+       role="button">
+      <span class="text-primary display-4 fw-bold  "
+            role="button">View All <i class="fa-solid fa-arrow-right"></i></span>
+    </a>
+  </div>
+</div>
+<div class="card-wrapper p-4">
+
+  <ng-container *ngIf="listVendor.length > 0">
+    <div class="row">
+      <div class="col-md-6 p-m0 col-lg-3 col-sm-12 mt-2 pointer"
+           *ngFor="let item of listVendor">
+        <a [routerLink]="['/partner-details',item.userId]">
+          <div class="d-flex align-items-center  mb-2">
+            <div class="sub-card-bg d-flex align-items-center  p-2">
+              <img height="75px"
+                   width="75px"
+                   [src]="item.profilePhoto"
+                   class="bg-loading"
+                   appImage404>
+            </div>
+            <div>
+              <h6 class="ms-2">{{item.name}} <br><span class="display-5 fw-500 text-muted">
+                  ({{item.totalProducts}} Products)</span></h6>
+              <div class="star ms-2 display-4 ">
+                <i class="fa-star text-muted"
+                   [ngClass]="item.averageRating >= 1 ? 'fa-solid' : 'fa-regular'">
+
+                </i><i class="fa-star text-muted ms-1"
+                   [ngClass]="item.averageRating >= 2 ? 'fa-solid' : 'fa-regular'"></i>
+                <i class="fa-star text-muted ms-1"
+                   [ngClass]="item.averageRating >= 3 ? 'fa-solid' : 'fa-regular'"></i>
+                <i class="fa-star text-muted ms-1"
+                   [ngClass]="item.averageRating >= 4 ? 'fa-solid' : 'fa-regular'"></i>
+                <i class=" fa-star text-muted ms-1"
+                   [ngClass]="item.averageRating >= 5 ? 'fa-solid' : 'fa-regular'"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8 m-0 ">
+              <div class="p-4 sub-card-bg d-flex align-items-center justify-content-center vendor-div">
+                <img [src]="getRandom3Products(item.products)[0]?.image"
+                class="bg-loading w-md-75"
+                appImage404>
+              </div>
+            </div>
+            <div class="col-4 m-0 p-0">
+              <div class="d-block h-100">
+                <div class="h-50 sub-card-bg d-flex justify-content-center align-items-center p-2 border-b">
+                  <img [src]="getRandom3Products(item.products)[1]?.image"
+                  class="bg-loading w-70"
+                  appImage404>
+                </div>
+                <div class="h-50 sub-card-bg d-flex justify-content-center align-items-center p-2 border-t">
+                  <img [src]="getRandom3Products(item.products)[2]?.image"
+                  class="bg-loading w-70"
+                  appImage404>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="row py-4"
+         *ngIf="listVendor.length == 0 && loading == false">
+      <h3 class="text-primary text-center my-5">
+        No Sellers Found
+      </h3>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="row py-4"
+         *ngIf="loading == true">
+      <h3 class="text-primary text-center my-5">
+        Loading ...
+      </h3>
+    </div>
+  </ng-container>
+</div>

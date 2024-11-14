@@ -1,0 +1,384 @@
+<div class="banner bg-secondary position-relative">
+  <swiper *ngIf="topBanners"
+          [config]="config">
+    <ng-template swiperSlide
+                 *ngFor="let banner of topBanners"><img [src]="banner.image"
+           loading="lazy"
+           [defaultImage]="'assets/images/cover.png'" 
+           alt="Quotesouk Web Banner"
+           appImage404
+           class="w-100 bg-loading" /></ng-template>
+    <ng-template swiperSlide
+                 *ngIf="!topBanners?.length && !topBannerscheck">
+      <img src="assets/images/default_banner.jpg"
+           loading="lazy"
+           class="w-100" />
+    </ng-template>
+  </swiper>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-lg-10 mx-auto d-none d-md-block d-lg-block z9"
+           >
+        <div *ngIf="topBannerscheck == false"
+             class="rounded-pill brand-card bg-white shadow p-3 d-flex justify-content-around">
+          <a [routerLink]="['/brands/categories']"
+             role="button">
+            <div class="bg-info rounded-pill p-2 brand-btn my-auto text-center">
+              <span class="text-white">Brands And Products</span>
+            </div>
+          </a>
+          <a (click)="onSearchByRequirement()"
+             role="button">
+            <div class="bg-info rounded-pill p-2 brand-btn my-auto text-center">
+              <span class="text-white">Search By Requirement</span>
+            </div>
+          </a>
+          <a [routerLink]="['/become-vendor']"
+             role="button">
+            <div class="bg-info rounded-pill p-2 brand-btn my-auto text-center">
+              <span class="text-white">Sell On Quotesouk</span>
+            </div>
+          </a>
+          <a role="button"
+             (click)="open()">
+            <div class="bg-info rounded-pill p-2 brand-btn my-auto text-center">
+              <span class="text-white">Request For Quote</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-secondary">
+  <ng-container>
+    <div class="container py-2 d-sm-block d-md-none d-lg-none">
+      <div class="row">
+        <div class="col-md-12 mt-2 mx-auto z9"
+             >
+          <div class="rounded-3 d-block bg-white shadow p-2 justify-content-around">
+            <div class="d-flex justify-content-center">
+              <a [routerLink]="['/brands/categories']"
+                 style="width: 50%;"
+                 role="button">
+                <div class="bg-info rounded-pill p-2 brand-btn">
+                  <span class="text-white display-7 px-2">Brands And Products</span>
+                </div>
+              </a>
+              <a role="button"
+                 style="width: 50%;"
+                 (click)="onSearchByRequirement()">
+                <div class="bg-info rounded-pill p-2 mx-1 brand-btn">
+                  <span class="text-white display-7 px-2">Search By Requirement</span>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <a [routerLink]="['/become-vendor']"
+                 style="width: 50%;"
+                 role="button">
+                <div class="bg-info rounded-pill p-2 brand-btn">
+                  <span class="text-white display-7 px-2">Sell On Quotesouk</span>
+                </div>
+              </a>
+              <a role="button"
+                 style="width: 50%;"
+                 (click)="open()">
+                <div class="bg-info rounded-pill p-2 mx-1 brand-btn">
+                  <span class="text-white display-7 px-2">Request For Quote</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="bg-secondary">
+  <div class="container py-4">
+    <div class="card-wrapper pp-5">
+      <div class="row">
+        <div class="col-12 col-lg-7 ps-md-7"
+             style="display: grid; place-items: center">
+          <div class="w-100 d-flex flex-column flex-md-row align-items-center">
+            <div class="w-lg-60">
+              <h3 class="mb-0 fw-bold">We Link</h3>
+              <h3 class="fw-bold">Buyers & Sellers</h3>
+              <div>
+                <h1 style="font-size: 16px; font-weight: normal;">India´s emerging Online Wholesale B2B Marketplace
+                </h1>
+              </div>
+              <div>Quotesouk,connects buyers and suppliers.</div>
+            </div>
+            <div class="w-lg-25 d-flex flex-row flex-md-column mt-3">
+              <div class="justify-content-center d-flex align-items-center">
+                <img width="30%"
+                     loading="lazy"
+                     src="assets/images/lock.png" />
+                <div class="fw-bold">Safe & Secure</div>
+              </div>
+              <div class="justify-content-center d-flex align-items-center">
+                <img width="30%"
+                     loading="lazy"
+                     src="assets/images/time.png" />
+                <div class="fw-bold">Quick Response</div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap flex-md-row align-items-center justify-content-center mt-2 p-3">
+            <div class="w-lg-50">
+              <div class="d-flex align-items-center my-2">
+                <img width="15%"
+                     loading="lazy"
+                     src="assets/images/lapcart.png" />
+                <div class="fw-bold mx-2">The Ease Of Purchasing</div>
+              </div>
+            </div>
+            <div class="w-lg-50">
+              <div class="d-flex align-items-center my-2">
+                <img width="15%"
+                     loading="lazy"
+                     src="assets/images/buy.png"
+                     alt="B2B Buying"/>
+                <div class="fw-bold mx-2">Wide-Range of Buyers</div>
+              </div>
+            </div>
+            <div class="w-lg-50">
+              <div class="d-flex align-items-center my-2">
+                <img width="15%"
+                     loading="lazy"
+                     src="assets/images/secure.png" />
+                <div class="fw-bold mx-2">Payment Protection</div>
+              </div>
+            </div>
+            <div class="w-lg-50">
+              <div class="d-flex align-items-center my-2">
+                <img width="15%"
+                     loading="lazy"
+                     src="assets/images/affordable.png" />
+                <div class="fw-bold mx-2">Affordable Prices</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-5 br-p mt-3">
+          <h3 class="text-center text-primary fw-bold">
+            Tell Us What You Need
+          </h3>
+          <form [formGroup]="homeForm">
+            <div>
+              <div *ngIf="!isLoggedIn"
+                   class="form-group">
+                <input type="text"
+                       class="form-control mt-2"
+                       formControlName="name"
+                       placeholder="Your Name" />
+              </div>
+              <div *ngIf="!isLoggedIn"
+                   class="form-group">
+                <input type="number"
+                       class="form-control mt-2" (keydown)="allowOnlyNumbers($event)"
+                       formControlName="phoneNumber"  maxlength="13"
+                       placeholder="Phone Number" />
+              </div>
+              <div class="form-group w-100 me-2"
+                   style="position: relative">
+                <input type="text"
+                       class="form-control mt-2"
+                       formControlName="productName"
+                       (keyup)="showSuggestions($event)"
+                       (focus)="onInputFocus()"
+                       (blur)="onInputBlur()"
+                       placeholder="Product Name" />
+                <div *ngIf="getSuggestions"
+                     class="suggestion-box">
+                  <div (click)="this.homeForm.get('productName')?.patchValue(item)"
+                       role="button"
+                       *ngFor="let item of suggestions">
+                    <p style="margin-bottom: 0.5rem">
+                      <i class="fa-solid fa-magnifying-glass text-primary my-auto"></i>
+                      {{ item }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex flex-wrap align-items-center">
+                <div class="form-group w-lg-75 w-100">
+                  <textarea rows="4"
+                            type="text"
+                            class="form-control mt-2"
+                            formControlName="shippingAddress"
+                            placeholder="Shipping Address">
+                  </textarea>
+                </div>
+
+                <div class="d-flex flex-column w-100 w-lg-25 px-1">
+                  <div class="form-group">
+                    <input type="number"
+                           class="form-control mt-2"
+                           formControlName="quantity"
+                           placeholder="Quantity" />
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control form-select mt-2"
+                            formControlName="unit">
+                      <option disabled
+                              [value]="null">Unit</option>
+                      <option [value]="unit.value"
+                              *ngFor="let unit of units">
+                        {{ unit.title }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group text-center">
+                <button type="button"
+                [disabled]="homeForm.invalid"
+                        (click)="submit()"
+                        class="btn btn-primary px-4 mt-2 rounded-pill">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-secondary py-5">
+  <div class="container mt-3">
+    <section>
+      <app-category-section></app-category-section>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="my-2 section-title">Promoted Products</h1>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-12 text-end">
+          <a [routerLink]="['/promoted-products']"
+             role="button"><span class="text-primary display-4 fw-bold"
+                  role="button">View All <i class="fa-solid fa-arrow-right"></i></span></a>
+        </div>
+      </div>
+      <app-related-product-section [loading]="loading"
+                                   [listOfOtherVendors]="listOfOtherVendors">
+      </app-related-product-section>
+    </section>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <section>
+    <app-image-tab-section [banners]="banners"></app-image-tab-section>
+  </section>
+</div>
+
+<div class="container pt-3">
+  <section>
+    <app-vendor-section [listVendor]="listVendor"
+                        [loading]="loading"></app-vendor-section>
+  </section>
+
+  <div *ngIf="false" class="container py-5">
+    <div class="ask-section">
+      <div class="cover">
+        <div class="text-center">
+          <h3 class="text-white fw-bold">Download Quotesouk App Now!</h3>
+          <p class="text-white display-5">
+            Shopping fastly and easily more with our app. Get a link to
+            download<br />
+            the app on your phone.
+          </p>
+          <div class="f-group bg-white rounded-pill my-5 d-flex d-none">
+            <input type="text"
+                   placeholder="Enter your email.."
+                   class="form-control rounded-pill w-75 border-0 text-muted display-4" />
+            <button type="button"
+                    class="btn btn-primary px-2 my-1 me-1 py-0 send-link-btn">
+              Send Link
+            </button>
+          </div>
+          <h6 class="text-white mt-4 mb-2">Download App</h6>
+          <div class="d-flex justify-content-center mb-4">
+            <a target="_blank"
+               href="https://play.google.com/store/apps/details?id=com.aptdealz.quotesouk"
+               rel="noopener">
+              <img src="assets/images/google.png"
+                   role="button"
+                   loading="lazy"
+                   class="google-logo" />
+            </a>
+            <a class="d-none"
+               href="#">
+              <img src="assets/images/apple.png"
+                   role="button"
+                   loading="lazy"
+                   class="google-logo ms-2" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-wrapper mt-3 mb-5">
+  <h2 class="text-primary text-center fw-bold py-3">
+    TOP BRANDS TRUST QUOTESOUK
+  </h2>
+  <div class="text-center">
+    <div class="d-lg-flex d-sm-block justify-content-around">
+      <img src="../../../assets/images/seller-logo/Classic Granites _ Marbles.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/crystal green.png"
+           class="partner-img"
+           loading="lazy" />
+
+      <img src="../../../assets/images/seller-logo/green homes.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/HJ Traders.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/IGA TECH.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/newroom scape.png"
+           class="partner-img"
+           loading="lazy" />
+    </div>
+    <div class="d-lg-flex d-sm-block justify-content-around pt-2 pb-4">
+      <img src="../../../assets/images/seller-logo/Quales.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/red chair (1).png"
+           class="partner-img"
+           alt="Red Chair Logo"
+           loading="lazy" />
+
+      <img src="../../../assets/images/seller-logo/thevalakadan.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/tiles and pavers.png"
+           class="partner-img"
+           loading="lazy" />
+      <img src="../../../assets/images/seller-logo/trigger.png"
+           class="partner-img"
+           loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<app-testimonial-section [testimonials]="testimonials"></app-testimonial-section>

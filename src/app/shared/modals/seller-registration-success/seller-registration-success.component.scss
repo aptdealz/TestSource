@@ -1,0 +1,22 @@
+.texture-image {
+    background: transparent
+      linear-gradient(148deg, #ff15cc 0%, #9617c7 41%, #0019bf 100%) 0% 0%
+      no-repeat padding-box;
+    height: 30vh !important;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  
+    top: -1px;
+    right: 0px;
+    width: 100.2%;
+    left: -1px;
+  }
+ 
+  mat-dialog-content{
+    padding: 0px !important;
+    overflow-x: hidden !important;
+  }
+  .mat-mdc-dialog-container .mdc-dialog__content{
+    padding: 0px;
+  }
+  

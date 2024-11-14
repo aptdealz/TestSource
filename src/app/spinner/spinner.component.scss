@@ -1,0 +1,22 @@
+@use "../../assets/scss/z-index" as zIndex;
+.spinner-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--site-white);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  z-index: map-get(zIndex.$zType, loader);
+  > div {
+    font-size: 1.5rem;
+    text-align: center;
+    > p {
+      margin-top: 0.5rem;
+    }
+  }
+}

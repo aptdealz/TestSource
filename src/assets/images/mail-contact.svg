@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.614" height="94.614" viewBox="0 0 94.614 94.614">
+  <defs>
+    <filter id="Ellipse_69" x="0" y="0" width="94.614" height="94.614" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1011" data-name="Group 1011" transform="translate(-423 -1136.976)">
+    <g id="Group_1009" data-name="Group 1009" transform="translate(438 1151.976)">
+      <g transform="matrix(1, 0, 0, 1, -15, -15)" filter="url(#Ellipse_69)">
+        <circle id="Ellipse_69-2" data-name="Ellipse 69" cx="32.307" cy="32.307" r="32.307" transform="translate(15 15)" fill="#fff"/>
+      </g>
+    </g>
+    <path id="Icon_material-email" data-name="Icon material-email" d="M28.821,6H5.869A2.865,2.865,0,0,0,3.014,8.869L3,26.083a2.877,2.877,0,0,0,2.869,2.869H28.821a2.877,2.877,0,0,0,2.869-2.869V8.869A2.877,2.877,0,0,0,28.821,6Zm0,5.738L17.345,18.911,5.869,11.738V8.869l11.476,7.173L28.821,8.869Z" transform="translate(453.773 1168.055)" fill="#6d4381"/>
+  </g>
+</svg>

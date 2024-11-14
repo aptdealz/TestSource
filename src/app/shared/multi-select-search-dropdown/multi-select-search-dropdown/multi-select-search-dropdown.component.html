@@ -1,0 +1,23 @@
+
+<mat-form-field class="w-100">
+  <mat-label>Sub Categories</mat-label>
+  <mat-select [formControl]="control"
+   multiple>
+  <div class="p-1">
+    <input type="text"
+    placeholder="Search"
+    (keyup)="filterSub($event)"
+    class="w-100"
+    matInput> </div>
+    <div class="p-1"> 
+      <mat-checkbox class="example-margin" color="primary"
+      [checked]="data?.length == control.value?.length"
+       (change)="setAllOptions($event.checked)" >Select All</mat-checkbox>   
+    </div>
+
+    <mat-option [value]="item.name" 
+    [ngClass]="{'d-none': !isOptionVisible(item)}"
+    *ngFor="let item of data;">
+     {{item.name}}</mat-option> 
+  </mat-select>
+</mat-form-field>

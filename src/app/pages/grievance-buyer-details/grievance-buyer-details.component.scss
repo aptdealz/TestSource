@@ -1,0 +1,27 @@
+.left-card {
+  width: 60%;
+  border-top-left-radius: 0px !important;
+}
+.right-card {
+  width: 60%;
+  // float: right;
+  border-bottom-right-radius: 0px !important;
+}
+.card-title {
+  border-top-right-radius: 22px;
+  border-top-left-radius: 22px;
+}
+.chat-box {
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.send-btn {
+  background-color: transparent;
+  border: none;
+}
+.message-container {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+}

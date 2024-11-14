@@ -1,0 +1,9 @@
+@use "../../../../assets/scss/z-index" as zIndex;
+
+.w-20 {
+  width: 75%;
+}
+.custom-dropdown{
+  z-index: map-get(zIndex.$zType, customZero);
+}
+

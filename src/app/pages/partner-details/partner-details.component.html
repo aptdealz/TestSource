@@ -1,0 +1,145 @@
+<div class="wrapper-panel">
+  <div class="container my-5"
+       *ngIf="sellerDetails">
+
+       <section class="py-4">
+        <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+      </section>
+
+    <div class="row mt-4">
+      <div class="col-md-8">
+        <img [src]="sellerDetails.companyProfile.bannerImage"
+             [defaultImage]="'assets/images/cover.png'"
+             appImage404
+             class="w-100 banner-img bg-loading">
+      </div>
+      <div class="col-md-4 d-flex">
+        <div class="position-relative w-100">
+
+          <div class="details-logo ">
+            <div class="d-none d-md-block ">
+              <div class="px-5 mb-1 flexx">
+                <div class="text-center">
+                  <img [src]="sellerDetails.profilePhoto"
+                       [defaultImage]="'assets/images/our-partner.png'"
+                       appImage404
+                       class="logo mb-2 bg-loading">
+                </div>
+                <h3 class="px-2">{{sellerDetails.fullName}}</h3>
+                <ul>
+                  <li><i class="fa-solid fa-location-dot text-white"></i>
+                    <span class="mx-2"> {{sellerDetails.street}}, {{sellerDetails.city}},
+                      {{sellerDetails.state}},{{sellerDetails.nationality}} </span>
+                  </li>
+                  <li><i class="fa-solid fa-phone text-white"></i>
+                    <span class="mx-2">{{sellerDetails.phoneNumber}}</span>
+                  </li>
+                  <li><i class="fa-solid fa-star text-white"></i>
+                    <span class="mx-2">{{sellerDetails.averageRating}}
+                      rating </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-block d-md-none ">
+              <div class="px-3 mt-2 mb-1 flexx align-items-center">
+                <div class="text-center w-50">
+                  <img [src]="sellerDetails.profilePhoto"
+                       [defaultImage]="'assets/images/seller/logo.png'"
+                       appImage404
+                       class="logo mb-2 bg-loading">
+                  <h5 class="px-2">{{sellerDetails.fullName}}</h5>
+                </div>
+                <ul class="w-50">
+                  <li><i class="fa-solid fa-location-dot text-white"></i>
+                    <span class="mx-2"> {{sellerDetails.street}}, {{sellerDetails.city}},
+                      {{sellerDetails.state}},{{sellerDetails.nationality}} </span>
+                  </li>
+                  <li><i class="fa-solid fa-phone text-white"></i>
+                    <span class="mx-2">{{sellerDetails.phoneNumber}}</span>
+                  </li>
+                  <li><i class="fa-solid fa-star text-white"></i>
+                    <span class="mx-2">{{sellerDetails.averageRating}}
+                      rating </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px-5 d-none d-md-block">
+              <div style="border-top: 1px solid white;"></div>
+              <div class="d-flex align-items-center ">
+                <h3 class="mt-3 ">About Seller</h3>
+                <img *ngIf="sellerDetails.companyProfile.isVerified"
+                     src="assets/images/Verified-i.png"
+                     height="15px"
+                     class="ms-2 mt-2">
+              </div>
+              <p class="display-4 fw-500 break-l"
+                 style="word-spacing: 3px; line-height: 20px;" [innerHTML]="sellerDetails.companyProfile.description | characterLimit: 100">
+   
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-block d-md-none">
+      <div class="col-md-12">
+        <div class="d-flex align-items-center ">
+          <h3 class="mt-3 ">About Seller</h3>
+          <img *ngIf="sellerDetails.companyProfile.isVerified"
+               src="assets/images/Verified-i.png"
+               height="15px"
+               class="ms-2 mt-2">
+        </div>
+        <p class="display-4 fw-500 break-l"
+           style="word-spacing: 3px; line-height: 20px;" [innerHTML]="sellerDetails.companyProfile.description | characterLimit: 100">
+
+        </p>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <section class="mt-3">
+        <div class="d-flex justify-content-between">
+          <div class=" d-none d-lg-block d-md-block"></div>
+          <button type="button"
+                  class="btn d-block d-lg-none d-md-none text-primary py-1 filter-btn"
+                  (click)="showFilter()">
+            <i class="fa-solid fa-filter text-primary mx-1"
+               *ngIf="filter == false"></i>
+            <i class="fa-solid fa-xmark text-primary mx-1"
+               *ngIf="filter == true"></i>
+          </button>
+        </div>
+      </section>
+      <div class="col-md-3 mt-4">
+        <ng-container *ngIf="filter == true">
+          <app-category-filter (clicked)="onFilterChange()"
+                               [categoryTree]="categoryTree"></app-category-filter>
+        </ng-container>
+        <ng-container>
+          <app-category-filter (clicked)="onFilterChange()"
+                               class=" d-none d-lg-block d-md-block"
+                               [categoryTree]="categoryTree"></app-category-filter>
+        </ng-container>
+      </div>
+      <div class="col-md">
+        <section>
+          <app-enquiry-section (fetchMore)="getMoreSellerProduct()"
+                               [list]="list"
+                               [loading]="loading"></app-enquiry-section>
+        </section>
+      </div>
+    </div>
+
+    <!--   <section>
+      <app-featured-section></app-featured-section>
+    </section> -->
+    <section>
+      <app-image-tab-section [banners]="banners"></app-image-tab-section>
+    </section>
+
+  </div>
+</div>

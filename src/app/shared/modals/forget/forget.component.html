@@ -1,0 +1,120 @@
+<form>
+  <div class="modal-content">
+    <div class="position-relative">
+      <!--  <h3 class="modal-title text-primary text-center"
+          style="font-weight: 600;">TELL US ABOUT YOUR REQUIREMENT</h3> -->
+      <button type="button"
+              class="btn-close-4"
+              mat-dialog-close
+              aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <mat-dialog-content>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 d-flex align-items-center justify-content-center">
+            <ng-container *ngIf="step==1">
+              <form [formGroup]="sendOtpForm">
+                <div class="text-center">
+                  <img src="assets/images/forget.png"
+                       class="w-75 my-2">
+                  <h3 class="text-primary fw-bold my-2">Forget Password?</h3>
+                  <span class="my-2 text-muted display-4 fw-500">No worries, we'll send you reset instructions.</span>
+                  <div class="form-group my-2 text-start">
+                    <input type="email"
+                           formControlName="email"
+                           placeholder="Enter your email"
+                           class="form-control mt-2">
+                    <app-print-input-error [control]="sendOtpForm.get('email')"
+                                           [label]="'Email'"></app-print-input-error>
+                  </div>
+                  <div class="form-group my-2 d-flex mx-5 justify-content-between">
+                    <div><input type="radio"
+                             name="roles"
+                             [checked]="true"
+                             (change)="selectType($event)"
+                             value="buyer"
+                             class=""><label class="mx-2">Buyer</label></div>
+                    <div><input type="radio"
+                             name="roles"
+                             (change)="selectType($event)"
+                             value="seller"
+                             class=""><label class="mx-2">Seller</label></div>
+
+                  </div>
+                  <button [disabled]="!sendOtpForm.valid"
+                          (click)="sendOtp()"
+                          type="button"
+                          class="my-3 rounded-pill btn-primary display-4 px-4 py-2">Verify Email</button>
+                </div>
+              </form>
+            </ng-container>
+            <ng-container *ngIf="step==2">
+              <form [formGroup]="verifyOtpForm">
+                <div class="text-center">
+                  <img src="assets/images/forget.png"
+                       class="w-75 my-2">
+                  <h3 class="text-primary fw-bold my-2">Forget Password?</h3>
+                  <span class="my-2 text-muted display-4 fw-500">Enter the Verification Code received on your email
+                    address</span>
+                  <div class="form-group my-2 text-start">
+                    <input type="text"
+                           formControlName="otp"
+                           placeholder="Enter Verification Code"
+                           class="form-control mt-2">
+                    <app-print-input-error [control]="verifyOtpForm.get('otp')"
+                                           [label]="'Verification Code'"></app-print-input-error>
+                  </div>
+                  <button [disabled]="!verifyOtpForm.valid"
+                          (click)="verifyOtp()"
+                          type="button"
+                          class="my-3 rounded-pill btn-primary display-4 px-4 py-2">Verify OTP</button>
+                </div>
+              </form>
+            </ng-container>
+            <ng-container *ngIf="step==3">
+              <form [formGroup]="resetPasswordForm">
+                <div class="text-center">
+                  <img src="assets/images/forget.png"
+                       class="w-75 my-2">
+                  <h3 class="text-primary fw-bold my-2">Forget Password?</h3>
+                  <span class="my-2 text-muted display-4 fw-500">Set new password for your account</span>
+                  <div class="form-group my-2 text-start">
+                    <div class="position-relative">
+                    <input type="{{ hidePassword ? 'password' : 'text' }}"
+                           formControlName="password"
+                           placeholder="Enter New Password"
+                           class="form-control mt-2">  
+                              <i class="fa-solid pointer eye-icon" 
+                           [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"
+                           (click)="togglePasswordVisibility()"></i></div>
+                    <app-print-input-error [control]="resetPasswordForm.get('password')"
+                                           [label]="'Password'"></app-print-input-error>
+                  </div>
+                  <button [disabled]="!resetPasswordForm.valid"
+                          (click)="reset()"
+                          type="button"
+                          class="my-3 rounded-pill btn-primary display-4 px-4 py-2">Reset Password</button>
+                </div>
+              </form>
+            </ng-container>
+
+            <ng-container *ngIf="step==4">
+              <div class="text-center">
+                <img src="assets/images/forget.png"
+                     class="w-75 my-2">
+                <h3 class="text-primary fw-bold my-2">Forget Password?</h3>
+                <span class="my-2 text-muted display-4 fw-500">Your Password has been reset successfully!</span>
+                <br><br><br>
+                <button (click)="login()"
+                        type="button"
+                        class="my-3 rounded-pill btn-primary display-4 px-4 py-2">Login</button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  </div>
+</form>

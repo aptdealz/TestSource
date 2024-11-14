@@ -1,0 +1,23 @@
+<div class="sidebar rounded-4"
+     (mouseleave)="close()"
+     [ngClass]="checkSidebar == false ? 'd-none' : 'd-block'"
+     id="mySidebar">
+
+  <div class="d-flex justify-content-between bg-pink p-2 align-items-center"
+       style=" border-top-right-radius: 8px;">
+    <h5 class="text-white m-0 ps-3">Categories</h5>
+    <i class="fa-solid fa-xmark text-white"
+       role="button"
+       aria-hidden="true"
+       style="font-size: 20px;"
+       (click)="close()"></i>
+  </div>
+  <ul>
+    <li *ngFor="let item of list">
+      <a href="#"
+         (click)="close()"
+         [routerLink]="['/category',item.urlName]"
+         class="item-link">{{item.name}}</a>
+    </li>
+  </ul>
+</div>

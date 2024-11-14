@@ -1,0 +1,38 @@
+@use "../../../assets/scss/z-index" as zIndex;
+.sidebar {
+  position: fixed;
+  top: 88px;
+  z-index: map-get(zIndex.$zType, sidebar);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: 15%;
+  background-color: #fff;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  left: 0px;
+  height: 80vh;
+  overflow-x: hidden;
+  ul {
+    padding-left: 0px;
+    margin-bottom: 0rem;
+    li {
+      list-style-type: none;
+      padding-left: 0px;
+      border-bottom: 1px solid gray;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+      font-size: 13px;
+      padding-left: 1rem;
+      &:hover {
+        background-color: var(--secondary-color);
+        .item-link {
+          color: #fff;
+        }
+      }
+      .item-link {
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="modal-content">
+  <div class="modal-body p-0">
+    <div class="container-fluid p-0">
+      <div class="texture-image position-relative d-flex justify-content-center align-items-center ">
+        <img src="assets/images/congrats.png"
+             class="ms-4"
+             style="width: 20%">
+      </div>
+      <div class="row my-3 mx-4">
+        <div class="col-md-8 mx-auto">
+          <h5 class="fw-bold mt-3 text-center text-muted lh-base">
+           Your payment is successfully completed.
+          </h5>
+          <ng-container >
+            <div class="d-flex justify-content-center mt-5">
+               <button type="button"
+                      (click)="dismissModal('cross_click')"
+                      class="px-4 py-2 btn-info display-4 mx-2 rounded-pill">Okay</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,342 @@
+<div class="bg-secondary wrapper-panel" *ngIf="!loading">
+  <div class="container">
+    <section class="py-4">
+      <app-breadcrumb-section [breadcrumbs]="breadcrumbs"></app-breadcrumb-section>
+    </section>
+    <div class="row">
+      <div class="col-lg-9 col-12 mx-auto">
+        <div class="card-wrapper p-3 mb-3"
+             *ngIf="checkData == true">
+          <div class="d-md-flex d-block justify-content-between my-2">
+            <button class="btn-info back-btn rounded-pill py-0 px-3 display-5"
+                    (click)="back()">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary text-center-m fw-bold mb-0 ">
+              REQUIREMENT DETAILS
+            </h3>
+            <div style="width: 100px;"></div>
+          </div>
+          <div class="d-flex align-items-center my-4">
+            <div class="w-20">
+              <img width="150px"
+                   height="150px"
+                   [src]="list.productImage"
+                   class="bg-loading"
+                     appImage404>
+            </div>
+            <h4 class="text-muted mx-3 fw-bold break-l">{{list.title}}</h4>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-4 mt-2">
+              <h6>Requirement ID</h6>
+              <h6 class="fw-500 text-primary">{{list.requirementNo}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Requirement Title</h6>
+              <h6 class="fw-500 text-primary">{{list.title}}</h6>
+            </div>
+
+            <div class="col-md-4 mt-2">
+              <h6>Category</h6>
+              <h6 class="fw-500 text-primary">{{list.category}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Sub Category</h6>
+              <ng-container *ngFor="let subCategory of list.subCategories;let i = index">
+                <h6 class="fw-500 text-primary">{{subCategory}}<span *ngIf="i+1 != list.subCategories.length">,</span>
+                </h6>
+              </ng-container>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Buyer ID</h6>
+              <h6 class="fw-500 text-primary">{{list.buyerNo}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Quantity</h6>
+              <h6 class="fw-500 text-primary">{{list.quantity}} {{list.unit}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Total Quote Amount</h6>
+              <h6 class="fw-500 text-primary">{{list.totalPriceEstimation | currency: 'INR'}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Preferred Source</h6>
+              <h6 class="fw-500 text-primary">{{list.preferredSourceOfSupply}}</h6>
+            </div>
+            <div class="col-md-4 mt-2">
+              <h6>Shipping Pin Code</h6>
+              <h6 class="fw-500 text-primary">{{list.shippingAddressPinCode}}</h6>
+            </div>
+            <div class="col-md-12 mt-2">
+              <h6>Description</h6>
+              <h6 class="fw-500 text-primary" [innerHTML]="list.productDescription"></h6>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.preferInIndiaProducts"
+                         class="mx-2">
+                  <label>Prefer Make in india Products</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.pickupProductDirectly"
+                         class="mx-2">
+                  <label>Pickup Product directly from seller</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group d-flex align-items-center">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.needInsuranceCoverage"
+                         class="mx-2">
+                  <label>Do you need insurrance coverage?</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.isReseller"
+                         class="mx-2"> <label>Are you a
+                    Reseller?</label><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="checkbox"
+                         [disabled]="true"
+                         [checked]="list.agreeGSTc"
+                         class="mx-2"> <label>Agree to GST Terms & Conditions?</label><br>
+                </div>
+              </div>
+              <div *ngIf="list.isReseller" class="col-md-6">
+                <div class="form-group">
+                  <h6>GSTIN:  <span class="fw-500 text-primary">{{list.gstin}}</span></h6>
+                </div>
+              </div>
+              <!-- <div class="col-md-6 mt-3" *ngIf="list?.isReseller == true">
+                <h6>GST Number</h6>
+                <h6 class="fw-500 text-primary">{{list?.gstin || '-'}}</h6>
+              </div> -->
+              <ng-container *ngIf="list.expectedDeliveryDateStr != '01-01-0001'">
+                <div class="col-md-6 mt-3"
+                     *ngIf="list.pickupProductDirectly == false">
+                  <h6>Expected Delivery Date</h6>
+                  <h6 class="fw-500 text-primary">{{list.expectedDeliveryDateStr}}</h6>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="list.expectedDeliveryDateStr != '01-01-0001'">
+                <div class="col-md-6 mt-3"
+                     *ngIf="list?.pickupProductDirectly == true">
+                  <h6>Expected Pickup Date</h6>
+                  <h6 class="fw-500 text-primary">{{list.expectedDeliveryDateStr}}</h6>
+                </div>
+              </ng-container>
+            </div>
+
+            <ng-container *ngIf="this.list.userId === userId">
+              <div class="col-md-12 mt-3">
+                <h5>Billing Address</h5>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>Building</h6>
+                <h6 class="fw-500 text-primary">{{list.billingAddressBuilding}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>Street</h6>
+                <h6 class="fw-500 text-primary">{{list.billingAddressStreet}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>City</h6>
+                <h6 class="fw-500 text-primary">{{list.billingAddressCity}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>State</h6>
+                <h6 class="fw-500 text-primary">{{list.billingAddressState}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>PinCode</h6>
+                <h6 class="fw-500 text-primary">{{list.billingAddressPinCode}}</h6>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="this.list.userId === userId">
+              <div class="col-md-12 mt-3">
+                <h5>Shipping Address</h5>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>Building</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressBuilding}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>Street</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressStreet}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>City</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressCity}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>State</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressState}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>PinCode</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressPinCode}}</h6>
+              </div>
+              <div class="col-md-4 mt-3">
+                <h6>Landmark</h6>
+                <h6 class="fw-500 text-primary">{{list.shippingAddressLandmark}}</h6>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- <ng-container>
+            <h6>Seller Contact Details</h6>
+            <ng-container *ngIf="list?.isSellerContactRevealed && list?.sellerContact">
+              <h6 class="fw-500 text-primary mt-3">Name: {{list?.sellerContact?.name}}</h6>
+              <h6 class="fw-500 text-primary mt-3">Phone Number: {{list?.sellerContact?.phoneNumber}}</h6>
+            </ng-container>
+            <ng-container *ngIf="!list?.isSellerContactRevealed">
+              <button class="btn-primary rounded-pill mx-2 py-2 px-4 display-4" (click)="completePayment()">Reveal Contact</button>
+            </ng-container>
+          </ng-container> -->
+
+          <div class="d-flex justify-content-center my-3">
+
+            <ng-container *ngIf="isShowDeleteButton">
+              <button class="btn-info rounded-pill py-2 display-4"
+                      (click)="delete()">
+                Delete
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="this.list.userId === userId">
+    <div class="container mt-3">
+      <div class="row  my-3">
+        <div class="col-7">
+          <h3 class="text-primary fw-bold">Quotes</h3>
+        </div>
+        <div class="col-md-5">
+          <div class="card-wrapper rounded-pill p-2">
+            <div class="d-flex search-box-bg form-group rounded-pill w-100">
+              <input class="form-control border-0 rounded-pill  me-2"
+                     type="search"
+                     (keyup)="doFilter($event)"
+                     (search)="reset($event)"
+                     placeholder="Search"
+                     aria-label="Search">
+              <button class="btn btn-primary"
+                      type="submit"><i class="fa-solid fa-magnifying-glass px-2 text-white"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 table-scroll pb-5">
+          <table mat-table
+                 matSort
+                 [dataSource]="quotesList"
+                 (matSortChange)="announceSortChange($event)"
+                 class="mat-elevation-z8">
+            <ng-container matColumnDef="SrNo">
+              <th class="text-primary"
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header>Sr. No.</th>
+              <td mat-cell
+                  *matCellDef="let element; let i = index;"> {{i+1}}. </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quoteNo">
+              <th class="text-primary min-w-172"
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header>Quote Id
+              </th>
+              <td mat-cell
+                  *matCellDef="let element">{{element.quoteNo}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="requirementTitle">
+              <th class="text-primary"
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header>Requirement Title</th>
+              <td mat-cell
+                  *matCellDef="let element">{{element.requirementTitle}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalQuoteAmount">
+              <th class="text-primary"
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header>Total Quote Amount</th>
+              <td mat-cell
+                  *matCellDef="let element">{{element.totalQuoteAmount | currency: 'INR'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <th class="text-primary"
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header>Quantity</th>
+              <td mat-cell
+                  *matCellDef="let element">{{element.quantity}} {{element.unit}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="button">
+              <th class="text-primary min-w-308"
+                  mat-header-cell
+                  *matHeaderCellDef>Action</th>
+              <td mat-cell
+                  *matCellDef="let element">
+                <a [routerLink]="['/quote-details/',element.quoteId]">
+                  <button class="btn-primary rounded-pill py-2 px-3 nowrap display-4">
+                    View Details
+                  </button>
+                </a>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row
+                *matHeaderRowDef="displayedColumns"></tr>
+
+            <tr mat-row
+                *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row"
+                *matNoDataRow>
+              <td class="mat-cell text-center py-4"
+                  [attr.colspan]="displayedColumns.length">
+                No data found.
+              </td>
+            </tr>
+          </table>
+
+          <ng-container>
+            <div class="row py-4"
+                 *ngIf="loading">
+              <h3 class="text-primary text-center my-5">
+                Loading ...
+              </h3>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

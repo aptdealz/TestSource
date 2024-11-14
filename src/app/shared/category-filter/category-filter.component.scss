@@ -1,0 +1,90 @@
+ul li {
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 14px;
+}
+ul {
+  padding-left: 0.7rem;
+}
+/* .accordion {
+  border: none;
+  box-shadow: none;
+}
+.accordion-item {
+  border: none;
+  box-shadow: none;
+}
+.accordion-button {
+  color: var(--primary-color);
+  background-color: var(--bg-secondary-color);
+  font-weight: 500;
+  padding: 10px;
+  padding-left: 0px;
+}
+.accordion-body {
+  padding: 5px;
+  background-color: var(--bg-secondary-color) !important;
+}
+.accordion-button:not(.collapsed) {
+  background-color: var(--bg-secondary-color) !important;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+.accordion-header {
+  background-color: var(--bg-secondary-color) !important;
+}
+
+.filter-btn {
+  background-color: var(--bg-secondary-color);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  padding-left: 0px;
+}
+hr {
+  background-color: var(--primary-color);
+  height: 3px;
+  opacity: 0.8;
+  width: 45%;
+}
+
+.active {
+  color: #ff15cc;
+}
+.accordion-button {
+  white-space: inherit !important;
+  line-break: anywhere !important;
+}
+.accordion-header {
+  white-space: inherit !important;
+  line-break: anywhere !important;
+}
+ */
+
+ .accordion {
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  .accordion-head{
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8c8c8;
+  }
+  .active{
+    color: #0c63e4;
+    background-color: #e7f1ff;
+  }
+  .subactive{
+    color: #ff15cc;
+  }
+  .accordion-item{
+    border: none;
+  }
+  .accordion-body{
+    background-color: white;
+  }
+}

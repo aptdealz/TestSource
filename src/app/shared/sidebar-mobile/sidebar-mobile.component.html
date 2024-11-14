@@ -1,0 +1,162 @@
+<div class="w-100 d-flex"
+     id="sidebarMobile"
+     class="collapse show  mobileSidebar w-100 d-flex"
+     [ngClass]="page.sidebar? 'active' : 'show shadow' ">
+  <div class="w-75 bg-white">
+    <nav>
+
+      <div class="d-flex justify-content-end p-2">
+
+        <i class="fa fa-times "
+           (click)="toggle()"></i>
+      </div>
+
+     <mat-tab-group>
+        <mat-tab label="Main Menu">
+          <div class="container-fluid mt-3">
+            <ul class="new-tab">
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/']"
+                   class="item-link fw-500 text-uppercase display-4">Home</a>
+              </li>
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/how-we-work']"
+                   class="item-link fw-500 text-uppercase display-4">How we Work</a>
+              </li>
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/become-vendor']"
+                   class="item-link fw-500 text-uppercase display-4">Become a Partner</a>
+              </li>
+
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/blog']"
+                   class="item-link fw-500 text-uppercase display-4">Blog</a>
+              </li>
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/about-us']"
+                   class="item-link fw-500 text-uppercase display-4">About Us</a>
+              </li>
+              <li *ngIf="!hideSubscriptionPlan">
+                <a (click)="toggle()"
+                   [routerLink]="['/subscription']"
+                   class="item-link fw-500 text-uppercase display-4">Subscription</a>
+              </li>
+              <li *ngIf="!hideSubscriptionPlan && user.seller">
+                <a (click)="toggle()"
+                   routerLink="/my-subscription"
+                   class="item-link fw-500 text-uppercase display-4">My Subscription</a>
+              </li>
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/contact-us']"
+                   class="item-link fw-500 text-uppercase display-4">Contact Us</a>
+              </li>
+              <li>
+                <a (click)="toggle()"
+                   [routerLink]="['/need-help']"
+                   class="item-link fw-500 text-uppercase display-4">Support</a>
+              </li>
+            </ul>
+          </div>
+        </mat-tab>
+        <mat-tab label="Categories">
+            <div class="container-fluid mt-3"  style="overflow-x: scroll; height: 530px;">
+         <!--  <ul class="new-tab"
+              style="overflow-x: scroll; height: 530px;">
+            <li *ngFor="let item of categoryTree"
+                class="dropdown">
+              <div class="d-flex justify-content-between">
+                <a (click)="toggle()"
+                   [routerLink]="['/category',item.urlName]"
+                   class="fw-500 text-uppercase display-4 ">
+                   {{item.name}}</a>
+                <button class="btn btn-secondary dropdown-toggle"
+                        *ngIf="item.subCategories.length > 0"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                </button>
+              </div>
+
+              <div class="dropdown-menu border-0"
+                   *ngIf="item.subCategories.length > 0"
+                   aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item pointer"
+                   (click)="gotoProducts(item,subcategory)"
+                   *ngFor="let subcategory of item.subCategories"> {{subcategory.name}}</a>
+              </div>
+            </li>
+
+          </ul> -->
+
+         <mat-accordion>
+            <mat-expansion-panel hideToggle *ngFor="let item of categoryTree"
+            (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <a (click)="toggle()"
+                   [routerLink]="['/category',item.urlName]"
+                   class="fw-500 item text-uppercase display-4 ">
+                   {{item.name}}</a>
+                   <i class="fa-solid " [ngClass]="panelOpenState == true ? 'fa-caret-up': 'fa-caret-down'"></i>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class=" border-0"
+              *ngIf="item.subCategories.length > 0">
+           <div class="item-sub pointer"
+              (click)="gotoProducts(item,subcategory)"
+              *ngFor="let subcategory of item.subCategories"> {{subcategory.name}}</div>
+         </div>
+            </mat-expansion-panel>
+</mat-accordion>
+
+
+        </div> </mat-tab>
+      </mat-tab-group>
+
+      <ng-container *ngIf="!user.loggedIn">
+        <div class="sidebar-footer d-flex justify-content-around">
+          <button type="button"
+                  (click)="signupModal()"
+                  class="btn px-3 py-1 btn-primary">Sign Up</button>
+          <button type="button"
+                  (click)="loginModal()"
+                  class="btn btn-secondary fw-500 py-1 rounded-pill display-4"><i
+               class="fa-regular fa-user me-1 text-primary"></i>Login</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="user.loggedIn">
+        <div class="sidebar-footer d-flex justify-content-around">
+          <button type="button"
+                  (click)="toggle()"
+                  *ngIf="user.buyer"
+                  [routerLink]="['/buyer-profile/personal']"
+                  class="btn btn-secondary fw-500 py-1 rounded-pill display-4"><i
+               class="fa-regular fa-user me-1 text-primary"></i>My Account</button>
+          <button type="button"
+                  (click)="toggle()"
+                  *ngIf="user.seller"
+                  [routerLink]="['/seller-profile/personal']"
+                  class="btn btn-secondary fw-500 py-1 rounded-pill display-4"><i
+               class="fa-regular fa-user me-1 text-primary"></i>My Account</button>
+
+          <button type="button"
+                  (click)="openConfirm('logout')"
+                  *ngIf="user.loggedIn"
+                  class="btn btn-secondary fw-500 py-1 rounded-pill display-4">
+            <i class="fa-solid fa-right-from-bracket me-1 text-primary"></i>Logout</button>
+        </div>
+      </ng-container>
+    </nav>
+  </div>
+  <div class="w-25"
+       (click)="toggle()"
+       [ngClass]="[!hasSidebar ? 'sidebar-element' : 'sidebar-element-active']"
+       style="height: 100vh;"></div>
+</div>

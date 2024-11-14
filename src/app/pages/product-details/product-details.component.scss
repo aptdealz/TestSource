@@ -1,0 +1,59 @@
+.review-img {
+  width: 30px;
+  height: 30px;
+}
+.specify-list li::before {
+  content: "\2022";
+  color: var(--secondary-color);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+ul li {
+  list-style-type: none;
+}
+.product-desc-list li::before {
+  content: "✓";
+  color: var(--text-muted);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.product-desc-list {
+  padding-left: 1rem;
+}
+
+.w-20 {
+  width: 50%;
+}
+.zoom-img {
+  border: 1px solid #bfc0c2;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+}
+.zoom-img:hover {
+  transform: scale(1.2);
+}
+.zoom-img1 {
+  border: 1px solid #bfc0c2;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+}
+.zoom-img1:hover {
+  transform: scale(1.2);
+}
+.active-img {
+  border: 1px solid black;
+}
+.w-200 {
+  width: 300px !important;
+}
+@media screen and (max-width: 1000px) {
+  .w-200 {
+    width: 200px !important;
+  }
+}

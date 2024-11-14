@@ -1,0 +1,22 @@
+.border-1 {
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+.w-3 {
+  width: 3%;
+}
+.h-70 {
+  height: 70vh;
+}
+@media screen and (max-width: 780px) {
+  .w-3 {
+    width: 10%;
+  }
+  .h-70 {
+    height: 100%;
+  }
+}
+
+.blog-img {
+  object-fit: cover;
+}
